@@ -1,36 +1,30 @@
 import React from "react";
-import { Text, View, Button, Alert, StyleSheet } from "react-native";
+import { Text, View } from "react-native";
+import styled from "styled-components/native";
 
-const CustomButton = (props) => {
-  return (
-    <View style={(styles.container, buttonStyles.container)}>
-      <Button
-        title={props.text}
-        color="white"
-        onPress={() => alert("Button has been pressed!")}
-      />
-    </View>
-  );
-};
+const ButtonContainer = styled.TouchableOpacity`
+  align-self: stretch;
+  background-color: ${(props) => props.color};
+  border-radius: 20px;
+  /* padding-vertical: 15px;*/
+  margin-vertical: 10px;
+  margin-horizontal: 70px;
+  flex: 0.1;
+  justify-content: flex-end;
+`;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 0.1,
-    justifyContent: "flex-end",
-  },
-});
+const ButtonText = styled.Text`
+  flex: 0.7;
+  color: white;
+  text-align: center;
+  font-size: 25px;
+  /* padding-bottom: 11px; */
+`;
 
-const buttonStyles = StyleSheet.create({
-  container: {
-    alignSelf: "stretch",
-    backgroundColor: "#46C1C1",
-    borderRadius: 20,
-    paddingVertical: 15,
-    marginVertical: 10,
-    marginHorizontal: 70,
-  },
-});
-
-// alert(buttonStyles.container.backgroundColor);
+const CustomButton = ({ text, color }) => (
+  <ButtonContainer color={color}>
+    <ButtonText>{text}</ButtonText>
+  </ButtonContainer>
+);
 
 export default CustomButton;
