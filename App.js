@@ -31,9 +31,9 @@ function HomeScreen({ navigation }) {
     <StyledView>
         <AppName> GEN CONNECT </AppName>
         <AppDesc> Invite your child to share their feelings </AppDesc>
-        <CustomButton text="play" color="dance challenge" onPress={() => navigation.navigate('Play')} />
-        <CustomButton text="parent guide" color="all about me" />
-        <CustomButton text="how to play" color="the inner me" onPress={() => navigation.navigate('HowToPlay')} />
+        <CustomButton text="play" color="CMDGreen" onPress={() => navigation.navigate('Play')} />
+        <CustomButton text="parent guide" color="CMDTurquoise" />
+        <CustomButton text="how to play" color="CMDPink" onPress={() => navigation.navigate('HowToPlay')} />
         <StatusBar style="auto" />
     </StyledView>
   );
@@ -42,12 +42,12 @@ function HomeScreen({ navigation }) {
 function HowToPlay({ navigation }) {
   return (
     <StyledView>
-        <CustomText text='Press "PLAY"' color="dance challenge" count="1"/>
-        <CustomText text="Pick an order of players" color="the inner me" count="2"/>
-        <CustomText text="Pick a Category" color="what would you do" count="3"/>
-        <CustomText text="Answer the Question" color="all about me" count="4" />
-        <CustomText text="Pass the phone to the next person" color="my bright future"count="5" />
-        <CustomButton text="play" color="dance challenge" onPress={() => navigation.navigate('Play')}/>
+        <CustomText text='Press "PLAY"' color="CMDGreen" count="1"/>
+        <CustomText text="Pick an order of players" color="CMDPink" count="2"/>
+        <CustomText text="Pick a Category" color="CMDPurple" count="3"/>
+        <CustomText text="Answer the Question" color="CMDTurquoise" count="4" />
+        <CustomText text="Pass the phone to the next person" color="CMDOrange"count="5" />
+        <CustomButton text="play" color="CMDGreen" onPress={() => navigation.navigate('Play')}/>
         <StatusBar style="auto" />
     </StyledView>
   );
@@ -56,7 +56,7 @@ function HowToPlay({ navigation }) {
 function Play({ navigation }) {
   return (
     <StyledView>
-        <CustomButton text="home" color="dance challenge" onPress={() => navigation.navigate('Home')} />
+        <CustomButton text="home" color="CMDGreen" onPress={() => navigation.navigate('Home')} />
         <StatusBar style="auto" />
     </StyledView>
   );
