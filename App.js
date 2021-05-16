@@ -1,8 +1,9 @@
 import { StatusBar } from "expo-status-bar";
-import React, { Component } from "react";
-import { Text, View } from "react-native";
+import React from "react";
 import CustomButtom from "./components/CustomButton.js";
 import styled from "styled-components/native";
+import { ThemeProvider } from 'styled-components';
+import COLORS from "./components/GlobalStyles.js";
 
 const StyledView = styled.View`
   flex: 1;
@@ -22,13 +23,15 @@ const AppDesc = styled.Text`
 
 export default function App() {
   return (
-    <StyledView>
+    <ThemeProvider theme={{ colors: COLORS }} >
+      <StyledView>
       <AppName> GEN CONNECT </AppName>
       <AppDesc> Invite your child to share their feelings </AppDesc>
-      <CustomButtom text="play" color="#9BC53D" />
-      <CustomButtom text="parent guide" color="#46C1C1" />
-      <CustomButtom text="how to play" color="#EE3282" />
-      <StatusBar style="auto" />
+      <CustomButtom text="play" color="dance challenge" />
+      <CustomButtom text="parent guide" color="all about me" />
+      <CustomButtom text="how to play" color="the inner me" />
+    <StatusBar style="auto" />
     </StyledView>
+    </ThemeProvider>
   );
 }
