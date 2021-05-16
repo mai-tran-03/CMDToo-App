@@ -25,6 +25,12 @@ const AppDesc = styled.Text`
     font-size: 18px;
 `;
 
+const CategoryHeader = styled.Text`
+    font-size: 35px;
+    flex: 0.1;
+    align-items: flex-start;
+`;
+
 function HomeScreen({ navigation }) {
     return (
         <StyledView>
@@ -79,11 +85,13 @@ function HowToPlay({ navigation }) {
 function Play({ navigation }) {
     return (
         <StyledView>
-            <CustomButton
-                text="home"
-                color="CMDGreen"
-                onPress={() => navigation.navigate('Home')}
-            />
+            <CategoryHeader> Pick a Category </CategoryHeader>
+            <CustomButton text="favorites" color="favorites" />
+            <CustomButton text="dance" color="dance challenge" />
+            <CustomButton text="all about me" color="all about me" />
+            <CustomButton text="the inner me" color="the inner me" />
+            <CustomButton text="what would you do?" color="what would you do" />
+            <CustomButton text="my bright future" color="my bright future" />
             <StatusBar style="auto" />
         </StyledView>
     );
