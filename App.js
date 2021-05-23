@@ -5,7 +5,8 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
 import CustomButton from './components/CustomButton.js';
 import CustomText from './components/CustomText.js';
-import { CardTextbox, StandardTextbox } from './components/CustomTextbox';
+import { CardTextbox, StandardTextbox } from './components/CustomTextbox.js';
+import Card from './components/Card.js';
 import styled from 'styled-components/native';
 import { ThemeProvider } from 'styled-components';
 import COLORS from './components/GlobalStyles.js';
@@ -37,7 +38,7 @@ const AppDesc = styled.Text`
 
 const CategoryHeader = styled.Text`
     font-size: 35px;
-    flex: 0.1;
+    min-height: 50px
     align-items: flex-start;
 `;
 
@@ -56,6 +57,11 @@ function HomeScreen({ navigation }) {
                 text="how to play"
                 color="CMDPink"
                 onPress={() => navigation.navigate('HowToPlay')}
+            />
+            <CustomButton
+                text="CARDTEST"
+                color="CMDGreen"
+                onPress={() => navigation.navigate('CardTest')}
             />
             <StatusBar style="auto" />
         </StyledView>
@@ -126,7 +132,7 @@ function Play({ navigation }) {
                             .filter(
                                 q => q.Category.toLocaleLowerCase() === category
                             )
-                            .forEach((q, index) =>
+                            .forEach((q, index) => {
                                 setOptions(oldArray => [
                                     ...oldArray,
                                     <CustomButton
@@ -144,8 +150,8 @@ function Play({ navigation }) {
                                             setModalVisible(false);
                                         }}
                                     />
-                                ])
-                            );
+                                ]);
+                            });
                         setModalVisible(true);
                     }}
                 />
@@ -180,6 +186,23 @@ function Play({ navigation }) {
     );
 }
 
+function CardTest({ navigation }) {
+    const sampleQuestion = 'Turn your favorite song on and dance for 1 minute';
+    const sampleCategory = 'Dance Challenge';
+    const sampleHasFollowUp = true;
+
+    return (
+        <StyledView>
+            <Card
+                category={sampleCategory}
+                question={sampleQuestion}
+                color={sampleCategory.toLowerCase()}
+                hasFollowUp={sampleHasFollowUp}
+            ></Card>
+        </StyledView>
+    );
+}
+
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -190,6 +213,7 @@ export default function App() {
                     <Stack.Screen name="Home" component={HomeScreen} />
                     <Stack.Screen name="Play" component={Play} />
                     <Stack.Screen name="HowToPlay" component={HowToPlay} />
+                    <Stack.Screen name="CardTest" component={CardTest} />
                 </Stack.Navigator>
             </ThemeProvider>
         </NavigationContainer>
