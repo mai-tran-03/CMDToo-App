@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 
 const ButtonContainer = styled.TouchableOpacity`
     align-self: stretch;
-    background-color: ${props => props.theme.colors[props.color]};
+    background-color: ${props => props.theme.colors[props.color] || props.theme.colors.error};
     border-radius: 20px;
     /* padding-vertical: 15px;*/
     margin-vertical: 10px;

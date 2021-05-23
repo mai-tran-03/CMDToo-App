@@ -18,7 +18,7 @@ const COLORS = {
     CMDTurquoise: '#46C1C1',
     'dance challenge': '#9BC53D',
     CMDGreen: '#9BC53D',
-    'what would you do': '#A72175',
+    'what would you do?': '#A72175',
     CMDPurple: '#A72175',
     'the inner me': '#EE3282',
     CMDPink: '#EE3282',
@@ -27,7 +27,9 @@ const COLORS = {
     favorites: '#FCE74C',
     CMDYellow: '#FCE74C',
     CMDBeige: '#FFEAD0',
-    CMDWhite: '#FFFFFF'
-};
+    CMDWhite: '#FFFFFF',
+    error: '#FFEAD0',
+    grey: 'lightgrey'
+  };
 
 export default COLORS;

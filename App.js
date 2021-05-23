@@ -2,18 +2,27 @@ import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import CustomButton from './components/CustomButton.js';
 import CustomText from './components/CustomText.js';
 import styled from 'styled-components/native';
 import { ThemeProvider } from 'styled-components';
 import COLORS from './components/GlobalStyles.js';
+import qs from './components/questions.json';
+import { Modal } from "react-native";
 
 const StyledView = styled.View`
     flex: 1;
     background-color: #fff;
     align-items: center;
     justify-content: center;
+`;
+
+const StyledViewTwo = styled(StyledView)`
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #fff;
 `;
 
 const AppName = styled.Text`
@@ -83,15 +92,49 @@ function HowToPlay({ navigation }) {
 }
 
 function Play({ navigation }) {
+    const [modalVisible, setModalVisible] = useState(false);
+    let categories = ['favorites', 'dance challenge', 'all about me', 'the inner me', 'what would you do?', 'my bright future'];
+    let list = [];
+    const [questions, setQuestions] = useState(qs);
+    const [options, setOptions] = useState([]);
+    const [categors, setCategories] = useState(list);
+    useEffect(() => {
+        list = [];
+        categories.forEach(category => {
+            list.push(<CustomButton key={category} text={category} color={
+                    questions.filter(q => q.Category.toLowerCase() === category).length != 0 ? category : 'grey'
+                }
+                onPress={() => {
+                    setOptions([]);
+                    questions.filter(q => q.Category.toLocaleLowerCase() === category).forEach((q, index) => setOptions(oldArray => [...oldArray, <CustomButton key={index} text={q.Question} color={q.Category.toLowerCase()} 
+                        onPress={() => {
+                            setQuestions(oldQ => oldQ.filter(qw => qw.Question != q.Question));
+                            setModalVisible(false);
+                        }} />
+                ]));
+                setModalVisible(true);
+            }}/>);
+        });
+        setCategories(list);
+    }, [questions]);
+    
     return (
         <StyledView>
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => {
+                setModalVisible(!modalVisible);
+                }}
+            >
+                <StyledViewTwo>
+                    {options}
+                    <CustomButton text="close" color="CMDGreen" onPress={() => setModalVisible(!modalVisible)}/>
+                </StyledViewTwo>
+            </Modal>            
             <CategoryHeader> Pick a Category </CategoryHeader>
-            <CustomButton text="favorites" color="favorites" />
-            <CustomButton text="dance" color="dance challenge" />
-            <CustomButton text="all about me" color="all about me" />
-            <CustomButton text="the inner me" color="the inner me" />
-            <CustomButton text="what would you do?" color="what would you do" />
-            <CustomButton text="my bright future" color="my bright future" />
+            {categors}
             <StatusBar style="auto" />
         </StyledView>
     );
