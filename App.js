@@ -5,11 +5,12 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
 import CustomButton from './components/CustomButton.js';
 import CustomText from './components/CustomText.js';
+import { CardTextbox, StandardTextbox } from './components/CustomTextbox';
 import styled from 'styled-components/native';
 import { ThemeProvider } from 'styled-components';
 import COLORS from './components/GlobalStyles.js';
 import qs from './components/questions.json';
-import { Modal } from "react-native";
+import { Modal } from 'react-native';
 
 const StyledView = styled.View`
     flex: 1;
@@ -93,7 +94,14 @@ function HowToPlay({ navigation }) {
 
 function Play({ navigation }) {
     const [modalVisible, setModalVisible] = useState(false);
-    let categories = ['favorites', 'dance challenge', 'all about me', 'the inner me', 'what would you do?', 'my bright future'];
+    let categories = [
+        'favorites',
+        'dance challenge',
+        'all about me',
+        'the inner me',
+        'what would you do?',
+        'my bright future'
+    ];
     let list = [];
     const [questions, setQuestions] = useState(qs);
     const [options, setOptions] = useState([]);
@@ -101,23 +109,51 @@ function Play({ navigation }) {
     useEffect(() => {
         list = [];
         categories.forEach(category => {
-            list.push(<CustomButton key={category} text={category} color={
-                    questions.filter(q => q.Category.toLowerCase() === category).length != 0 ? category : 'grey'
-                }
-                onPress={() => {
-                    setOptions([]);
-                    questions.filter(q => q.Category.toLocaleLowerCase() === category).forEach((q, index) => setOptions(oldArray => [...oldArray, <CustomButton key={index} text={q.Question} color={q.Category.toLowerCase()} 
-                        onPress={() => {
-                            setQuestions(oldQ => oldQ.filter(qw => qw.Question != q.Question));
-                            setModalVisible(false);
-                        }} />
-                ]));
-                setModalVisible(true);
-            }}/>);
+            list.push(
+                <CustomButton
+                    key={category}
+                    text={category}
+                    color={
+                        questions.filter(
+                            q => q.Category.toLowerCase() === category
+                        ).length != 0
+                            ? category
+                            : 'grey'
+                    }
+                    onPress={() => {
+                        setOptions([]);
+                        questions
+                            .filter(
+                                q => q.Category.toLocaleLowerCase() === category
+                            )
+                            .forEach((q, index) =>
+                                setOptions(oldArray => [
+                                    ...oldArray,
+                                    <CustomButton
+                                        key={index}
+                                        text={q.Question}
+                                        color={q.Category.toLowerCase()}
+                                        onPress={() => {
+                                            setQuestions(oldQ =>
+                                                oldQ.filter(
+                                                    qw =>
+                                                        qw.Question !=
+                                                        q.Question
+                                                )
+                                            );
+                                            setModalVisible(false);
+                                        }}
+                                    />
+                                ])
+                            );
+                        setModalVisible(true);
+                    }}
+                />
+            );
         });
         setCategories(list);
     }, [questions]);
-    
+
     return (
         <StyledView>
             <Modal
@@ -125,14 +161,18 @@ function Play({ navigation }) {
                 transparent={true}
                 visible={modalVisible}
                 onRequestClose={() => {
-                setModalVisible(!modalVisible);
+                    setModalVisible(!modalVisible);
                 }}
             >
                 <StyledViewTwo>
                     {options}
-                    <CustomButton text="close" color="CMDGreen" onPress={() => setModalVisible(!modalVisible)}/>
+                    <CustomButton
+                        text="close"
+                        color="CMDGreen"
+                        onPress={() => setModalVisible(!modalVisible)}
+                    />
                 </StyledViewTwo>
-            </Modal>            
+            </Modal>
             <CategoryHeader> Pick a Category </CategoryHeader>
             {categors}
             <StatusBar style="auto" />
