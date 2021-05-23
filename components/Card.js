@@ -20,7 +20,6 @@ const long_text = [
 const CardView = styled.View`
     display: flex;
     justify-content: flex-start;
-    background-color: red;
 `;
 
 const ButtonContainer = styled.View`
