@@ -24,17 +24,6 @@ const StandardText = styled.Text`
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
 `;
 
-// const CardContainer = styled.View`
-//     background-color: ${props =>
-//         props.theme.colors[props.color] || props.theme.colors.error};
-//     border-radius: 20px;
-//     margin-vertical: 10px;
-//     margin-horizontal: 20px;
-//     justify-content: center;
-//     padding: 40px 50px;
-//     min-height: 70%;
-// `;
-
 const CardContainer = styled.View`
     background-color: ${props =>
         props.theme.colors[props.color] || props.theme.colors.error};
