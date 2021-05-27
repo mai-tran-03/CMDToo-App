@@ -10,7 +10,7 @@ import Card from './components/Card.js';
 import styled from 'styled-components/native';
 import { ThemeProvider } from 'styled-components';
 import COLORS from './components/GlobalStyles.js';
-import qs from './components/questions.json';
+import qs from './components/test_questions.json';
 import { Modal } from 'react-native';
 
 const StyledView = styled.View`
@@ -111,7 +111,7 @@ function Play({ navigation }) {
     let list = [];
     const [questions, setQuestions] = useState(qs);
     const [options, setOptions] = useState([]);
-    const [categors, setCategories] = useState(list);
+    const [display, setDisplay] = useState();
     useEffect(() => {
         list = [];
         categories.forEach(category => {
@@ -157,7 +157,29 @@ function Play({ navigation }) {
                 />
             );
         });
-        setCategories(list);
+        if(questions.length) {
+            setDisplay(<><CategoryHeader> Pick a Category </CategoryHeader>{list}</>);
+        } else {
+            setDisplay(<>
+            <AppName> YOU FINISHED! </AppName>
+            <AppDesc> What is something new you learned today? </AppDesc>
+            <CustomButton
+                text="go home"
+                color="CMDPink"
+                onPress={() => navigation.navigate('Home')}
+            />
+            <CustomButton
+                text="parent guide"
+                color="CMDTurquoise"
+                onPress={() => navigation.navigate('Home')}
+            />
+            <CustomButton
+                text="CMDToo Website"
+                color="CMDGreen"
+                onPress={() => navigation.navigate('Home')}
+            />
+            </>);
+        }
     }, [questions]);
 
     return (
@@ -179,8 +201,7 @@ function Play({ navigation }) {
                     />
                 </StyledViewTwo>
             </Modal>
-            <CategoryHeader> Pick a Category </CategoryHeader>
-            {categors}
+            {display}
             <StatusBar style="auto" />
         </StyledView>
     );
