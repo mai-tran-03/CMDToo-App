@@ -43,7 +43,7 @@ export const StandardTextbox = ({ text, color }) => (
 
 export const CardTextbox = ({ textList, color }) => {
     const displayText = textList.map(text => (
-        <StandardText>{text}</StandardText>
+        <StandardText key={text}>{text}</StandardText>
     ));
     return (
         <CardContainer length={textList.length} color={color}>

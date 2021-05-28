@@ -23,7 +23,7 @@ const ButtonText = styled.Text`
 `;
 
 const CustomButton = ({ text, color, ...others }) => (
-    <ButtonContainer color={color} onPress={others.onPress}>
+    <ButtonContainer color={others.disabled ? 'grey' : color} onPress={others.onPress} disabled={others.disabled}>
         <ButtonText>{text}</ButtonText>
     </ButtonContainer>
 );

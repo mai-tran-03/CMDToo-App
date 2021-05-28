@@ -10,7 +10,7 @@ import Card from './components/Card.js';
 import styled from 'styled-components/native';
 import { ThemeProvider } from 'styled-components';
 import COLORS from './components/GlobalStyles.js';
-import qs from './components/test_questions.json';
+import qs from './components/questions.json';
 import { Modal } from 'react-native';
 
 const StyledView = styled.View`
@@ -119,39 +119,31 @@ function Play({ navigation }) {
                 <CustomButton
                     key={category}
                     text={category}
-                    color={
-                        questions.filter(
+                    color={category}
+                    disabled={questions.filter(
                             q => q.Category.toLowerCase() === category
-                        ).length != 0
-                            ? category
-                            : 'grey'
-                    }
+                        ).length === 0}
                     onPress={() => {
                         setOptions([]);
-                        questions
+                        let ques = questions
                             .filter(
                                 q => q.Category.toLocaleLowerCase() === category
                             )
-                            .forEach((q, index) => {
-                                setOptions(oldArray => [
-                                    ...oldArray,
-                                    <CustomButton
-                                        key={index}
-                                        text={q.Question}
-                                        color={q.Category.toLowerCase()}
-                                        onPress={() => {
-                                            setQuestions(oldQ =>
-                                                oldQ.filter(
+                        ques = ques[Math.floor(Math.random() * ques.length)];
+                        setOptions(
+                            <Card
+                                category={ques.Category}
+                                question={ques.Question}
+                                color={ques.Category.toLowerCase()}
+                                hasFollowUp={ques.hasFollowUp}
+                                setModalVisible={setModalVisible}
+                            ></Card>);
+                        setQuestions(oldQ => oldQ.filter(
                                                     qw =>
                                                         qw.Question !=
-                                                        q.Question
+                                                        ques.Question
                                                 )
                                             );
-                                            setModalVisible(false);
-                                        }}
-                                    />
-                                ]);
-                            });
                         setModalVisible(true);
                     }}
                 />
@@ -192,14 +184,9 @@ function Play({ navigation }) {
                     setModalVisible(!modalVisible);
                 }}
             >
-                <StyledViewTwo>
+                <StyledView>
                     {options}
-                    <CustomButton
-                        text="close"
-                        color="CMDGreen"
-                        onPress={() => setModalVisible(!modalVisible)}
-                    />
-                </StyledViewTwo>
+                </StyledView>
             </Modal>
             {display}
             <StatusBar style="auto" />

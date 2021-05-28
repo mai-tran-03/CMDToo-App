@@ -30,7 +30,7 @@ const ButtonContainer = styled.View`
     min-height: 100px;
 `;
 
-const Card = ({ category, question, color, hasFollowUp }) => {
+const Card = ({ category, question, color, hasFollowUp, setModalVisible }) => {
     const textList = [question];
     return (
         <CardView>
@@ -38,11 +38,11 @@ const Card = ({ category, question, color, hasFollowUp }) => {
             <CardTextbox textList={textList} color={color} />
             {hasFollowUp ? (
                 <ButtonContainer>
-                    <CustomButton text="done" color={color}></CustomButton>
+                    <CustomButton text="done" color={color} onPress={() => setModalVisible(false)}></CustomButton>
                     <CustomButton text="follow up" color={color}></CustomButton>
                 </ButtonContainer>
             ) : (
-                <CustomButton text="done" color={color}></CustomButton>
+                <CustomButton text="done" color={color} onPress={() => setModalVisible(false)}></CustomButton>
             )}
         </CardView>
     );
