@@ -133,10 +133,11 @@ function Play({ navigation }) {
                         setOptions(
                             <Card
                                 category={ques.Category}
-                                question={ques.Question}
+                                question={ques}
                                 color={ques.Category.toLowerCase()}
                                 hasFollowUp={ques.hasFollowUp}
                                 setModalVisible={setModalVisible}
+                                setOptions={setOptions}
                             ></Card>);
                         setQuestions(oldQ => oldQ.filter(
                                                     qw =>
