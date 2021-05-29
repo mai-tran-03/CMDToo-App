@@ -11,7 +11,7 @@ import styled from 'styled-components/native';
 import { ThemeProvider } from 'styled-components';
 import COLORS from './components/GlobalStyles.js';
 import qs from './components/questions.json';
-import { Modal } from 'react-native';
+import { Modal, TextInput, Text, View } from 'react-native';
 
 const StyledView = styled.View`
     flex: 1;
@@ -42,6 +42,17 @@ const CategoryHeader = styled.Text`
     align-items: flex-start;
 `;
 
+const ViewBy = styled.Text`
+    font-size: 30px;
+    min-height: 50px;
+`;
+
+const ViewHeading = styled.Text`
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+`;
+
 function HomeScreen({ navigation }) {
     return (
         <StyledView>
@@ -52,7 +63,11 @@ function HomeScreen({ navigation }) {
                 color="CMDGreen"
                 onPress={() => navigation.navigate('Play')}
             />
-            <CustomButton text="parent guide" color="CMDTurquoise" />
+            <CustomButton
+                text="parent guide"
+                color="CMDTurquoise"
+                onPress={() => navigation.navigate('ParentGuide')}
+            />
             <CustomButton
                 text="how to play"
                 color="CMDPink"
@@ -64,6 +79,29 @@ function HomeScreen({ navigation }) {
                 onPress={() => navigation.navigate('CardTest')}
             />
             <StatusBar style="auto" />
+        </StyledView>
+    );
+}
+
+function ParentGuide({ navigation }) {
+    return (
+        <StyledView>
+            <TextInput placeholder="Search by specific question" />
+            <ViewHeading> View By: </ViewHeading>
+            <ViewBy> grouped interpretation </ViewBy>
+            <CustomButton
+                text="How to Nuture Your Child;s Feelings & Interests"
+                color="CMDTurquoise"
+            />
+            <CustomButton
+                text="Things That Upset Your Child"
+                color="CMDTurquoise"
+            />
+            <CustomButton text="Child's Interests" color="CMDTurquoise" />
+            <CustomButton
+                text="People/Places/Things That Have Meaning in Your Child's Life"
+                color="CMDTurquoise"
+            />
         </StyledView>
     );
 }
@@ -120,15 +158,16 @@ function Play({ navigation }) {
                     key={category}
                     text={category}
                     color={category}
-                    disabled={questions.filter(
+                    disabled={
+                        questions.filter(
                             q => q.Category.toLowerCase() === category
-                        ).length === 0}
+                        ).length === 0
+                    }
                     onPress={() => {
                         setOptions([]);
-                        let ques = questions
-                            .filter(
-                                q => q.Category.toLocaleLowerCase() === category
-                            )
+                        let ques = questions.filter(
+                            q => q.Category.toLocaleLowerCase() === category
+                        );
                         ques = ques[Math.floor(Math.random() * ques.length)];
                         setOptions(
                             <Card
@@ -138,40 +177,48 @@ function Play({ navigation }) {
                                 hasFollowUp={ques.hasFollowUp}
                                 setModalVisible={setModalVisible}
                                 setOptions={setOptions}
-                            ></Card>);
-                        setQuestions(oldQ => oldQ.filter(
-                                                    qw =>
-                                                        qw.Question !=
-                                                        ques.Question
-                                                )
-                                            );
+                            ></Card>
+                        );
+                        setQuestions(oldQ =>
+                            oldQ.filter(qw => qw.Question != ques.Question)
+                        );
                         setModalVisible(true);
                     }}
                 />
             );
         });
-        if(questions.length) {
-            setDisplay(<><CategoryHeader> Pick a Category </CategoryHeader>{list}</>);
+        if (questions.length) {
+            setDisplay(
+                <>
+                    <CategoryHeader> Pick a Category </CategoryHeader>
+                    {list}
+                </>
+            );
         } else {
-            setDisplay(<>
-            <AppName> YOU FINISHED! </AppName>
-            <AppDesc> What is something new you learned today? </AppDesc>
-            <CustomButton
-                text="go home"
-                color="CMDPink"
-                onPress={() => navigation.navigate('Home')}
-            />
-            <CustomButton
-                text="parent guide"
-                color="CMDTurquoise"
-                onPress={() => navigation.navigate('Home')}
-            />
-            <CustomButton
-                text="CMDToo Website"
-                color="CMDGreen"
-                onPress={() => navigation.navigate('Home')}
-            />
-            </>);
+            setDisplay(
+                <>
+                    <AppName> YOU FINISHED! </AppName>
+                    <AppDesc>
+                        {' '}
+                        What is something new you learned today?{' '}
+                    </AppDesc>
+                    <CustomButton
+                        text="go home"
+                        color="CMDPink"
+                        onPress={() => navigation.navigate('Home')}
+                    />
+                    <CustomButton
+                        text="parent guide"
+                        color="CMDTurquoise"
+                        onPress={() => navigation.navigate('Home')}
+                    />
+                    <CustomButton
+                        text="CMDToo Website"
+                        color="CMDGreen"
+                        onPress={() => navigation.navigate('Home')}
+                    />
+                </>
+            );
         }
     }, [questions]);
 
@@ -185,9 +232,7 @@ function Play({ navigation }) {
                     setModalVisible(!modalVisible);
                 }}
             >
-                <StyledView>
-                    {options}
-                </StyledView>
+                <StyledView>{options}</StyledView>
             </Modal>
             {display}
             <StatusBar style="auto" />
@@ -220,6 +265,7 @@ export default function App() {
             <ThemeProvider theme={{ colors: COLORS }}>
                 <Stack.Navigator initialRouteName="Home">
                     <Stack.Screen name="Home" component={HomeScreen} />
+                    <Stack.Screen name="ParentGuide" component={ParentGuide} />
                     <Stack.Screen name="Play" component={Play} />
                     <Stack.Screen name="HowToPlay" component={HowToPlay} />
                     <Stack.Screen name="CardTest" component={CardTest} />
