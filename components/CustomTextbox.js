@@ -11,7 +11,7 @@ const TextboxContainer = styled.View`
     padding: 20px 50px;
 `;
 
-const StandardText = styled.Text`
+export const StandardText = styled.Text`
     font-family: Avenir;
     font-style: normal;
     font-weight: normal;
@@ -46,7 +46,7 @@ export const CardTextbox = ({ textList, color }) => {
     const displayText = textList.map((text, index) => (
         <StandardText key={index}>{text}</StandardText>
     ));
-    
+
     return (
         <CardContainer length={textList.length} color={color}>
             {displayText}

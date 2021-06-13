@@ -4,7 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
 import CustomButton from './components/CustomButton.js';
-import CustomText from './components/CustomText.js';
+import { CustomText } from './components/CustomText.js';
 import { CardTextbox, StandardTextbox } from './components/CustomTextbox.js';
 import Card from './components/Card.js';
 import styled from 'styled-components/native';
@@ -151,6 +151,7 @@ function Play({ navigation }) {
     const [options, setOptions] = useState([]);
     const [display, setDisplay] = useState();
     useEffect(() => {
+        console.log(questions.length);
         list = [];
         categories.forEach(category => {
             list.push(

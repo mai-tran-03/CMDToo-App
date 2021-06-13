@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
+import { StandardText } from './CustomTextbox.js';
 
 const ButtonContainer = styled.TouchableOpacity`
     align-self: stretch;
@@ -15,16 +16,13 @@ const ButtonContainer = styled.TouchableOpacity`
     justify-content: center;
 `;
 
-const ButtonText = styled.Text`
-    color: white;
-    text-align: center;
-    font-size: 25px;
-    /* padding-bottom: 11px; */
-`;
-
 const CustomButton = ({ text, color, ...others }) => (
-    <ButtonContainer color={others.disabled ? 'grey' : color} onPress={others.onPress} disabled={others.disabled}>
-        <ButtonText>{text}</ButtonText>
+    <ButtonContainer
+        color={others.disabled ? 'grey' : color}
+        onPress={others.onPress}
+        disabled={others.disabled}
+    >
+        <StandardText>{text}</StandardText>
     </ButtonContainer>
 );
 

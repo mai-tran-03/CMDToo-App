@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
+import { StandardText } from './CustomTextbox.js';
 
 const ButtonContainer = styled.View`
     align-self: stretch;
@@ -12,14 +13,6 @@ const ButtonContainer = styled.View`
     justify-content: center;
 `;
 
-const ButtonText = styled.Text`
-    color: white;
-    text-align: center;
-    font-size: 25px;
-    margin: 0 30px;
-    /* padding-bottom: 11px; */
-`;
-
 const Count = styled.Text`
     position: absolute;
     top: 6px;
@@ -27,11 +20,9 @@ const Count = styled.Text`
     color: ${props => props.theme.colors.CMDWhite};
 `;
 
-const CustomText = ({ text, color, count }) => (
+export const CustomText = ({ text, color, count }) => (
     <ButtonContainer color={color}>
         <Count>{count}.</Count>
-        <ButtonText>{text}</ButtonText>
+        <StandardText>{text}</StandardText>
     </ButtonContainer>
 );
-
-export default CustomText;
