@@ -16,14 +16,30 @@ const ButtonContainer = styled.TouchableOpacity`
     justify-content: center;
 `;
 
-const CustomButton = ({ text, color, ...others }) => (
-    <ButtonContainer
-        color={others.disabled ? 'grey' : color}
-        onPress={others.onPress}
-        disabled={others.disabled}
-    >
-        <StandardText>{text}</StandardText>
-    </ButtonContainer>
-);
+const WarningText = styled.Text`
+    color: #ffffff;
+    position: absolute;
+    right: 5%;
+    bottom: 3%;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+    font-weight: 600;
+`;
+
+const CustomButton = ({ text, color, warningText, ...others }) => {
+    return (
+        <ButtonContainer
+            color={others.disabled ? 'grey' : color}
+            onPress={others.onPress}
+            disabled={others.disabled}
+        >
+            <StandardText>{text}</StandardText>
+            {warningText !== undefined ? (
+                <WarningText>{warningText}</WarningText>
+            ) : (
+                <WarningText></WarningText>
+            )}
+        </ButtonContainer>
+    );
+};
 
 export default CustomButton;

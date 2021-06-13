@@ -151,24 +151,29 @@ function Play({ navigation }) {
     const [options, setOptions] = useState([]);
     const [display, setDisplay] = useState();
     useEffect(() => {
-        console.log(questions.length);
         list = [];
         categories.forEach(category => {
+            const cardLeft = questions.filter(
+                q => q.Category.toLowerCase() === category
+            );
+            const lengthOfCardLeft = cardLeft.length;
+
             list.push(
                 <CustomButton
                     key={category}
                     text={category}
                     color={category}
-                    disabled={
-                        questions.filter(
-                            q => q.Category.toLowerCase() === category
-                        ).length === 0
+                    disabled={lengthOfCardLeft === 0}
+                    warningText={
+                        lengthOfCardLeft <= 3
+                            ? `${lengthOfCardLeft} ${
+                                  lengthOfCardLeft === 1 ? 'card' : 'cards'
+                              } left`
+                            : undefined
                     }
                     onPress={() => {
                         setOptions([]);
-                        let ques = questions.filter(
-                            q => q.Category.toLocaleLowerCase() === category
-                        );
+                        let ques = cardLeft;
                         ques = ques[Math.floor(Math.random() * ques.length)];
                         setOptions(
                             <Card

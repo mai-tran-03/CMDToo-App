@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { CardTextbox, StandardTextbox } from './CustomTextbox.js';
 import CustomButton from './CustomButton.js';
 import styled from 'styled-components/native';
@@ -30,26 +30,48 @@ const ButtonContainer = styled.View`
     min-height: 100px;
 `;
 
-const Card = ({ category, question, color, hasFollowUp, setModalVisible, setOptions}) => {
+const Card = ({
+    category,
+    question,
+    color,
+    hasFollowUp,
+    setModalVisible,
+    setOptions
+}) => {
     const textList = [question.Question || question];
-    const [followUp] = useState(<Card  category={category}
-                                question={question['Follow Up']}
-                                color={color}
-                                hasFollowUp={false}
-                                setModalVisible={setModalVisible}
-                                setOptions={setOptions}
-                            ></Card>);
+    const [followUp] = useState(
+        <Card
+            category={category}
+            question={question['Follow Up']}
+            color={color}
+            hasFollowUp={false}
+            setModalVisible={setModalVisible}
+            setOptions={setOptions}
+        ></Card>
+    );
     return (
         <CardView>
             <StandardTextbox text={category} color={color} />
             <CardTextbox textList={textList} color={color} />
             {hasFollowUp ? (
                 <ButtonContainer>
-                    <CustomButton text="done" color={color} onPress={() => setModalVisible(false)}></CustomButton>
-                    <CustomButton text="follow up" color={color} onPress={() => setOptions(followUp) }></CustomButton>
+                    <CustomButton
+                        text="done"
+                        color={color}
+                        onPress={() => setModalVisible(false)}
+                    ></CustomButton>
+                    <CustomButton
+                        text="follow up"
+                        color={color}
+                        onPress={() => setOptions(followUp)}
+                    ></CustomButton>
                 </ButtonContainer>
             ) : (
-                <CustomButton text="done" color={color} onPress={() => setModalVisible(false)}></CustomButton>
+                <CustomButton
+                    text="done"
+                    color={color}
+                    onPress={() => setModalVisible(false)}
+                ></CustomButton>
             )}
         </CardView>
     );
