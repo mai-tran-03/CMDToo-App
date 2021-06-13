@@ -251,13 +251,17 @@ function CardTest({ navigation }) {
     const sampleCategory = 'Dance Challenge';
     const sampleHasFollowUp = true;
 
+    const sampleQuestion2 = 'Favorite Book?';
+    const sampleCategory2 = 'Favorites';
+    const sampleHasFollowUp2 = false;
+
     return (
         <StyledView>
             <Card
-                category={sampleCategory}
-                question={sampleQuestion}
+                category={sampleCategory2}
+                question={sampleQuestion2}
                 color={sampleCategory.toLowerCase()}
-                hasFollowUp={sampleHasFollowUp}
+                hasFollowUp={sampleHasFollowUp2}
             ></Card>
         </StyledView>
     );

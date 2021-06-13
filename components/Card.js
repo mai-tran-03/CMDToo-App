@@ -20,6 +20,7 @@ const long_text = [
 const CardView = styled.View`
     display: flex;
     justify-content: flex-start;
+    min-width: 95%;
 `;
 
 const ButtonContainer = styled.View`
