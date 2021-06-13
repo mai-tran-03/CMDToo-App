@@ -28,12 +28,12 @@ const CardContainer = styled.View`
     background-color: ${props =>
         props.theme.colors[props.color] || props.theme.colors.error};
     border-radius: 20px;
-    margin-vertical: 10px;
+    margin-top: 10px;
     margin-horizontal: 20px;
     justify-content: ${props => (props.length > 1 ? 'space-around' : 'center')};
     padding: 40px 50px;
     min-height: 70%;
-`;
+`; // margin-bottom is added by ButtonContainer
 
 export const StandardTextbox = ({ text, color }) => (
     <TextboxContainer color={color}>
