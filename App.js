@@ -11,7 +11,7 @@ import styled from 'styled-components/native';
 import { ThemeProvider } from 'styled-components';
 import COLORS from './components/GlobalStyles.js';
 import qs from './components/questions.json';
-import { Modal, TextInput, Text, View } from 'react-native';
+import { Modal, TextInput, Image, TouchableOpacity } from 'react-native';
 
 const StyledView = styled.View`
     flex: 1;
@@ -273,9 +273,40 @@ export default function App() {
     return (
         <NavigationContainer>
             <ThemeProvider theme={{ colors: COLORS }}>
-                <Stack.Navigator initialRouteName="Home">
+                <Stack.Navigator
+                    initialRouteName="Home"
+                    screenOptions={{
+                        headerShown: false
+                    }}
+                >
                     <Stack.Screen name="Home" component={HomeScreen} />
-                    <Stack.Screen name="ParentGuide" component={ParentGuide} />
+                    <Stack.Screen
+                        name="ParentGuide"
+                        component={ParentGuide}
+                        options={({ navigation }) => ({
+                            headerShown: true,
+                            headerStyle: {
+                                backgroundColor: 'black'
+                            },
+                            headerTintColor: '#fff',
+                            headerTitleStyle: {
+                                fontWeight: 'bold'
+                            },
+                            headerBackTitleVisible: false,
+                            headerRight: props => (
+                                <TouchableOpacity
+                                    onPress={(...props) => {
+                                        navigation.navigate('Home');
+                                    }}
+                                >
+                                    <Image
+                                        source={require('./assets/homeIcon.png')}
+                                        style={{ width: 40, height: 40 }}
+                                    />
+                                </TouchableOpacity>
+                            )
+                        })}
+                    />
                     <Stack.Screen name="Play" component={Play} />
                     <Stack.Screen name="HowToPlay" component={HowToPlay} />
                     <Stack.Screen name="CardTest" component={CardTest} />
