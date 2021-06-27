@@ -16,18 +16,12 @@ const ButtonContainer = styled.TouchableOpacity`
     justify-content: center;
 `;
 
-const SmallButtonContainer = styled.TouchableOpacity`
-    align-self: stretch;
-    background-color: ${props =>
-        props.theme.colors[props.color] || props.theme.colors.error};
-    border-radius: 20px;
-    /* padding-vertical: 15px;*/
-    margin-vertical: 10px;
+const SmallButtonContainer = styled(ButtonContainer)`
     margin-horizontal: 5px;
-    max-height: 75px;
-    flex-grow: 100;
+`;
 
-    justify-content: center;
+const BigButtonContainer = styled(ButtonContainer)`
+    min-height: 75px;
 `;
 
 const WarningText = styled.Text`
@@ -44,6 +38,7 @@ const CustomButton = ({
     color,
     warningText,
     isSmall = false,
+    isBig = false,
     ...others
 }) => {
     if (isSmall) {
@@ -60,6 +55,21 @@ const CustomButton = ({
                     <WarningText></WarningText>
                 )}
             </SmallButtonContainer>
+        );
+    } else if (isBig) {
+        return (
+            <BigButtonContainer
+                color={others.disabled ? 'grey' : color}
+                onPress={others.onPress}
+                disabled={others.disabled}
+            >
+                <StandardText>{text}</StandardText>
+                {warningText !== undefined ? (
+                    <WarningText>{warningText}</WarningText>
+                ) : (
+                    <WarningText></WarningText>
+                )}
+            </BigButtonContainer>
         );
     } else {
         return (

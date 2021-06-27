@@ -20,11 +20,11 @@ const StyledView = styled.View`
     justify-content: center;
 `;
 
-const StyledViewTwo = styled(StyledView)`
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: #fff;
+const ScrollStyledView = styled.ScrollView``;
+
+const HowToPlayContainer = styled.View`
+    padding-top: 20%;
+    padding-bottom: 10%;
 `;
 
 const AppName = styled.Text`
@@ -109,29 +109,42 @@ function ParentGuide({ navigation }) {
 function HowToPlay({ navigation }) {
     return (
         <StyledView>
-            <CustomText text='Press "PLAY"' color="CMDGreen" count="1" />
-            <CustomText
-                text="Pick an order of players"
-                color="CMDPink"
-                count="2"
-            />
-            <CustomText text="Pick a Category" color="CMDPurple" count="3" />
-            <CustomText
-                text="Answer the Question"
-                color="CMDTurquoise"
-                count="4"
-            />
-            <CustomText
-                text="Pass the phone to the next person"
-                color="CMDOrange"
-                count="5"
-            />
-            <CustomButton
-                text="play"
-                color="CMDGreen"
-                onPress={() => navigation.navigate('Play')}
-            />
-            <StatusBar style="auto" />
+            <ScrollStyledView>
+                <HowToPlayContainer>
+                    <CustomText
+                        text='Press "PLAY"'
+                        color="CMDGreen"
+                        count="1"
+                    />
+                    <CustomText
+                        text="Pick an order of players"
+                        color="CMDPink"
+                        count="2"
+                    />
+                    <CustomText
+                        text="Pick a Category"
+                        color="CMDPurple"
+                        count="3"
+                    />
+                    <CustomText
+                        text="Answer the Question"
+                        color="CMDTurquoise"
+                        count="4"
+                    />
+                    <CustomText
+                        text="Pass the phone to the next person"
+                        color="CMDOrange"
+                        count="5"
+                    />
+                    <CustomButton
+                        text="play"
+                        color="CMDGreen"
+                        onPress={() => navigation.navigate('Play')}
+                        isBig={true}
+                    />
+                    <StatusBar style="auto" />
+                </HowToPlayContainer>
+            </ScrollStyledView>
         </StyledView>
     );
 }
@@ -253,7 +266,7 @@ function CardTest({ navigation }) {
 
     const sampleQuestion2 = 'Favorite Book?';
     const sampleCategory2 = 'Favorites';
-    const sampleHasFollowUp2 = false;
+    const sampleHasFollowUp2 = true;
 
     return (
         <StyledView>
