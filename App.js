@@ -25,6 +25,7 @@ const ScrollStyledView = styled.ScrollView``;
 const HowToPlayContainer = styled.View`
     padding-top: 20%;
     padding-bottom: 10%;
+    min-width: 100%;
 `;
 
 const ParentGuideContainer = styled.View`
