@@ -24,6 +24,12 @@ const BigButtonContainer = styled(ButtonContainer)`
     min-height: 75px;
 `;
 
+const VeryBigButtonContainer = styled(ButtonContainer)`
+    min-height: 150px;
+    max-height: null;
+    padding: 20px 30px;
+`;
+
 const WarningText = styled.Text`
     color: #ffffff;
     position: absolute;
@@ -39,6 +45,7 @@ const CustomButton = ({
     warningText,
     isSmall = false,
     isBig = false,
+    isVeryBig = false,
     ...others
 }) => {
     if (isSmall) {
@@ -70,6 +77,21 @@ const CustomButton = ({
                     <WarningText></WarningText>
                 )}
             </BigButtonContainer>
+        );
+    } else if (isVeryBig) {
+        return (
+            <VeryBigButtonContainer
+                color={others.disabled ? 'grey' : color}
+                onPress={others.onPress}
+                disabled={others.disabled}
+            >
+                <StandardText>{text}</StandardText>
+                {warningText !== undefined ? (
+                    <WarningText>{warningText}</WarningText>
+                ) : (
+                    <WarningText></WarningText>
+                )}
+            </VeryBigButtonContainer>
         );
     } else {
         return (

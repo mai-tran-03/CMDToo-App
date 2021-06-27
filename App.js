@@ -27,6 +27,13 @@ const HowToPlayContainer = styled.View`
     padding-bottom: 10%;
 `;
 
+const ParentGuideContainer = styled.View`
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20%;
+    padding-bottom: 10%;
+`;
+
 const AppName = styled.Text`
     font-size: 35px;
 `;
@@ -86,22 +93,33 @@ function HomeScreen({ navigation }) {
 function ParentGuide({ navigation }) {
     return (
         <StyledView>
-            <TextInput placeholder="Search by specific question" />
-            <ViewHeading> View By: </ViewHeading>
-            <ViewBy> grouped interpretation </ViewBy>
-            <CustomButton
-                text="How to Nuture Your Child;s Feelings & Interests"
-                color="CMDTurquoise"
-            />
-            <CustomButton
-                text="Things That Upset Your Child"
-                color="CMDTurquoise"
-            />
-            <CustomButton text="Child's Interests" color="CMDTurquoise" />
-            <CustomButton
-                text="People/Places/Things That Have Meaning in Your Child's Life"
-                color="CMDTurquoise"
-            />
+            <ScrollStyledView>
+                <ParentGuideContainer>
+                    <TextInput placeholder="Search by specific question" />
+                    <ViewHeading> View By: </ViewHeading>
+                    <ViewBy> grouped interpretation </ViewBy>
+                    <CustomButton
+                        text="How to Nuture Your Child's Feelings & Interests"
+                        color="CMDTurquoise"
+                        isVeryBig={true}
+                    />
+                    <CustomButton
+                        text="Things That Upset Your Child"
+                        color="CMDTurquoise"
+                        isVeryBig={true}
+                    />
+                    <CustomButton
+                        text="Child's Interests"
+                        color="CMDTurquoise"
+                        isVeryBig={true}
+                    />
+                    <CustomButton
+                        text="People/Places/Things That Have Meaning in Your Child's Life"
+                        color="CMDTurquoise"
+                        isVeryBig={true}
+                    />
+                </ParentGuideContainer>
+            </ScrollStyledView>
         </StyledView>
     );
 }
