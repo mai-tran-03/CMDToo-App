@@ -19,16 +19,19 @@ const long_text = [
 
 const CardView = styled.View`
     display: flex;
-    justify-content: flex-start;
+    flex: 1;
+    justify-content: center;
+    margin-top: 7%;
     min-width: 95%;
 `;
 
-const ButtonContainer = styled.View`
+const TwoButtonContainer = styled.View`
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     min-height: 100px;
+    margin-horizontal: 15px;
 `;
 
 const Card = ({
@@ -55,18 +58,20 @@ const Card = ({
             <StandardTextbox text={category} color={color} />
             <CardTextbox textList={textList} color={color} />
             {hasFollowUp ? (
-                <ButtonContainer>
+                <TwoButtonContainer>
                     <CustomButton
                         text="done"
                         color={color}
                         onPress={() => setModalVisible(false)}
+                        isSmall={true}
                     ></CustomButton>
                     <CustomButton
                         text="follow up"
                         color={color}
                         onPress={() => setOptions(followUp)}
+                        isSmall={true}
                     ></CustomButton>
-                </ButtonContainer>
+                </TwoButtonContainer>
             ) : (
                 <CustomButton
                     text="done"
