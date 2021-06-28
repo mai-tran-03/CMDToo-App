@@ -7,59 +7,19 @@ import CustomButton from './components/CustomButton.js';
 import { CustomText } from './components/CustomText.js';
 import { CardTextbox, StandardTextbox } from './components/CustomTextbox.js';
 import Card from './components/Card.js';
-import styled from 'styled-components/native';
 import { ThemeProvider } from 'styled-components';
 import COLORS from './components/GlobalStyles.js';
 import qs from './components/questions.json';
-import { Modal, TextInput, Image, TouchableOpacity } from 'react-native';
-
-const StyledView = styled.View`
-    flex: 1;
-    background-color: #fff;
-    align-items: center;
-    justify-content: center;
-`;
-
-const ScrollStyledView = styled.ScrollView``;
-
-const HowToPlayContainer = styled.View`
-    padding-top: 20%;
-    padding-bottom: 10%;
-    min-width: 100%;
-`;
-
-const ParentGuideContainer = styled.View`
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 20%;
-    padding-bottom: 10%;
-`;
-
-const AppName = styled.Text`
-    font-size: 35px;
-`;
-
-const AppDesc = styled.Text`
-    padding-vertical: 15px;
-    font-size: 18px;
-`;
-
-const CategoryHeader = styled.Text`
-    font-size: 35px;
-    min-height: 50px
-    align-items: flex-start;
-`;
-
-const ViewBy = styled.Text`
-    font-size: 30px;
-    min-height: 50px;
-`;
-
-const ViewHeading = styled.Text`
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-`;
+import { Modal, Image, TouchableOpacity } from 'react-native';
+import { ParentGuide } from './components/ParentGuide';
+import {
+    StyledView,
+    AppName,
+    AppDesc,
+    ScrollStyledView,
+    HowToPlayContainer,
+    CategoryHeader
+} from './components/StyledView';
 
 function HomeScreen({ navigation }) {
     return (
@@ -87,40 +47,6 @@ function HomeScreen({ navigation }) {
                 onPress={() => navigation.navigate('CardTest')}
             />
             <StatusBar style="auto" />
-        </StyledView>
-    );
-}
-
-function ParentGuide({ navigation }) {
-    return (
-        <StyledView>
-            <ScrollStyledView>
-                <ParentGuideContainer>
-                    <TextInput placeholder="Search by specific question" />
-                    <ViewHeading> View By: </ViewHeading>
-                    <ViewBy> grouped interpretation </ViewBy>
-                    <CustomButton
-                        text="How to Nuture Your Child's Feelings & Interests"
-                        color="CMDTurquoise"
-                        isVeryBig={true}
-                    />
-                    <CustomButton
-                        text="Things That Upset Your Child"
-                        color="CMDTurquoise"
-                        isVeryBig={true}
-                    />
-                    <CustomButton
-                        text="Child's Interests"
-                        color="CMDTurquoise"
-                        isVeryBig={true}
-                    />
-                    <CustomButton
-                        text="People/Places/Things That Have Meaning in Your Child's Life"
-                        color="CMDTurquoise"
-                        isVeryBig={true}
-                    />
-                </ParentGuideContainer>
-            </ScrollStyledView>
         </StyledView>
     );
 }
