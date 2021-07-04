@@ -100,29 +100,29 @@ export function ParentGuide({ navigation }) {
     };
 
     return (
-        <ScrollStyledView>
+        <ParentGuideContainer>
             <StatusBar style="light" />
-            <ParentGuideContainer>
-                <SearchBarContainer>
-                    <SearchBar
-                        placeholder="Search by specific question"
-                        onChangeText={setInput}
-                    />
-                </SearchBarContainer>
-                <StyledMargin>
-                    <StyledList
-                        data={output.slice(0, 5)}
-                        keyExtractor={q => q.Question}
-                        extraData={output}
-                        renderItem={({ item }) => (
-                            <MatchBorder>
-                                <AutoMatch>{`${item.Question}`}</AutoMatch>
-                            </MatchBorder>
-                        )}
-                    />
-                </StyledMargin>
-                <ViewHeading> View By: </ViewHeading>
-                <ViewBy> grouped interpretation </ViewBy>
+            <SearchBarContainer>
+                <SearchBar
+                    placeholder="Search by specific question"
+                    onChangeText={setInput}
+                />
+            </SearchBarContainer>
+            <StyledMargin>
+                <StyledList
+                    data={output.slice(0, 5)}
+                    keyExtractor={q => q.Question}
+                    extraData={output}
+                    renderItem={({ item }) => (
+                        <MatchBorder>
+                            <AutoMatch>{`${item.Question}`}</AutoMatch>
+                        </MatchBorder>
+                    )}
+                />
+            </StyledMargin>
+            <ViewHeading> View By: </ViewHeading>
+            <ViewBy editable={false}>grouped interpretation</ViewBy>
+            <ScrollStyledView>
                 <CustomButton
                     text="How to Nuture Your Child's Feelings & Interests"
                     color="CMDTurquoise"
@@ -143,7 +143,7 @@ export function ParentGuide({ navigation }) {
                     color="CMDTurquoise"
                     isVeryBig={true}
                 />
-            </ParentGuideContainer>
-        </ScrollStyledView>
+            </ScrollStyledView>
+        </ParentGuideContainer>
     );
 }

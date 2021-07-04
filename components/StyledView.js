@@ -18,10 +18,10 @@ export const HowToPlayContainer = styled.View`
 `;
 
 export const ParentGuideContainer = styled.View`
+    flex-shrink: 1;
     align-items: center;
     justify-content: space-between;
     margin-top: 15px;
-    padding-bottom: 50px;
 `;
 export const AppName = styled.Text`
     font-size: 35px;
