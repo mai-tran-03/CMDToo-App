@@ -21,9 +21,7 @@ export const ParentGuideContainer = styled.View`
     align-items: center;
     justify-content: space-between;
     margin-top: 15px;
-    margin: 10px;
-    /* max-height: calc(100vh - 64px); */
-    max-height: 73%;
+    padding-bottom: 50px;
 `;
 export const AppName = styled.Text`
     font-size: 35px;

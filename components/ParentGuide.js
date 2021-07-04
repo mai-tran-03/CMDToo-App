@@ -42,7 +42,6 @@ const MatchBorder = styled.View`
 
 const StyledMargin = styled.View`
     width: 100%;
-    position: absolute;
     top: 27px;
     left: 0;
     z-index: 1;
@@ -50,10 +49,14 @@ const StyledMargin = styled.View`
 
 const StyledList = styled.FlatList`
     background-color: white;
-    background-color: white;
     margin: 0 23px;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
+`;
+
+const SearchBarContainer = styled.View`
+    width: 100%;
+    margin: 15px 0px;
 `;
 
 export function ParentGuide({ navigation }) {
@@ -97,55 +100,50 @@ export function ParentGuide({ navigation }) {
     };
 
     return (
-        <ParentGuideContainer>
+        <ScrollStyledView>
             <StatusBar style="light" />
-            <SearchBar
-                placeholder="Search by specific question"
-                onChangeText={setInput}
-            />
-            <StyledMargin>
-                <StyledList
-                    data={output.slice(0, 5)}
-                    keyExtractor={q => q.Question}
-                    extraData={output}
-                    renderItem={({ item }) => (
-                        <MatchBorder>
-                            <AutoMatch>{`${item.Question}`}</AutoMatch>
-                        </MatchBorder>
-                    )}
+            <ParentGuideContainer>
+                <SearchBarContainer>
+                    <SearchBar
+                        placeholder="Search by specific question"
+                        onChangeText={setInput}
+                    />
+                </SearchBarContainer>
+                <StyledMargin>
+                    <StyledList
+                        data={output.slice(0, 5)}
+                        keyExtractor={q => q.Question}
+                        extraData={output}
+                        renderItem={({ item }) => (
+                            <MatchBorder>
+                                <AutoMatch>{`${item.Question}`}</AutoMatch>
+                            </MatchBorder>
+                        )}
+                    />
+                </StyledMargin>
+                <ViewHeading> View By: </ViewHeading>
+                <ViewBy> grouped interpretation </ViewBy>
+                <CustomButton
+                    text="How to Nuture Your Child's Feelings & Interests"
+                    color="CMDTurquoise"
+                    isVeryBig={true}
                 />
-            </StyledMargin>
-            <ViewHeading> View By: </ViewHeading>
-            <ViewBy editable={false}>grouped interpretation</ViewBy>
-            <StyledView>
-                <ScrollStyledView
-                    contentContainerStyle={{
-                        flexGrow: 1,
-                        justifyContent: 'space-between'
-                    }}
-                >
-                    <CustomButton
-                        text="How to Nuture Your Child's Feelings & Interests"
-                        color="CMDTurquoise"
-                        isVeryBig={true}
-                    />
-                    <CustomButton
-                        text="Things That Upset Your Child"
-                        color="CMDTurquoise"
-                        isVeryBig={true}
-                    />
-                    <CustomButton
-                        text="Child's Interests"
-                        color="CMDTurquoise"
-                        isVeryBig={true}
-                    />
-                    <CustomButton
-                        text="People/Places/Things That Have Meaning in Your Child's Life"
-                        color="CMDTurquoise"
-                        isVeryBig={true}
-                    />
-                </ScrollStyledView>
-            </StyledView>
-        </ParentGuideContainer>
+                <CustomButton
+                    text="Things That Upset Your Child"
+                    color="CMDTurquoise"
+                    isVeryBig={true}
+                />
+                <CustomButton
+                    text="Child's Interests"
+                    color="CMDTurquoise"
+                    isVeryBig={true}
+                />
+                <CustomButton
+                    text="People/Places/Things That Have Meaning in Your Child's Life"
+                    color="CMDTurquoise"
+                    isVeryBig={true}
+                />
+            </ParentGuideContainer>
+        </ScrollStyledView>
     );
 }
