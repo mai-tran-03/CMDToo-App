@@ -11,7 +11,11 @@ import { ThemeProvider } from 'styled-components';
 import COLORS from './components/GlobalStyles.js';
 import qs from './components/questions.json';
 import { Modal, Image, TouchableOpacity } from 'react-native';
-import { ParentGuide, ParentGuideByCategory } from './components/ParentGuide';
+import {
+    ParentGuide,
+    ParentGuideByCategory,
+    ParentGuideInformation
+} from './components/ParentGuide';
 import {
     StyledView,
     AppName,
@@ -267,10 +271,36 @@ export default function App() {
                     <Stack.Screen name="Play" component={Play} />
                     <Stack.Screen name="HowToPlay" component={HowToPlay} />
                     <Stack.Screen name="CardTest" component={CardTest} />
-
                     <Stack.Screen
                         name="ParentGuideByCategory"
                         component={ParentGuideByCategory}
+                        options={({ navigation }) => ({
+                            headerShown: true,
+                            headerStyle: {
+                                backgroundColor: 'black'
+                            },
+                            headerTintColor: '#fff',
+                            headerTitleStyle: {
+                                fontWeight: 'bold'
+                            },
+                            headerBackTitleVisible: false,
+                            headerRight: props => (
+                                <TouchableOpacity
+                                    onPress={(...props) => {
+                                        navigation.navigate('Home');
+                                    }}
+                                >
+                                    <Image
+                                        source={require('./assets/homeIcon.png')}
+                                        style={{ width: 40, height: 40 }}
+                                    />
+                                </TouchableOpacity>
+                            )
+                        })}
+                    />
+                    <Stack.Screen
+                        name="ParentGuideInformation"
+                        component={ParentGuideInformation}
                         options={({ navigation }) => ({
                             headerShown: true,
                             headerStyle: {

@@ -9,6 +9,7 @@ import {
     ViewHeading,
     ViewBy
 } from './StyledView';
+import { StandardTextbox, InterpretationTextBox } from './CustomTextbox';
 
 const SearchBar = styled.TextInput`
     border-radius: 5px;
@@ -59,8 +60,16 @@ const SearchBarContainer = styled.View`
     margin: 15px 0px;
 `;
 
-const ButtonComponentContainer = styled.View`
+const ComponentContainer = styled.View`
     margin-bottom: 120px;
+`;
+
+const TextContainerParentGuide = styled.View`
+    margin-top: 10px;
+`;
+
+const InformationContainer = styled.View`
+    margin-bottom: 20px;
 `;
 
 const SearchBarComponent = () => {
@@ -133,7 +142,9 @@ const ButtonComponentsDisplay = buttonObjects => {
                 color={buttonObject.color}
                 isVeryBig={true}
                 onPress={() =>
-                    buttonObject.navigation.navigate('ParentGuideByCategory')
+                    buttonObject.navigation.navigate(
+                        buttonObject.onPressDestinatoin
+                    )
                 }
             />
         );
@@ -175,7 +186,7 @@ export const ParentGuideByCategory = ({ navigation }) => {
         buttonComponents.push({
             text: data.Question,
             color: data.Category.toLowerCase(),
-            onPressDestinatoin: '',
+            onPressDestinatoin: 'ParentGuideInformation',
             navigation: navigation
         });
     });
@@ -188,9 +199,9 @@ export const ParentGuideByCategory = ({ navigation }) => {
             <ViewHeading> View By: </ViewHeading>
             <ViewBy> {headingText} </ViewBy>
             <ScrollStyledView>
-                <ButtonComponentContainer>
+                <ComponentContainer>
                     {ButtonComponentsDisplay(buttonComponents)}
-                </ButtonComponentContainer>
+                </ComponentContainer>
             </ScrollStyledView>
         </ParentGuideContainer>
     );
@@ -229,9 +240,55 @@ export const ParentGuide = ({ navigation }) => {
             <ViewHeading> View By: </ViewHeading>
             <ViewBy editable={false}>grouped interpretation</ViewBy>
             <ScrollStyledView>
-                <ButtonComponentContainer>
+                <ComponentContainer>
                     {ButtonComponentsDisplay(groupInterpretationTopics)}
-                </ButtonComponentContainer>
+                </ComponentContainer>
+            </ScrollStyledView>
+        </ParentGuideContainer>
+    );
+};
+
+export const ParentGuideInformation = ({ navigation }) => {
+    const mockData = {
+        Question: 'What is your love language?',
+        Category: 'The Inner Me',
+        Interpretation:
+            'What can you do as a parent to nurture this? How can you better support your child?',
+        Group: "How to Nurture Your Child's Feelings/Interests",
+        'Follow Up': ''
+    };
+    const category = mockData.Category;
+    const question = mockData.Question;
+    const interpretation = mockData.Interpretation;
+    const group = mockData.Group;
+    const color = category.toLowerCase();
+    return (
+        <ParentGuideContainer>
+            <ScrollStyledView>
+                <InformationContainer>
+                    <StandardTextbox
+                        text={category}
+                        color={color}
+                    ></StandardTextbox>
+
+                    <TextContainerParentGuide>
+                        <StandardTextbox
+                            text={question}
+                            color={color}
+                        ></StandardTextbox>
+                    </TextContainerParentGuide>
+                    <InterpretationTextBox
+                        interpretationText={interpretation}
+                        groupText={group}
+                        color={color}
+                    ></InterpretationTextBox>
+                    <CustomButton
+                        text="parent tips"
+                        color={color}
+                        isBig={true}
+                        onPress={() => navigation.navigate('nothing')}
+                    />
+                </InformationContainer>
             </ScrollStyledView>
         </ParentGuideContainer>
     );
