@@ -27,6 +27,8 @@ const BigButtonContainer = styled(ButtonContainer)`
 const VeryBigButtonContainer = styled(ButtonContainer)`
     min-height: 150px;
     max-height: null;
+    min-width: 90%;
+    max-width: 90%;
     padding: 20px 30px;
 `;
 

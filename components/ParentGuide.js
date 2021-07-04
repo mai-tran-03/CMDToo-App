@@ -179,11 +179,14 @@ export const ParentGuideByCategory = ({ navigation }) => {
             navigation: navigation
         });
     });
+    const headingText = isCategory
+        ? mockData[0].Category.toLowerCase()
+        : mockData[0].Group.toLowerCase();
     return (
         <ParentGuideContainer>
             {SearchBarComponent()}
             <ViewHeading> View By: </ViewHeading>
-            <ViewBy> grouped interpretation </ViewBy>
+            <ViewBy> {headingText} </ViewBy>
             <ScrollStyledView>
                 <ButtonComponentContainer>
                     {ButtonComponentsDisplay(buttonComponents)}
@@ -194,6 +197,32 @@ export const ParentGuideByCategory = ({ navigation }) => {
 };
 
 export const ParentGuide = ({ navigation }) => {
+    const groupInterpretationTopics = [
+        {
+            text: "How to Nuture Your Child's Feelings & Interests",
+            color: 'CMDTurquoise',
+            onPressDestinatoin: 'ParentGuideByCategory',
+            navigation: navigation
+        },
+        {
+            text: 'Things That Upset Your Child',
+            color: 'CMDTurquoise',
+            onPressDestinatoin: 'ParentGuideByCategory',
+            navigation: navigation
+        },
+        {
+            text: "Child's Interests",
+            color: 'CMDTurquoise',
+            onPressDestinatoin: 'ParentGuideByCategory',
+            navigation: navigation
+        },
+        {
+            text: "People/Places/Things That Have Meaning in Your Child's Life",
+            color: 'CMDTurquoise',
+            onPressDestinatoin: 'ParentGuideByCategory',
+            navigation: navigation
+        }
+    ];
     return (
         <ParentGuideContainer>
             {SearchBarComponent()}
@@ -201,32 +230,7 @@ export const ParentGuide = ({ navigation }) => {
             <ViewBy editable={false}>grouped interpretation</ViewBy>
             <ScrollStyledView>
                 <ButtonComponentContainer>
-                    {ButtonComponentsDisplay([
-                        {
-                            text: "How to Nuture Your Child's Feelings & Interests",
-                            color: 'CMDTurquoise',
-                            onPressDestinatoin: 'ParentGuideByCategory',
-                            navigation: navigation
-                        },
-                        {
-                            text: 'Things That Upset Your Child',
-                            color: 'CMDTurquoise',
-                            onPressDestinatoin: 'ParentGuideByCategory',
-                            navigation: navigation
-                        },
-                        {
-                            text: "Child's Interests",
-                            color: 'CMDTurquoise',
-                            onPressDestinatoin: 'ParentGuideByCategory',
-                            navigation: navigation
-                        },
-                        {
-                            text: "People/Places/Things That Have Meaning in Your Child's Life",
-                            color: 'CMDTurquoise',
-                            onPressDestinatoin: 'ParentGuideByCategory',
-                            navigation: navigation
-                        }
-                    ])}
+                    {ButtonComponentsDisplay(groupInterpretationTopics)}
                 </ButtonComponentContainer>
             </ScrollStyledView>
         </ParentGuideContainer>
