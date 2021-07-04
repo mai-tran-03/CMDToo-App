@@ -59,14 +59,17 @@ const SearchBarContainer = styled.View`
     margin: 15px 0px;
 `;
 
-export function ParentGuide({ navigation }) {
+const ButtonComponentContainer = styled.View`
+    margin-bottom: 120px;
+`;
+
+const SearchBarComponent = () => {
     const [input, setInput] = useState('');
-    const [output, setOutput] = useState('');
     useEffect(() => {
         setOutput(find(input));
     }, [input]);
-
     const [past, setPast] = useState({});
+    const [output, setOutput] = useState('');
 
     const find = str_to_match => {
         if (!str_to_match) return [];
@@ -98,51 +101,133 @@ export function ParentGuide({ navigation }) {
         }));
         return [...matches];
     };
-
     return (
-        <ScrollStyledView>
-            <ParentGuideContainer>
-                <SearchBarContainer>
-                    <SearchBar
-                        placeholder="Search by specific question"
-                        onChangeText={setInput}
-                    />
-                </SearchBarContainer>
-                <StyledMargin>
-                    <StyledList
-                        data={output.slice(0, 5)}
-                        keyExtractor={q => q.Question}
-                        extraData={output}
-                        renderItem={({ item }) => (
-                            <MatchBorder>
-                                <AutoMatch>{`${item.Question}`}</AutoMatch>
-                            </MatchBorder>
-                        )}
-                    />
-                </StyledMargin>
-                <ViewHeading> View By: </ViewHeading>
-                <ViewBy> grouped interpretation </ViewBy>
-                <CustomButton
-                    text="How to Nuture Your Child's Feelings & Interests"
-                    color="CMDTurquoise"
-                    isVeryBig={true}
+        <SearchBarContainer>
+            <SearchBar
+                placeholder="Search by specific question"
+                onChangeText={setInput}
+            />
+            <StyledMargin>
+                <StyledList
+                    data={output.slice(0, 5)}
+                    keyExtractor={q => q.Question}
+                    extraData={output}
+                    renderItem={({ item }) => (
+                        <MatchBorder>
+                            <AutoMatch>{`${item.Question}`}</AutoMatch>
+                        </MatchBorder>
+                    )}
                 />
-                <CustomButton
-                    text="Things That Upset Your Child"
-                    color="CMDTurquoise"
-                    isVeryBig={true}
-                />
-                <CustomButton
-                    text="Child's Interests"
-                    color="CMDTurquoise"
-                    isVeryBig={true}
-                />
-                <CustomButton
-                    text="People/Places/Things That Have Meaning in Your Child's Life"
-                    color="CMDTurquoise"
-                    isVeryBig={true}
-                />
-            </ParentGuideContainer>
-        </ScrollStyledView>
+            </StyledMargin>
+        </SearchBarContainer>
     );
-}
+};
+
+const ButtonComponentsDisplay = buttonObjects => {
+    let list = [];
+    buttonObjects.forEach(buttonObject => {
+        list.push(
+            <CustomButton
+                text={buttonObject.text}
+                color={buttonObject.color}
+                isVeryBig={true}
+                onPress={() =>
+                    buttonObject.navigation.navigate('ParentGuideByCategory')
+                }
+            />
+        );
+    });
+    return list;
+};
+
+export const ParentGuideByCategory = ({ navigation }) => {
+    const isCategory = true;
+    const mockData = [
+        {
+            Question: 'What is your love language?',
+            Category: 'The Inner Me',
+            Interpretation:
+                'What can you do as a parent to nurture this? How can you better support your child?',
+            Group: "How to Nurture Your Child's Feelings/Interests",
+            'Follow Up': ''
+        },
+        {
+            Question: 'What is your passion career?',
+            Category: 'My Bright Future',
+            Interpretation:
+                'This could be an indication of what inspires your child.',
+            Group: "How to Nurture Your Child's Feelings/Interests",
+            'Follow Up': 'Do you like x, y or z about this career?'
+        },
+        {
+            Question: 'What makes you feel loved?',
+            Category: 'The Inner Me',
+            Interpretation:
+                'What can you do as a parent to nurture this? How can you better support your child?',
+            Group: "How to Nurture Your Child's Feelings/Interests",
+            'Follow Up': ''
+        }
+    ];
+
+    const buttonComponents = [];
+    mockData.forEach(data => {
+        buttonComponents.push({
+            text: data.Question,
+            color: data.Category.toLowerCase(),
+            onPressDestinatoin: '',
+            navigation: navigation
+        });
+    });
+    return (
+        <ParentGuideContainer>
+            {SearchBarComponent()}
+            <ViewHeading> View By: </ViewHeading>
+            <ViewBy> grouped interpretation </ViewBy>
+            <ScrollStyledView>
+                <ButtonComponentContainer>
+                    {ButtonComponentsDisplay(buttonComponents)}
+                </ButtonComponentContainer>
+            </ScrollStyledView>
+        </ParentGuideContainer>
+    );
+};
+
+export const ParentGuide = ({ navigation }) => {
+    return (
+        <ParentGuideContainer>
+            {SearchBarComponent()}
+            <ViewHeading> View By: </ViewHeading>
+            <ViewBy> grouped interpretation </ViewBy>
+            <ScrollStyledView>
+                <ButtonComponentContainer>
+                    {ButtonComponentsDisplay([
+                        {
+                            text: "How to Nuture Your Child's Feelings & Interests",
+                            color: 'CMDTurquoise',
+                            onPressDestinatoin: 'ParentGuideByCategory',
+                            navigation: navigation
+                        },
+                        {
+                            text: 'Things That Upset Your Child',
+                            color: 'CMDTurquoise',
+                            onPressDestinatoin: 'ParentGuideByCategory',
+                            navigation: navigation
+                        },
+                        {
+                            text: "Child's Interests",
+                            color: 'CMDTurquoise',
+                            onPressDestinatoin: 'ParentGuideByCategory',
+                            navigation: navigation
+                        },
+                        {
+                            text: "People/Places/Things That Have Meaning in Your Child's Life",
+                            color: 'CMDTurquoise',
+                            onPressDestinatoin: 'ParentGuideByCategory',
+                            navigation: navigation
+                        }
+                    ])}
+                </ButtonComponentContainer>
+            </ScrollStyledView>
+        </ParentGuideContainer>
+    );
+};
