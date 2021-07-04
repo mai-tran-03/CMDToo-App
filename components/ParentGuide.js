@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import qs from './questions.json';
 import CustomButton from './CustomButton.js';
 import styled from 'styled-components/native';
+import { StatusBar } from 'expo-status-bar';
 import {
     ScrollStyledView,
     ParentGuideContainer,
     ViewHeading,
     ViewBy
 } from './StyledView';
-import { View } from 'react-native';
 
 const SearchBar = styled.TextInput`
     border-radius: 5px;
@@ -103,6 +103,7 @@ const SearchBarComponent = () => {
     };
     return (
         <SearchBarContainer>
+            <StatusBar style="light" />
             <SearchBar
                 placeholder="Search by specific question"
                 onChangeText={setInput}
@@ -197,7 +198,7 @@ export const ParentGuide = ({ navigation }) => {
         <ParentGuideContainer>
             {SearchBarComponent()}
             <ViewHeading> View By: </ViewHeading>
-            <ViewBy> grouped interpretation </ViewBy>
+            <ViewBy editable={false}>grouped interpretation</ViewBy>
             <ScrollStyledView>
                 <ButtonComponentContainer>
                     {ButtonComponentsDisplay([
