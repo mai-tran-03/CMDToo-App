@@ -10,7 +10,7 @@ import Card from './components/Card.js';
 import { ThemeProvider } from 'styled-components';
 import COLORS from './components/GlobalStyles.js';
 import qs from './components/questions.json';
-import { Modal, Image, TouchableOpacity } from 'react-native';
+import { Modal, Image, TouchableOpacity, Linking } from 'react-native';
 import {
     ParentGuide,
     ParentGuideByCategory,
@@ -178,12 +178,14 @@ function Play({ navigation }) {
                     <CustomButton
                         text="parent guide"
                         color="CMDTurquoise"
-                        onPress={() => navigation.navigate('Home')}
+                        onPress={() => navigation.navigate('ParentGuide')}
                     />
                     <CustomButton
                         text="CMDToo Website"
                         color="CMDGreen"
-                        onPress={() => navigation.navigate('Home')}
+                        onPress={() =>
+                            Linking.openURL('https://www.coolmomsdancetoo.com/')
+                        }
                     />
                 </>
             );

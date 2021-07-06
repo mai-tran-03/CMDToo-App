@@ -55,7 +55,7 @@ const Card = ({
     );
     return (
         <CardView>
-            <StandardTextbox text={category} color={color} />
+            <StandardTextbox text={category.toLowerCase()} color={color} />
             <CardTextbox textList={textList} color={color} />
             {hasFollowUp ? (
                 <TwoButtonContainer>
