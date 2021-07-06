@@ -41,16 +41,10 @@ const MatchBorder = styled.View`
     border-top-width: 1px;
 `;
 
-const StyledMargin = styled.View`
-    width: 100%;
-    top: 27px;
-    left: 0;
-    z-index: 1;
-`;
-
 const StyledList = styled.FlatList`
     background-color: white;
     margin: 0 23px;
+    margin-top: -2px
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
 `;
@@ -58,10 +52,6 @@ const StyledList = styled.FlatList`
 const SearchBarContainer = styled.View`
     width: 100%;
     margin: 15px 0px;
-`;
-
-const ComponentContainer = styled.View`
-    margin-bottom: 120px;
 `;
 
 const TextContainerParentGuide = styled.View`
@@ -91,24 +81,29 @@ const SearchBarComponent = () => {
             options = qs;
         }
         let reg_ex = new RegExp(str_to_match, 'i');
+        let auto_complete = new Set();
         let matches = new Set(
-            options.filter(
-                o =>
-                    o.Question.match(reg_ex) ||
-                    o.Category.match(reg_ex) ||
-                    o.Group.match(reg_ex) ||
-                    (o['Follow Up'].length > 0 &&
-                        o['Follow Up'].reduce(
-                            (bool, q) => q.match(reg_ex) || bool,
-                            false
-                        ))
-            )
+            options.filter(o => {
+                let question =
+                    o.Question.match(reg_ex) && auto_complete.add(o.Question);
+                let category =
+                    o.Category.match(reg_ex) && auto_complete.add(o.Category);
+                let group = o.Group.match(reg_ex) && auto_complete.add(o.Group);
+                let follow =
+                    o['Follow Up'].length > 0 &&
+                    o['Follow Up'].reduce(
+                        (bool, q) =>
+                            (q.match(reg_ex) && auto_complete.add(q)) || bool,
+                        false
+                    );
+                return question || category || group || follow;
+            })
         );
         setPast(prevState => ({
             ...prevState,
             [str_to_match.toLowerCase()]: [...matches].map(m => m.Question)
         }));
-        return [...matches];
+        return [...auto_complete];
     };
     return (
         <SearchBarContainer>
@@ -116,19 +111,23 @@ const SearchBarComponent = () => {
             <SearchBar
                 placeholder="Search by specific question"
                 onChangeText={setInput}
+                onEndEditing={() => setOutput('')}
+                returnKeyType="search"
+                onSubmitEditing={event => {
+                    console.log(event.nativeEvent.text);
+                }}
+                clearButtonMode="while-editing"
             />
-            <StyledMargin>
-                <StyledList
-                    data={output.slice(0, 5)}
-                    keyExtractor={q => q.Question}
-                    extraData={output}
-                    renderItem={({ item }) => (
-                        <MatchBorder>
-                            <AutoMatch>{`${item.Question}`}</AutoMatch>
-                        </MatchBorder>
-                    )}
-                />
-            </StyledMargin>
+            <StyledList
+                data={output.slice(0, 7)}
+                keyExtractor={q => q}
+                extraData={output}
+                renderItem={({ item }) => (
+                    <MatchBorder>
+                        <AutoMatch>{`${item}`}</AutoMatch>
+                    </MatchBorder>
+                )}
+            />
         </SearchBarContainer>
     );
 };
@@ -199,9 +198,7 @@ export const ParentGuideByCategory = ({ navigation }) => {
             <ViewHeading> View By: </ViewHeading>
             <ViewBy> {headingText} </ViewBy>
             <ScrollStyledView>
-                <ComponentContainer>
-                    {ButtonComponentsDisplay(buttonComponents)}
-                </ComponentContainer>
+                {ButtonComponentsDisplay(buttonComponents)}
             </ScrollStyledView>
         </ParentGuideContainer>
     );
@@ -239,10 +236,8 @@ export const ParentGuide = ({ navigation }) => {
             {SearchBarComponent()}
             <ViewHeading> View By: </ViewHeading>
             <ViewBy editable={false}>grouped interpretation</ViewBy>
-            <ScrollStyledView>
-                <ComponentContainer>
-                    {ButtonComponentsDisplay(groupInterpretationTopics)}
-                </ComponentContainer>
+            <ScrollStyledView directionalLockEnabled={true}>
+                {ButtonComponentsDisplay(groupInterpretationTopics)}
             </ScrollStyledView>
         </ParentGuideContainer>
     );
