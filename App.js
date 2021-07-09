@@ -45,11 +45,6 @@ function HomeScreen({ navigation }) {
                 color="CMDPink"
                 onPress={() => navigation.navigate('HowToPlay')}
             />
-            <CustomButton
-                text="CARDTEST"
-                color="CMDGreen"
-                onPress={() => navigation.navigate('CardTest')}
-            />
             <StatusBar style="auto" />
         </StyledView>
     );
@@ -61,7 +56,7 @@ function HowToPlay({ navigation }) {
             <ScrollStyledView>
                 <HowToPlayContainer>
                     <CustomText
-                        text='Press "PLAY"'
+                        text='Press "play"'
                         color="CMDGreen"
                         count="1"
                     />
@@ -71,12 +66,12 @@ function HowToPlay({ navigation }) {
                         count="2"
                     />
                     <CustomText
-                        text="Pick a Category"
+                        text="Pick a category"
                         color="CMDPurple"
                         count="3"
                     />
                     <CustomText
-                        text="Answer the Question"
+                        text="Answer the question"
                         color="CMDTurquoise"
                         count="4"
                     />
@@ -210,27 +205,6 @@ function Play({ navigation }) {
     );
 }
 
-function CardTest({ navigation }) {
-    const sampleQuestion = 'Turn your favorite song on and dance for 1 minute';
-    const sampleCategory = 'Dance Challenge';
-    const sampleHasFollowUp = true;
-
-    const sampleQuestion2 = 'Favorite Book?';
-    const sampleCategory2 = 'Favorites';
-    const sampleHasFollowUp2 = true;
-
-    return (
-        <StyledView>
-            <Card
-                category={sampleCategory2}
-                question={sampleQuestion2}
-                color={sampleCategory.toLowerCase()}
-                hasFollowUp={sampleHasFollowUp2}
-            ></Card>
-        </StyledView>
-    );
-}
-
 const Stack = createStackNavigator();
 export default function App() {
     return (
@@ -272,7 +246,6 @@ export default function App() {
                     />
                     <Stack.Screen name="Play" component={Play} />
                     <Stack.Screen name="HowToPlay" component={HowToPlay} />
-                    <Stack.Screen name="CardTest" component={CardTest} />
                     <Stack.Screen
                         name="ParentGuideByCategory"
                         component={ParentGuideByCategory}
