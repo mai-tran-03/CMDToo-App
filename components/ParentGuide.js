@@ -44,7 +44,7 @@ const MatchBorder = styled.View`
 const StyledList = styled.FlatList`
     background-color: white;
     margin: 0 23px;
-    margin-top: -2px
+    margin-top: -2px;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
 `;
@@ -132,17 +132,22 @@ const SearchBarComponent = () => {
     );
 };
 
-const ButtonComponentsDisplay = buttonObjects => {
+const CategoryButtonDisplay = (buttonObjects, isGroup) => {
     let list = [];
     buttonObjects.forEach(buttonObject => {
         list.push(
             <CustomButton
+                key={buttonObject.text}
                 text={buttonObject.text}
                 color={buttonObject.color}
                 isVeryBig={true}
                 onPress={() =>
                     buttonObject.navigation.navigate(
-                        buttonObject.onPressDestinatoin
+                        buttonObject.onPressDestinatoin,
+                        {
+                            filter: buttonObject.text,
+                            isGroup: isGroup
+                        }
                     )
                 }
             />
@@ -151,60 +156,63 @@ const ButtonComponentsDisplay = buttonObjects => {
     return list;
 };
 
-export const ParentGuideByCategory = ({ navigation }) => {
-    const isCategory = true;
-    const mockData = [
-        {
-            Question: 'What is your love language?',
-            Category: 'The Inner Me',
-            Interpretation:
-                'What can you do as a parent to nurture this? How can you better support your child?',
-            Group: "How to Nurture Your Child's Feelings/Interests",
-            'Follow Up': ''
-        },
-        {
-            Question: 'What is your passion career?',
-            Category: 'My Bright Future',
-            Interpretation:
-                'This could be an indication of what inspires your child.',
-            Group: "How to Nurture Your Child's Feelings/Interests",
-            'Follow Up': 'Do you like x, y or z about this career?'
-        },
-        {
-            Question: 'What makes you feel loved?',
-            Category: 'The Inner Me',
-            Interpretation:
-                'What can you do as a parent to nurture this? How can you better support your child?',
-            Group: "How to Nurture Your Child's Feelings/Interests",
-            'Follow Up': ''
-        }
-    ];
+const QuestionButtonDisplay = buttonObjects => {
+    let list = [];
+    buttonObjects.forEach(buttonObject => {
+        list.push(
+            <CustomButton
+                key={buttonObject.text}
+                text={buttonObject.text}
+                color={buttonObject.color}
+                isVeryBig={true}
+                onPress={() =>
+                    buttonObject.navigation.navigate(
+                        buttonObject.onPressDestinatoin,
+                        {
+                            question: buttonObject.data
+                        }
+                    )
+                }
+            />
+        );
+    });
+    return list;
+};
 
+export const ParentGuideByCategory = ({ route, navigation }) => {
+    const cat_filter = route.params.filter;
+    const isGroup = route.params.isGroup;
     const buttonComponents = [];
-    mockData.forEach(data => {
+    const questions = qs.filter(data =>
+        isGroup
+            ? data.Group === cat_filter
+            : data.Category.toLowerCase() === cat_filter
+    );
+    questions.map(data =>
         buttonComponents.push({
             text: data.Question,
             color: data.Category.toLowerCase(),
             onPressDestinatoin: 'ParentGuideInformation',
-            navigation: navigation
-        });
-    });
-    const headingText = isCategory
-        ? mockData[0].Category.toLowerCase()
-        : mockData[0].Group.toLowerCase();
+            navigation: navigation,
+            data: data
+        })
+    );
+    const headingText = isGroup
+        ? questions[0].Group.toLowerCase()
+        : questions[0].Category.toLowerCase();
     return (
         <ParentGuideContainer>
             {SearchBarComponent()}
-            <ViewHeading> View By: </ViewHeading>
-            <ViewBy> {headingText} </ViewBy>
-            <ScrollStyledView>
-                {ButtonComponentsDisplay(buttonComponents)}
+            <ViewBy editable={false}> {headingText} </ViewBy>
+            <ScrollStyledView directionalLockEnabled={true}>
+                {QuestionButtonDisplay(buttonComponents)}
             </ScrollStyledView>
         </ParentGuideContainer>
     );
 };
 
 export const ParentGuide = ({ navigation }) => {
+    const [isGroup, setIsGroup] = useState(false);
     const groupInterpretationTopics = [
         {
             text: "How to Nuture Your Child's Feelings & Interests",
@@ -231,35 +239,68 @@ export const ParentGuide = ({ navigation }) => {
             navigation: navigation
         }
     ];
+    const categories = [
+        {
+            text: 'favorites',
+            color: 'favorites',
+            onPressDestinatoin: 'ParentGuideByCategory',
+            navigation: navigation
+        },
+        {
+            text: 'all about me',
+            color: 'all about me',
+            onPressDestinatoin: 'ParentGuideByCategory',
+            navigation: navigation
+        },
+        {
+            text: 'dance challenge',
+            color: 'dance challenge',
+            onPressDestinatoin: 'ParentGuideByCategory',
+            navigation: navigation
+        },
+        {
+            text: 'the inner me',
+            color: 'the inner me',
+            onPressDestinatoin: 'ParentGuideByCategory',
+            navigation: navigation
+        },
+        {
+            text: 'what would you do?',
+            color: 'what would you do?',
+            onPressDestinatoin: 'ParentGuideByCategory',
+            navigation: navigation
+        },
+        {
+            text: 'my bright future',
+            color: 'my bright future',
+            onPressDestinatoin: 'ParentGuideByCategory',
+            navigation: navigation
+        }
+    ];
     return (
         <ParentGuideContainer>
             {SearchBarComponent()}
             <ViewHeading> View By: </ViewHeading>
             <ViewBy editable={false}>grouped interpretation</ViewBy>
             <ScrollStyledView directionalLockEnabled={true}>
-                {ButtonComponentsDisplay(groupInterpretationTopics)}
+                {CategoryButtonDisplay(
+                    isGroup ? groupInterpretationTopics : categories,
+                    isGroup
+                )}
             </ScrollStyledView>
         </ParentGuideContainer>
     );
 };
 
-export const ParentGuideInformation = ({ navigation }) => {
-    const mockData = {
-        Question: 'What is your love language?',
-        Category: 'The Inner Me',
-        Interpretation:
-            'What can you do as a parent to nurture this? How can you better support your child?',
-        Group: "How to Nurture Your Child's Feelings/Interests",
-        'Follow Up': ''
-    };
-    const category = mockData.Category;
-    const question = mockData.Question;
-    const interpretation = mockData.Interpretation;
-    const group = mockData.Group;
+export const ParentGuideInformation = ({ route, navigation }) => {
+    const category = route.params.question.Category;
+    const question = route.params.question.Question;
+    const interpretation = route.params.question.Interpretation;
+    const group = route.params.question.Group;
     const color = category.toLowerCase();
     return (
         <ParentGuideContainer>
-            <ScrollStyledView>
+            <ScrollStyledView directionalLockEnabled={true}>
                 <InformationContainer>
                     <StandardTextbox
                         text={category}
@@ -281,7 +322,9 @@ export const ParentGuideInformation = ({ navigation }) => {
                         text="parent tips"
                         color={color}
                         isBig={true}
-                        onPress={() => navigation.navigate('nothing')}
+                        onPress={() =>
+                            console.log('Parent Tip not implemented')
+                        }
                     />
                 </InformationContainer>
             </ScrollStyledView>
