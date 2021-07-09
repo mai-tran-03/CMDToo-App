@@ -10,7 +10,12 @@ import {
     ViewBy
 } from './StyledView';
 import { StandardTextbox, InterpretationTextBox } from './CustomTextbox';
+import { View } from 'react-native';
 
+const StyledPress = styled.Pressable`
+    align-self: stretch;
+    position: relative;
+`;
 const SearchBar = styled.TextInput`
     border-radius: 5px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -62,7 +67,7 @@ const InformationContainer = styled.View`
     margin-bottom: 20px;
 `;
 
-const SearchBarComponent = () => {
+const SearchBarComponent = ({ navigation }) => {
     const [input, setInput] = useState('');
     useEffect(() => {
         setOutput(find(input));
@@ -85,15 +90,21 @@ const SearchBarComponent = () => {
         let matches = new Set(
             options.filter(o => {
                 let question =
-                    o.Question.match(reg_ex) && auto_complete.add(o.Question);
+                    o.Question.match(reg_ex) &&
+                    auto_complete.add({ text: o.Question, question: o });
                 let category =
-                    o.Category.match(reg_ex) && auto_complete.add(o.Category);
-                let group = o.Group.match(reg_ex) && auto_complete.add(o.Group);
+                    o.Category.match(reg_ex) &&
+                    auto_complete.add({ text: o.Category, question: o });
+                let group =
+                    o.Group.match(reg_ex) &&
+                    auto_complete.add({ text: o.Group, question: o });
                 let follow =
                     o['Follow Up'].length > 0 &&
                     o['Follow Up'].reduce(
                         (bool, q) =>
-                            (q.match(reg_ex) && auto_complete.add(q)) || bool,
+                            (q.match(reg_ex) &&
+                                auto_complete.add({ text: q, question: o })) ||
+                            bool,
                         false
                     );
                 return question || category || group || follow;
@@ -113,18 +124,26 @@ const SearchBarComponent = () => {
                 onChangeText={setInput}
                 onEndEditing={() => setOutput('')}
                 returnKeyType="search"
-                onSubmitEditing={event => {
-                    console.log(event.nativeEvent.text);
+                onSubmitEditing={() => {
+                    navigation.navigate('ParentGuideInformation', {
+                        question: output[0].question
+                    });
                 }}
                 clearButtonMode="while-editing"
             />
             <StyledList
                 data={output.slice(0, 7)}
-                keyExtractor={q => q}
+                keyExtractor={q => q.text}
                 extraData={output}
                 renderItem={({ item }) => (
                     <MatchBorder>
-                        <AutoMatch>{`${item}`}</AutoMatch>
+                        <AutoMatch
+                            onPress={() =>
+                                navigation.navigate('ParentGuideInformation', {
+                                    question: item.question
+                                })
+                            }
+                        >{`${item.text}`}</AutoMatch>
                     </MatchBorder>
                 )}
             />
@@ -143,7 +162,7 @@ const CategoryButtonDisplay = (buttonObjects, isGroup) => {
                 isVeryBig={true}
                 onPress={() =>
                     buttonObject.navigation.navigate(
-                        buttonObject.onPressDestinatoin,
+                        buttonObject.onPressDestination,
                         {
                             filter: buttonObject.text,
                             isGroup: isGroup
@@ -167,7 +186,7 @@ const QuestionButtonDisplay = buttonObjects => {
                 isVeryBig={true}
                 onPress={() =>
                     buttonObject.navigation.navigate(
-                        buttonObject.onPressDestinatoin,
+                        buttonObject.onPressDestination,
                         {
                             question: buttonObject.data
                         }
@@ -192,7 +211,7 @@ export const ParentGuideByCategory = ({ route, navigation }) => {
         buttonComponents.push({
             text: data.Question,
             color: data.Category.toLowerCase(),
-            onPressDestinatoin: 'ParentGuideInformation',
+            onPressDestination: 'ParentGuideInformation',
             navigation: navigation,
             data: data
         })
@@ -202,7 +221,7 @@ export const ParentGuideByCategory = ({ route, navigation }) => {
         : questions[0].Category.toLowerCase();
     return (
         <ParentGuideContainer>
-            {SearchBarComponent()}
+            {SearchBarComponent({ navigation })}
             <ViewBy editable={false}> {headingText} </ViewBy>
             <ScrollStyledView directionalLockEnabled={true}>
                 {QuestionButtonDisplay(buttonComponents)}
@@ -217,25 +236,25 @@ export const ParentGuide = ({ navigation }) => {
         {
             text: "How to Nuture Your Child's Feelings & Interests",
             color: 'CMDTurquoise',
-            onPressDestinatoin: 'ParentGuideByCategory',
+            onPressDestination: 'ParentGuideByCategory',
             navigation: navigation
         },
         {
             text: 'Things That Upset Your Child',
             color: 'CMDTurquoise',
-            onPressDestinatoin: 'ParentGuideByCategory',
+            onPressDestination: 'ParentGuideByCategory',
             navigation: navigation
         },
         {
             text: "Child's Interests",
             color: 'CMDTurquoise',
-            onPressDestinatoin: 'ParentGuideByCategory',
+            onPressDestination: 'ParentGuideByCategory',
             navigation: navigation
         },
         {
             text: "People/Places/Things That Have Meaning in Your Child's Life",
             color: 'CMDTurquoise',
-            onPressDestinatoin: 'ParentGuideByCategory',
+            onPressDestination: 'ParentGuideByCategory',
             navigation: navigation
         }
     ];
@@ -243,45 +262,51 @@ export const ParentGuide = ({ navigation }) => {
         {
             text: 'favorites',
             color: 'favorites',
-            onPressDestinatoin: 'ParentGuideByCategory',
+            onPressDestination: 'ParentGuideByCategory',
             navigation: navigation
         },
         {
             text: 'all about me',
             color: 'all about me',
-            onPressDestinatoin: 'ParentGuideByCategory',
+            onPressDestination: 'ParentGuideByCategory',
             navigation: navigation
         },
         {
             text: 'dance challenge',
             color: 'dance challenge',
-            onPressDestinatoin: 'ParentGuideByCategory',
+            onPressDestination: 'ParentGuideByCategory',
             navigation: navigation
         },
         {
             text: 'the inner me',
             color: 'the inner me',
-            onPressDestinatoin: 'ParentGuideByCategory',
+            onPressDestination: 'ParentGuideByCategory',
             navigation: navigation
         },
         {
             text: 'what would you do?',
             color: 'what would you do?',
-            onPressDestinatoin: 'ParentGuideByCategory',
+            onPressDestination: 'ParentGuideByCategory',
             navigation: navigation
         },
         {
             text: 'my bright future',
             color: 'my bright future',
-            onPressDestinatoin: 'ParentGuideByCategory',
+            onPressDestination: 'ParentGuideByCategory',
             navigation: navigation
         }
     ];
     return (
         <ParentGuideContainer>
-            {SearchBarComponent()}
+            {SearchBarComponent({ navigation })}
             <ViewHeading> View By: </ViewHeading>
-            <ViewBy editable={false}>grouped interpretation</ViewBy>
+            <StyledPress onPress={() => setIsGroup(!isGroup)}>
+                <View pointerEvents="none">
+                    <ViewBy editable={false}>
+                        {isGroup ? 'grouped interpretations' : 'categories'}
+                    </ViewBy>
+                </View>
+            </StyledPress>
             <ScrollStyledView directionalLockEnabled={true}>
                 {CategoryButtonDisplay(
                     isGroup ? groupInterpretationTopics : categories,

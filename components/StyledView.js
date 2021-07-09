@@ -38,6 +38,7 @@ export const CategoryHeader = styled.Text`
 `;
 
 export const ViewBy = styled.TextInput`
+    flex-direction: row;
     align-self: stretch;
     margin: 0 20px;
     padding: 20px 0;
