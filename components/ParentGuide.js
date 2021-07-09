@@ -207,6 +207,11 @@ export const ParentGuideByCategory = ({ route, navigation }) => {
             ? data.Group === cat_filter
             : data.Category.toLowerCase() === cat_filter
     );
+    {
+        console.log('==================================');
+        console.log(cat_filter);
+        console.log('-------------------------------');
+    }
     questions.map(data =>
         buttonComponents.push({
             text: data.Question,
