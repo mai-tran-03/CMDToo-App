@@ -202,7 +202,7 @@ export const ParentGuideByCategory = ({ route, navigation }) => {
     const cat_filter = route.params.filter;
     const isGroup = route.params.isGroup;
     const buttonComponents = [];
-    console.log(qs);
+
     const questions = qs.filter(data => {
         return isGroup
             ? data.Group.toLowerCase()
@@ -210,11 +210,7 @@ export const ParentGuideByCategory = ({ route, navigation }) => {
                   .includes(cat_filter.toLowerCase())
             : data.Category.toLowerCase() === cat_filter.toLowerCase();
     });
-    {
-        console.log('==================================');
-        console.log(cat_filter);
-        console.log('-------------------------------');
-    }
+
     questions.map(data =>
         buttonComponents.push({
             text: data.Question,
@@ -253,6 +249,7 @@ const getGroupInterpretationAndCategory = navigation => {
             }
         });
     });
+
     // construct objects from unique topics
     let groupInterpretationTopics = [];
     let categoriesTopics = [];
