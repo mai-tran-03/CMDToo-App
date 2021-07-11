@@ -238,72 +238,50 @@ export const ParentGuideByCategory = ({ route, navigation }) => {
     );
 };
 
+const getGroupInterpretationAndCategory = navigation => {
+    let groupInterpretations = new Set();
+    let categories = new Set();
+
+    // get unique categories and group interpretations
+    qs.forEach(question => {
+        categories.add(question.Category);
+
+        const splitGroupInterpretation = question.Group.split('|');
+        splitGroupInterpretation.forEach(tmpGroupInterpretation => {
+            if (tmpGroupInterpretation != '') {
+                groupInterpretations.add(tmpGroupInterpretation);
+            }
+        });
+    });
+    // construct objects from unique topics
+    let groupInterpretationTopics = [];
+    let categoriesTopics = [];
+    groupInterpretations.forEach(topic => {
+        groupInterpretationTopics.push({
+            text: topic,
+            color: 'CMDTurquoise',
+            onPressDestination: 'ParentGuideByCategory',
+            navigation: navigation
+        });
+    });
+
+    categories.forEach(topic => {
+        categoriesTopics.push({
+            text: topic,
+            color: topic.toLowerCase(),
+            onPressDestination: 'ParentGuideByCategory',
+            navigation: navigation
+        });
+    });
+    return [groupInterpretationTopics, categoriesTopics];
+};
+
 export const ParentGuide = ({ navigation }) => {
     const [isGroup, setIsGroup] = useState(false);
-    const groupInterpretationTopics = [
-        {
-            text: "How to Nuture Your Child's Feelings & Interests",
-            color: 'CMDTurquoise',
-            onPressDestination: 'ParentGuideByCategory',
-            navigation: navigation
-        },
-        {
-            text: 'Things That Upset Your Child',
-            color: 'CMDTurquoise',
-            onPressDestination: 'ParentGuideByCategory',
-            navigation: navigation
-        },
-        {
-            text: "Child's Interests",
-            color: 'CMDTurquoise',
-            onPressDestination: 'ParentGuideByCategory',
-            navigation: navigation
-        },
-        {
-            text: "People/Places/Things That Have Meaning in Your Child's Life",
-            color: 'CMDTurquoise',
-            onPressDestination: 'ParentGuideByCategory',
-            navigation: navigation
-        }
-    ];
-    const categories = [
-        {
-            text: 'favorites',
-            color: 'favorites',
-            onPressDestination: 'ParentGuideByCategory',
-            navigation: navigation
-        },
-        {
-            text: 'all about me',
-            color: 'all about me',
-            onPressDestination: 'ParentGuideByCategory',
-            navigation: navigation
-        },
-        {
-            text: 'dance challenge',
-            color: 'dance challenge',
-            onPressDestination: 'ParentGuideByCategory',
-            navigation: navigation
-        },
-        {
-            text: 'the inner me',
-            color: 'the inner me',
-            onPressDestination: 'ParentGuideByCategory',
-            navigation: navigation
-        },
-        {
-            text: 'what would you do?',
-            color: 'what would you do?',
-            onPressDestination: 'ParentGuideByCategory',
-            navigation: navigation
-        },
-        {
-            text: 'my bright future',
-            color: 'my bright future',
-            onPressDestination: 'ParentGuideByCategory',
-            navigation: navigation
-        }
-    ];
+    const questionTopics = getGroupInterpretationAndCategory(navigation);
+    const groupInterpretationTopics = questionTopics[0];
+    const categories = questionTopics[1];
+
     return (
         <ParentGuideContainer>
             {SearchBarComponent({ navigation })}
