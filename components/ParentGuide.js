@@ -213,16 +213,14 @@ export const ParentGuideByCategory = ({ route, navigation }) => {
 
     questions.map(data =>
         buttonComponents.push({
-            text: data.Question,
+            text: data.Question.toLowerCase(),
             color: data.Category.toLowerCase(),
             onPressDestination: 'ParentGuideInformation',
             navigation: navigation,
             data: data
         })
     );
-    const headingText = isGroup
-        ? questions[0].Group.toLowerCase()
-        : questions[0].Category.toLowerCase();
+    const headingText = isGroup ? questions[0].Group : questions[0].Category;
     return (
         <ParentGuideContainer>
             {SearchBarComponent({ navigation })}
@@ -255,7 +253,7 @@ const getGroupInterpretationAndCategory = navigation => {
     let categoriesTopics = [];
     groupInterpretations.forEach(topic => {
         groupInterpretationTopics.push({
-            text: topic,
+            text: topic.toLowerCase(),
             color: 'CMDTurquoise',
             onPressDestination: 'ParentGuideByCategory',
             navigation: navigation
@@ -264,7 +262,7 @@ const getGroupInterpretationAndCategory = navigation => {
 
     categories.forEach(topic => {
         categoriesTopics.push({
-            text: topic,
+            text: topic.toLowerCase(),
             color: topic.toLowerCase(),
             onPressDestination: 'ParentGuideByCategory',
             navigation: navigation
@@ -286,7 +284,7 @@ export const ParentGuide = ({ navigation }) => {
             <StyledPress onPress={() => setIsGroup(!isGroup)}>
                 <View pointerEvents="none">
                     <ViewBy editable={false}>
-                        {isGroup ? 'grouped interpretations' : 'categories'}
+                        {isGroup ? 'Grouped Interpretations' : 'Categories'}
                     </ViewBy>
                 </View>
             </StyledPress>
