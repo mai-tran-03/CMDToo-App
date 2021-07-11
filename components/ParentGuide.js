@@ -327,12 +327,10 @@ export const ParentGuideInformation = ({ route, navigation }) => {
                         color={color}
                     ></InterpretationTextBox>
                     <CustomButton
-                        text="parent tips"
+                        text="done"
                         color={color}
                         isBig={true}
-                        onPress={() =>
-                            console.log('Parent Tip not implemented')
-                        }
+                        onPress={() => navigation.pop()}
                     />
                 </InformationContainer>
             </ScrollStyledView>

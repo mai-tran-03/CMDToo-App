@@ -36,16 +36,65 @@ function HomeScreen({ navigation }) {
                 onPress={() => navigation.navigate('Play')}
             />
             <CustomButton
-                text="parent guide"
+                text="how to play"
                 color="CMDTurquoise"
+                onPress={() => navigation.navigate('HowToPlay')}
+            />
+            <CustomButton
+                text="parent guide"
+                color="CMDPink"
                 onPress={() => navigation.navigate('ParentGuide')}
             />
             <CustomButton
-                text="how to play"
-                color="CMDPink"
-                onPress={() => navigation.navigate('HowToPlay')}
+                text="parent tips"
+                color="CMDOrange"
+                onPress={() => navigation.navigate('ParentTip')}
             />
+
             <StatusBar style="auto" />
+        </StyledView>
+    );
+}
+
+function ParentTip({ navigation }) {
+    return (
+        <StyledView>
+            <ScrollStyledView>
+                <HowToPlayContainer>
+                    <CustomText
+                        text='Press "play"'
+                        color="CMDGreen"
+                        count="1"
+                    />
+                    <CustomText
+                        text="Pick an order of players"
+                        color="CMDPink"
+                        count="2"
+                    />
+                    <CustomText
+                        text="Pick a category"
+                        color="CMDPurple"
+                        count="3"
+                    />
+                    <CustomText
+                        text="Answer the question"
+                        color="CMDTurquoise"
+                        count="4"
+                    />
+                    <CustomText
+                        text="Pass the phone to the next person"
+                        color="CMDOrange"
+                        count="5"
+                    />
+                    <CustomButton
+                        text="play"
+                        color="CMDGreen"
+                        onPress={() => navigation.navigate('Play')}
+                        isBig={true}
+                    />
+                    <StatusBar style="auto" />
+                </HowToPlayContainer>
+            </ScrollStyledView>
         </StyledView>
     );
 }
@@ -300,6 +349,7 @@ export default function App() {
                             )
                         })}
                     />
+                    <Stack.Screen name="ParentTip" component={ParentTip} />
                 </Stack.Navigator>
             </ThemeProvider>
         </NavigationContainer>
