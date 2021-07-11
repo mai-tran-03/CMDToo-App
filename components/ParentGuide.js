@@ -73,17 +73,39 @@ const SearchBarComponent = ({ navigation }) => {
         setOutput(find(input));
     }, [input]);
     const [past, setPast] = useState({});
+    const [pastCat, setPastCat] = useState({});
     const [output, setOutput] = useState('');
 
     const find = str_to_match => {
         if (!str_to_match) return [];
         let prev = str_to_match.slice(0, -1).toLowerCase();
         let options;
-
-        if (prev.length > 0 && prev in past) {
-            options = qs.filter(q => past[prev].includes(q.Question));
+        let cat_options;
+        if (prev.length > 0) {
+            if (prev in past)
+                options = qs.filter(q => past[prev].includes(q.Question));
+            if (prev in pastCat) cat_options = pastCat[prev];
         } else {
             options = qs;
+            cat_options = {};
+            qs.map(q => {
+                if (q.Category != '') {
+                    cat_options[q.Category] = {
+                        text: q.Category,
+                        isGroup: false,
+                        isQ: false
+                    };
+                }
+                q.Group.split('|').map(
+                    g =>
+                        (cat_options[g] = {
+                            text: g,
+                            isGroup: true,
+                            isQ: false
+                        })
+                );
+            });
+            cat_options = Object.values(cat_options);
         }
         let reg_ex = new RegExp(str_to_match, 'i');
         let auto_complete = new Set();
@@ -91,28 +113,39 @@ const SearchBarComponent = ({ navigation }) => {
             options.filter(o => {
                 let question =
                     o.Question.match(reg_ex) &&
-                    auto_complete.add({ text: o.Question, question: o });
-                let category =
-                    o.Category.match(reg_ex) &&
-                    auto_complete.add({ text: o.Category, question: o });
-                let group =
-                    o.Group.match(reg_ex) &&
-                    auto_complete.add({ text: o.Group, question: o });
+                    auto_complete.add({
+                        text: o.Question,
+                        isQ: true,
+                        question: o
+                    });
                 let follow =
                     o['Follow Up'].length > 0 &&
                     o['Follow Up'].reduce(
                         (bool, q) =>
                             (q.match(reg_ex) &&
-                                auto_complete.add({ text: q, question: o })) ||
+                                auto_complete.add({
+                                    text: q,
+                                    isQ: true,
+                                    question: o
+                                })) ||
                             bool,
                         false
                     );
-                return question || category || group || follow;
+                return question || follow;
             })
+        );
+        let cat_matches = new Set(
+            cat_options.filter(
+                cat => cat.text.match(reg_ex) && auto_complete.add(cat)
+            )
         );
         setPast(prevState => ({
             ...prevState,
             [str_to_match.toLowerCase()]: [...matches].map(m => m.Question)
+        }));
+        setPastCat(prevState => ({
+            ...prevState,
+            [str_to_match.toLowerCase()]: [...cat_matches]
         }));
         return [...auto_complete];
     };
@@ -123,11 +156,23 @@ const SearchBarComponent = ({ navigation }) => {
                 placeholder="Search by specific question"
                 onChangeText={setInput}
                 onEndEditing={() => setOutput('')}
+                onPressOut={even => {
+                    console.log(even.nativeEvent);
+                    console.log('help');
+                }}
                 returnKeyType="search"
+                onFocus={even => setOutput(find(even.nativeEvent.text))}
                 onSubmitEditing={() => {
-                    navigation.navigate('ParentGuideInformation', {
-                        question: output[0].question
-                    });
+                    if (output.length > 0) {
+                        output[0].isQ
+                            ? navigation.navigate('ParentGuideInformation', {
+                                  question: output[0].question
+                              })
+                            : navigation.navigate('ParentGuideByCategory', {
+                                  filter: output[0].text,
+                                  isGroup: output[0].isGroup
+                              });
+                    }
                 }}
                 clearButtonMode="while-editing"
             />
@@ -135,16 +180,27 @@ const SearchBarComponent = ({ navigation }) => {
                 data={output.slice(0, 7)}
                 keyExtractor={q => q.text}
                 extraData={output}
+                keyboardShouldPersistTaps={'handled'}
                 renderItem={({ item }) => (
-                    <MatchBorder>
-                        <AutoMatch
-                            onPress={() =>
-                                navigation.navigate('ParentGuideInformation', {
-                                    question: item.question
-                                })
-                            }
-                        >{`${item.text}`}</AutoMatch>
-                    </MatchBorder>
+                    <StyledPress
+                        onPress={() =>
+                            item.isQ
+                                ? navigation.navigate(
+                                      'ParentGuideInformation',
+                                      {
+                                          question: item.question
+                                      }
+                                  )
+                                : navigation.navigate('ParentGuideByCategory', {
+                                      filter: item.text,
+                                      isGroup: item.isGroup
+                                  })
+                        }
+                    >
+                        <MatchBorder>
+                            <AutoMatch>{`${item.text}`}</AutoMatch>
+                        </MatchBorder>
+                    </StyledPress>
                 )}
             />
         </SearchBarContainer>
