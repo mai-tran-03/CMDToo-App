@@ -202,11 +202,14 @@ export const ParentGuideByCategory = ({ route, navigation }) => {
     const cat_filter = route.params.filter;
     const isGroup = route.params.isGroup;
     const buttonComponents = [];
-    const questions = qs.filter(data =>
-        isGroup
-            ? data.Group === cat_filter
-            : data.Category.toLowerCase() === cat_filter
-    );
+    console.log(qs);
+    const questions = qs.filter(data => {
+        return isGroup
+            ? data.Group.toLowerCase()
+                  .split('|')
+                  .includes(cat_filter.toLowerCase())
+            : data.Category.toLowerCase() === cat_filter.toLowerCase();
+    });
     {
         console.log('==================================');
         console.log(cat_filter);
