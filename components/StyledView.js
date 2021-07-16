@@ -8,7 +8,7 @@ export const StyledView = styled.View`
 `;
 
 export const ScrollStyledView = styled.ScrollView`
-    margin: 3px;
+    margin: 3px 0;
 `;
 
 export const HowToPlayContainer = styled.View`

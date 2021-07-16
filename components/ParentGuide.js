@@ -158,7 +158,6 @@ const SearchBarComponent = ({ navigation }) => {
                 onEndEditing={() => setOutput('')}
                 onPressOut={even => {
                     console.log(even.nativeEvent);
-                    console.log('help');
                 }}
                 returnKeyType="search"
                 onFocus={even => setOutput(find(even.nativeEvent.text))}
@@ -281,7 +280,10 @@ export const ParentGuideByCategory = ({ route, navigation }) => {
         <ParentGuideContainer>
             {SearchBarComponent({ navigation })}
             <ViewBy editable={false}> {headingText} </ViewBy>
-            <ScrollStyledView directionalLockEnabled={true}>
+            <ScrollStyledView
+                directionalLockEnabled={true}
+                contentContainerStyle={{ maxWidth: '99.9%' }}
+            >
                 {QuestionButtonDisplay(buttonComponents)}
             </ScrollStyledView>
         </ParentGuideContainer>
@@ -344,7 +346,10 @@ export const ParentGuide = ({ navigation }) => {
                     </ViewBy>
                 </View>
             </StyledPress>
-            <ScrollStyledView directionalLockEnabled={true}>
+            <ScrollStyledView
+                directionalLockEnabled={true}
+                contentContainerStyle={{ maxWidth: '99.9%' }}
+            >
                 {CategoryButtonDisplay(
                     isGroup ? groupInterpretationTopics : categories,
                     isGroup
@@ -362,7 +367,10 @@ export const ParentGuideInformation = ({ route, navigation }) => {
     const color = category.toLowerCase();
     return (
         <ParentGuideContainer>
-            <ScrollStyledView directionalLockEnabled={true}>
+            <ScrollStyledView
+                directionalLockEnabled={true}
+                contentContainerStyle={{ maxWidth: '99.9%' }}
+            >
                 <InformationContainer>
                     <StandardTextbox
                         text={category}

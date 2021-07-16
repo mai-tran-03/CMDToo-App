@@ -8,8 +8,7 @@ const ButtonContainer = styled.TouchableOpacity`
         props.theme.colors[props.color] || props.theme.colors.error};
     border-radius: 20px;
     /* padding-vertical: 15px;*/
-    margin-vertical: 10px;
-    margin-horizontal: 20px;
+    margin: 10px 20px;
     max-height: 75px;
     flex-grow: 100;
 
@@ -17,7 +16,7 @@ const ButtonContainer = styled.TouchableOpacity`
 `;
 
 const SmallButtonContainer = styled(ButtonContainer)`
-    margin-horizontal: 5px;
+    margin: 0 5px;
 `;
 
 const BigButtonContainer = styled(ButtonContainer)`
