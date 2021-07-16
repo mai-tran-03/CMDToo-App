@@ -105,27 +105,27 @@ function HowToPlay({ navigation }) {
             <ScrollStyledView>
                 <HowToPlayContainer>
                     <CustomText
-                        text='Press "play"'
+                        text='press "play"'
                         color="CMDGreen"
                         count="1"
                     />
                     <CustomText
-                        text="Pick an order of players"
+                        text="pick an order of players"
                         color="CMDPink"
                         count="2"
                     />
                     <CustomText
-                        text="Pick a category"
+                        text="pick a category"
                         color="CMDPurple"
                         count="3"
                     />
                     <CustomText
-                        text="Answer the question"
+                        text="answer the question"
                         color="CMDTurquoise"
                         count="4"
                     />
                     <CustomText
-                        text="Pass the phone to the next person"
+                        text="pass the phone to the next person"
                         color="CMDOrange"
                         count="5"
                     />

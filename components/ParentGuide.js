@@ -156,9 +156,6 @@ const SearchBarComponent = ({ navigation }) => {
                 placeholder="Search by specific question"
                 onChangeText={setInput}
                 onEndEditing={() => setOutput('')}
-                onPressOut={even => {
-                    console.log(even.nativeEvent);
-                }}
                 returnKeyType="search"
                 onFocus={even => setOutput(find(even.nativeEvent.text))}
                 onSubmitEditing={() => {
