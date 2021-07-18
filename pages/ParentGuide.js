@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import qs from './questions.json';
-import CustomButton from './CustomButton.js';
+import qs from '../components/questions.json';
+import CustomButton from '../components/CustomButton.js';
 import styled from 'styled-components/native';
 import { StatusBar } from 'expo-status-bar';
 import {
@@ -8,8 +8,11 @@ import {
     ParentGuideContainer,
     ViewHeading,
     ViewBy
-} from './StyledView';
-import { StandardTextbox, InterpretationTextBox } from './CustomTextbox';
+} from '../components/StyledView';
+import {
+    StandardTextbox,
+    InterpretationTextBox
+} from '../components/CustomTextbox';
 import { View } from 'react-native';
 
 const StyledPress = styled.Pressable`

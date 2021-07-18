@@ -2,29 +2,20 @@ import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import CustomButton from './components/CustomButton.js';
-import { CustomText } from './components/CustomText.js';
-import { CardTextbox, StandardTextbox } from './components/CustomTextbox.js';
-import Card from './components/Card.js';
 import { ThemeProvider } from 'styled-components';
 import COLORS from './components/GlobalStyles.js';
-import qs from './components/questions.json';
-import { Modal, Image, TouchableOpacity, Linking } from 'react-native';
+import { Image, TouchableOpacity } from 'react-native';
 import {
     ParentGuide,
     ParentGuideByCategory,
     ParentGuideInformation
-} from './components/ParentGuide';
-import { ParentTips, ScenerioTips } from './components/ParentTips.js';
-import {
-    StyledView,
-    AppName,
-    AppDesc,
-    ScrollStyledView,
-    HowToPlayContainer,
-    CategoryHeader
-} from './components/StyledView';
+} from './pages/ParentGuide';
+import { ParentTips, ScenerioTips } from './pages/ParentTips.js';
+import { StyledView, AppName, AppDesc } from './components/StyledView';
+import { Play } from './pages/Play.js';
+import { HowToPlay } from './pages/HowToPlay.js';
 
 function HomeScreen({ navigation }) {
     return (
@@ -57,160 +48,48 @@ function HomeScreen({ navigation }) {
     );
 }
 
-function HowToPlay({ navigation }) {
-    return (
-        <StyledView>
-            <ScrollStyledView>
-                <HowToPlayContainer>
-                    <CustomText
-                        text='press "play"'
-                        color="CMDGreen"
-                        count="1"
-                    />
-                    <CustomText
-                        text="pick an order of players"
-                        color="CMDPink"
-                        count="2"
-                    />
-                    <CustomText
-                        text="pick a category"
-                        color="CMDPurple"
-                        count="3"
-                    />
-                    <CustomText
-                        text="answer the question"
-                        color="CMDTurquoise"
-                        count="4"
-                    />
-                    <CustomText
-                        text="pass the phone to the next person"
-                        color="CMDOrange"
-                        count="5"
-                    />
-                    <CustomButton
-                        text="play"
-                        color="CMDGreen"
-                        onPress={() => navigation.navigate('Play')}
-                        isBig={true}
-                    />
-                    <StatusBar style="auto" />
-                </HowToPlayContainer>
-            </ScrollStyledView>
-        </StyledView>
-    );
-}
-
-function Play({ navigation }) {
-    const [modalVisible, setModalVisible] = useState(false);
-    let categories = [
-        'favorites',
-        'dance challenge',
-        'all about me',
-        'the inner me',
-        'what would you do?',
-        'my bright future'
-    ];
-    let list = [];
-    const [questions, setQuestions] = useState(qs);
-    const [options, setOptions] = useState([]);
-    const [display, setDisplay] = useState();
-    useEffect(() => {
-        list = [];
-        categories.forEach(category => {
-            const cardLeft = questions.filter(
-                q => q.Category.toLowerCase() === category
-            );
-            const lengthOfCardLeft = cardLeft.length;
-
-            list.push(
-                <CustomButton
-                    key={category}
-                    text={category}
-                    color={category}
-                    disabled={lengthOfCardLeft === 0}
-                    warningText={
-                        lengthOfCardLeft <= 3
-                            ? `${lengthOfCardLeft} ${
-                                  lengthOfCardLeft === 1 ? 'card' : 'cards'
-                              } left`
-                            : undefined
-                    }
-                    onPress={() => {
-                        setOptions([]);
-                        let ques = cardLeft;
-                        ques = ques[Math.floor(Math.random() * ques.length)];
-                        setOptions(
-                            <Card
-                                category={ques.Category}
-                                question={ques}
-                                color={ques.Category.toLowerCase()}
-                                hasFollowUp={ques.hasFollowUp}
-                                setModalVisible={setModalVisible}
-                                setOptions={setOptions}
-                            ></Card>
-                        );
-                        setQuestions(oldQ =>
-                            oldQ.filter(qw => qw.Question != ques.Question)
-                        );
-                        setModalVisible(true);
-                    }}
-                />
-            );
-        });
-        if (questions.length) {
-            setDisplay(
-                <>
-                    <CategoryHeader> Pick a Category </CategoryHeader>
-                    {list}
-                </>
-            );
-        } else {
-            setDisplay(
-                <>
-                    <AppName> YOU FINISHED! </AppName>
-                    <AppDesc>
-                        {' '}
-                        What is something new you learned today?{' '}
-                    </AppDesc>
-                    <CustomButton
-                        text="go home"
-                        color="CMDPink"
-                        onPress={() => navigation.navigate('Home')}
-                    />
-                    <CustomButton
-                        text="parent guide"
-                        color="CMDTurquoise"
-                        onPress={() => navigation.navigate('ParentGuide')}
-                    />
-                    <CustomButton
-                        text="CMDToo Website"
-                        color="CMDGreen"
-                        onPress={() =>
-                            Linking.openURL('https://www.coolmomsdancetoo.com/')
-                        }
-                    />
-                </>
-            );
-        }
-    }, [questions]);
-
-    return (
-        <StyledView>
-            <Modal
-                animationType="slide"
-                transparent={true}
-                visible={modalVisible}
-                onRequestClose={() => {
-                    setModalVisible(!modalVisible);
-                }}
-            >
-                <StyledView>{options}</StyledView>
-            </Modal>
-            {display}
-            <StatusBar style="auto" />
-        </StyledView>
-    );
-}
+// export const HowToPlay = navigation => {
+//     return (
+//         <StyledView>
+//             <ScrollStyledView>
+//                 <HowToPlayContainer>
+//                     <CustomText
+//                         text='press "play"'
+//                         color="CMDGreen"
+//                         count="1"
+//                     />
+//                     <CustomText
+//                         text="pick an order of players"
+//                         color="CMDPink"
+//                         count="2"
+//                     />
+//                     <CustomText
+//                         text="pick a category"
+//                         color="CMDPurple"
+//                         count="3"
+//                     />
+//                     <CustomText
+//                         text="answer the question"
+//                         color="CMDTurquoise"
+//                         count="4"
+//                     />
+//                     <CustomText
+//                         text="pass the phone to the next person"
+//                         color="CMDOrange"
+//                         count="5"
+//                     />
+//                     <CustomButton
+//                         text="play"
+//                         color="CMDGreen"
+//                         onPress={() => navigation.navigate('Play')}
+//                         isBig={true}
+//                     />
+//                     <StatusBar style="auto" />
+//                 </HowToPlayContainer>
+//             </ScrollStyledView>
+//         </StyledView>
+//     );
+// };
 
 const Stack = createStackNavigator();
 export default function App() {

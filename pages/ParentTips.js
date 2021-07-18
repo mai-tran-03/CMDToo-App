@@ -1,15 +1,20 @@
 import React from 'react';
-import { BigScrollStyledView, ParentTipsContainer } from './StyledView';
-import tips from './parent-tips.json';
-import CustomButton from './CustomButton.js';
-import { CardTextbox } from './CustomTextbox';
+import {
+    BigScrollStyledView,
+    ParentTipsContainer
+} from '../components/StyledView';
+import tips from '../components/parent-tips.json';
+import CustomButton from '../components/CustomButton.js';
+import { CardTextbox } from '../components/CustomTextbox';
 import { Linking } from 'react-native';
 
 const GetScenerioButtons = navigation => {
     let scenerioButtonList = [];
+    let count = 0;
     tips.forEach(tip => {
         scenerioButtonList.push(
             <CustomButton
+                key={count++}
                 text={tip.scenario}
                 color="CMDOrange"
                 isVeryBig={true}

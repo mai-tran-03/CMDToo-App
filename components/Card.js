@@ -3,20 +3,6 @@ import { CardTextbox, StandardTextbox } from './CustomTextbox.js';
 import CustomButton from './CustomButton.js';
 import styled from 'styled-components/native';
 
-const question_car = 'What would you do?';
-const normal_standardtext = ['Do your favorite silly dance for 1 minute'];
-const multiple_texts = [
-    "How to Nurture Your Child's Feelings",
-    'Interests',
-    "Child's Interests"
-];
-const newline_text = [
-    "Company: Your child values structure/rules.\nEntrepreneur: Your child's creative side needs to be nurtured and explored"
-];
-const long_text = [
-    'If your child lists people they know, they might be people that your child wants to spend more time with. If they are celebrities/public figures, your child probably looks up to them or sees positive attributes in those people'
-];
-
 const CardView = styled.View`
     display: flex;
     flex: 1;
