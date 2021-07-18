@@ -11,7 +11,8 @@ import {
 } from '../components/StyledView';
 import {
     StandardTextbox,
-    InterpretationTextBox
+    InterpretationTextBox,
+    SmallerStandardTextbox
 } from '../components/CustomTextbox';
 import { View } from 'react-native';
 
@@ -376,12 +377,11 @@ export const ParentGuideInformation = ({ route, navigation }) => {
                         text={category}
                         color={color}
                     ></StandardTextbox>
-
                     <TextContainerParentGuide>
-                        <StandardTextbox
+                        <SmallerStandardTextbox
                             text={question}
                             color={color}
-                        ></StandardTextbox>
+                        ></SmallerStandardTextbox>
                     </TextContainerParentGuide>
                     <InterpretationTextBox
                         interpretationText={interpretation}
