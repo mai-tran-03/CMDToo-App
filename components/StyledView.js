@@ -11,6 +11,10 @@ export const ScrollStyledView = styled.ScrollView`
     margin: 3px 0;
 `;
 
+export const BigScrollStyledView = styled.ScrollView`
+    margin: 30px 0;
+`;
+
 export const HowToPlayContainer = styled.View`
     padding-top: 20%;
     padding-bottom: 10%;
@@ -23,14 +27,17 @@ export const ParentGuideContainer = styled.View`
     justify-content: space-between;
     margin-top: 15px;
 `;
+
 export const AppName = styled.Text`
     font-size: 35px;
 `;
+
 export const AppDesc = styled.Text`
     padding-top: 15px;
     padding-bottom: 15px;
     font-size: 18px;
 `;
+
 export const CategoryHeader = styled.Text`
     font-size: 35px;
     min-height: 50px;
@@ -69,4 +76,11 @@ export const AutoMatch = styled.Text`
     font-family: Avenir;
     line-height: 18px;
     align-content: center;
+`;
+
+export const ParentTipsContainer = styled.View`
+    flex-shrink: 1;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 15px;
 `;

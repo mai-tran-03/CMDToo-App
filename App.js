@@ -16,6 +16,7 @@ import {
     ParentGuideByCategory,
     ParentGuideInformation
 } from './components/ParentGuide';
+import { ParentTips, ScenerioTips } from './components/ParentTips.js';
 import {
     StyledView,
     AppName,
@@ -48,53 +49,10 @@ function HomeScreen({ navigation }) {
             <CustomButton
                 text="parent tips"
                 color="CMDOrange"
-                onPress={() => navigation.navigate('ParentTip')}
+                onPress={() => navigation.navigate('ParentTips')}
             />
 
             <StatusBar style="auto" />
-        </StyledView>
-    );
-}
-
-function ParentTip({ navigation }) {
-    return (
-        <StyledView>
-            <ScrollStyledView>
-                <HowToPlayContainer>
-                    <CustomText
-                        text='Press "play"'
-                        color="CMDGreen"
-                        count="1"
-                    />
-                    <CustomText
-                        text="Pick an order of players"
-                        color="CMDPink"
-                        count="2"
-                    />
-                    <CustomText
-                        text="Pick a category"
-                        color="CMDPurple"
-                        count="3"
-                    />
-                    <CustomText
-                        text="Answer the question"
-                        color="CMDTurquoise"
-                        count="4"
-                    />
-                    <CustomText
-                        text="Pass the phone to the next person"
-                        color="CMDOrange"
-                        count="5"
-                    />
-                    <CustomButton
-                        text="play"
-                        color="CMDGreen"
-                        onPress={() => navigation.navigate('Play')}
-                        isBig={true}
-                    />
-                    <StatusBar style="auto" />
-                </HowToPlayContainer>
-            </ScrollStyledView>
         </StyledView>
     );
 }
@@ -349,7 +307,11 @@ export default function App() {
                             )
                         })}
                     />
-                    <Stack.Screen name="ParentTip" component={ParentTip} />
+                    <Stack.Screen name="ParentTips" component={ParentTips} />
+                    <Stack.Screen
+                        name="ScenerioTips"
+                        component={ScenerioTips}
+                    />
                 </Stack.Navigator>
             </ThemeProvider>
         </NavigationContainer>
