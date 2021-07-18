@@ -116,7 +116,19 @@ export const SmallerStandardTextbox = ({ text, color }) => (
 
 export const CardTextbox = ({ textList, color }) => {
     const displayText = textList.map((text, index) => (
-        <StandardText key={index}>{text}</StandardText>
+        <StandardText key={index}>{text.toLowerCase()}</StandardText>
+    ));
+
+    return (
+        <CardContainer length={textList.length} color={color}>
+            {displayText}
+        </CardContainer>
+    );
+};
+
+export const ParentTipsTextbox = ({ textList, color }) => {
+    const displayText = textList.map((text, index) => (
+        <SmallerStandardText key={index}>{text}</SmallerStandardText>
     ));
 
     return (

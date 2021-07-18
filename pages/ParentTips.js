@@ -1,11 +1,13 @@
 import React from 'react';
 import {
     BigScrollStyledView,
-    ParentTipsContainer
+    ParentTipsContainer,
+    ParentTipsHeader,
+    ParentTipsHeaderContainer
 } from '../components/StyledView';
 import tips from '../components/parent-tips.json';
 import CustomButton from '../components/CustomButton.js';
-import { CardTextbox } from '../components/CustomTextbox';
+import { ParentTipsTextbox } from '../components/CustomTextbox';
 import { Linking } from 'react-native';
 
 const GetScenerioButtons = navigation => {
@@ -29,6 +31,11 @@ export const ParentTips = ({ navigation }) => {
     const scenerioButtons = GetScenerioButtons(navigation);
     return (
         <ParentTipsContainer>
+            <ParentTipsHeaderContainer>
+                <ParentTipsHeader>
+                    Interpret Your Child's Reactions
+                </ParentTipsHeader>
+            </ParentTipsHeaderContainer>
             <BigScrollStyledView
                 directionalLockEnabled={true}
                 contentContainerStyle={{ maxWidth: '99.9%' }}
@@ -43,23 +50,28 @@ export const ScenerioTips = ({ route, navigation }) => {
     const tips = route.params.tip.tip;
     const link = route.params.tip.source;
     return (
-        <ParentTipsContainer>
-            <BigScrollStyledView
-                directionalLockEnabled={true}
-                contentContainerStyle={{ maxWidth: '99.9%' }}
-            >
-                <CardTextbox textList={tips.split('|')} color="CMDOrange" />
-                {link != '' ? (
-                    <CustomButton
-                        text="read more"
+        <>
+            <ParentTipsContainer>
+                <BigScrollStyledView
+                    directionalLockEnabled={true}
+                    contentContainerStyle={{ maxWidth: '99.9%' }}
+                >
+                    <ParentTipsTextbox
+                        textList={tips.split('|')}
                         color="CMDOrange"
-                        isBig={true}
-                        onPress={() => Linking.openURL(link)}
                     />
-                ) : (
-                    <></>
-                )}
-            </BigScrollStyledView>
-        </ParentTipsContainer>
+                    {link != '' ? (
+                        <CustomButton
+                            text="read more"
+                            color="CMDOrange"
+                            isBig={true}
+                            onPress={() => Linking.openURL(link)}
+                        />
+                    ) : (
+                        <></>
+                    )}
+                </BigScrollStyledView>
+            </ParentTipsContainer>
+        </>
     );
 };

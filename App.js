@@ -48,49 +48,6 @@ function HomeScreen({ navigation }) {
     );
 }
 
-// export const HowToPlay = navigation => {
-//     return (
-//         <StyledView>
-//             <ScrollStyledView>
-//                 <HowToPlayContainer>
-//                     <CustomText
-//                         text='press "play"'
-//                         color="CMDGreen"
-//                         count="1"
-//                     />
-//                     <CustomText
-//                         text="pick an order of players"
-//                         color="CMDPink"
-//                         count="2"
-//                     />
-//                     <CustomText
-//                         text="pick a category"
-//                         color="CMDPurple"
-//                         count="3"
-//                     />
-//                     <CustomText
-//                         text="answer the question"
-//                         color="CMDTurquoise"
-//                         count="4"
-//                     />
-//                     <CustomText
-//                         text="pass the phone to the next person"
-//                         color="CMDOrange"
-//                         count="5"
-//                     />
-//                     <CustomButton
-//                         text="play"
-//                         color="CMDGreen"
-//                         onPress={() => navigation.navigate('Play')}
-//                         isBig={true}
-//                     />
-//                     <StatusBar style="auto" />
-//                 </HowToPlayContainer>
-//             </ScrollStyledView>
-//         </StyledView>
-//     );
-// };
-
 const Stack = createStackNavigator();
 export default function App() {
     return (

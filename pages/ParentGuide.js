@@ -374,12 +374,12 @@ export const ParentGuideInformation = ({ route, navigation }) => {
             >
                 <InformationContainer>
                     <StandardTextbox
-                        text={category}
+                        text={category.toLowerCase()}
                         color={color}
                     ></StandardTextbox>
                     <TextContainerParentGuide>
                         <SmallerStandardTextbox
-                            text={question}
+                            text={question.toLowerCase()}
                             color={color}
                         ></SmallerStandardTextbox>
                     </TextContainerParentGuide>
