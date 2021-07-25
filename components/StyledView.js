@@ -12,7 +12,7 @@ export const ScrollStyledView = styled.ScrollView`
 `;
 
 export const BigScrollStyledView = styled.ScrollView`
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 `;
 
 export const HowToPlayContainer = styled.View`
@@ -43,6 +43,7 @@ export const CategoryHeader = styled.Text`
     min-height: 50px;
     align-items: flex-start;
     font-family: Avenir;
+    font-weight: 600;
 `;
 
 export const ParentTipsHeaderContainer = styled.View`
@@ -55,6 +56,7 @@ export const ParentTipsHeader = styled.Text`
     min-height: 50px;
     text-align: center;
     font-family: Avenir;
+    font-weight: 600;
 `;
 
 export const ViewBy = styled.TextInput`
@@ -63,7 +65,7 @@ export const ViewBy = styled.TextInput`
     margin: 0 20px;
     padding: 20px 0;
     font-size: 28px;
-    font-weight: 800;
+    font-weight: 600;
     justify-content: flex-start;
     border-style: solid;
     border-width: 1px;

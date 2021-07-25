@@ -92,7 +92,7 @@ export const Play = ({ navigation }) => {
                     <CustomButton
                         text="parent guide"
                         color="CMDTurquoise"
-                        onPress={() => navigation.navigate('ParentGuide')}
+                        onPress={() => navigation.navigate('Parent Guide')}
                     />
                     <CustomButton
                         text="CMDToo Website"

@@ -171,10 +171,10 @@ const SearchBarComponent = ({ navigation }) => {
                 onSubmitEditing={() => {
                     if (output.length > 0) {
                         output[0].isQ
-                            ? navigation.navigate('ParentGuideInformation', {
+                            ? navigation.navigate('Parent Guide Information', {
                                   question: output[0].question
                               })
-                            : navigation.navigate('ParentGuideByCategory', {
+                            : navigation.navigate('Parent Guide by Category', {
                                   filter: output[0].text,
                                   isGroup: output[0].isGroup
                               });
@@ -192,15 +192,18 @@ const SearchBarComponent = ({ navigation }) => {
                         onPress={() =>
                             item.isQ
                                 ? navigation.navigate(
-                                      'ParentGuideInformation',
+                                      'Parent Guide Information',
                                       {
                                           question: item.question
                                       }
                                   )
-                                : navigation.navigate('ParentGuideByCategory', {
-                                      filter: item.text,
-                                      isGroup: item.isGroup
-                                  })
+                                : navigation.navigate(
+                                      'Parent Guide by Category',
+                                      {
+                                          filter: item.text,
+                                          isGroup: item.isGroup
+                                      }
+                                  )
                         }
                     >
                         <MatchBorder>
@@ -277,7 +280,7 @@ export const ParentGuideByCategory = ({ route, navigation }) => {
         buttonComponents.push({
             text: data.Question.toLowerCase(),
             color: data.Category.toLowerCase(),
-            onPressDestination: 'ParentGuideInformation',
+            onPressDestination: 'Parent Guide Information',
             navigation: navigation,
             data: data
         })
@@ -320,7 +323,7 @@ const getGroupInterpretationAndCategory = navigation => {
         groupInterpretationTopics.push({
             text: topic.toLowerCase(),
             color: 'CMDTurquoise',
-            onPressDestination: 'ParentGuideByCategory',
+            onPressDestination: 'Parent Guide by Category',
             navigation: navigation
         });
     });
@@ -329,7 +332,7 @@ const getGroupInterpretationAndCategory = navigation => {
         categoriesTopics.push({
             text: topic.toLowerCase(),
             color: topic.toLowerCase(),
-            onPressDestination: 'ParentGuideByCategory',
+            onPressDestination: 'Parent Guide by Category',
             navigation: navigation
         });
     });
