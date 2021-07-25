@@ -3,11 +3,15 @@ import {
     BigScrollStyledView,
     ParentTipsContainer,
     ParentTipsHeader,
-    ParentTipsHeaderContainer
+    ParentTipsHeaderContainer,
+    ScenerioContainer
 } from '../components/StyledView';
 import tips from '../components/parent-tips.json';
 import CustomButton from '../components/CustomButton.js';
-import { ParentTipsTextbox } from '../components/CustomTextbox';
+import {
+    ParentTipsTextbox,
+    StandardTextbox
+} from '../components/CustomTextbox';
 import { Linking } from 'react-native';
 
 const GetScenerioButtons = navigation => {
@@ -47,23 +51,26 @@ export const ParentTips = ({ navigation }) => {
 };
 
 export const ScenerioTips = ({ route, navigation }) => {
+    const scenerio = route.params.tip.scenario;
     const tips = route.params.tip.tip;
     const link = route.params.tip.source;
+    const color = 'CMDOrange';
     return (
         <>
-            <ParentTipsContainer>
+            <ScenerioContainer>
                 <BigScrollStyledView
                     directionalLockEnabled={true}
                     contentContainerStyle={{ maxWidth: '99.9%' }}
                 >
+                    <StandardTextbox text={scenerio} color={color} />
                     <ParentTipsTextbox
                         textList={tips.split('|')}
-                        color="CMDOrange"
+                        color={color}
                     />
                     {link != '' ? (
                         <CustomButton
                             text="read more"
-                            color="CMDOrange"
+                            color={color}
                             isBig={true}
                             onPress={() => Linking.openURL(link)}
                         />
@@ -71,7 +78,7 @@ export const ScenerioTips = ({ route, navigation }) => {
                         <></>
                     )}
                 </BigScrollStyledView>
-            </ParentTipsContainer>
+            </ScenerioContainer>
         </>
     );
 };

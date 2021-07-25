@@ -16,8 +16,8 @@ export const BigScrollStyledView = styled.ScrollView`
 `;
 
 export const HowToPlayContainer = styled.View`
-    padding-top: 20%;
-    padding-bottom: 10%;
+    padding-bottom: 20px;
+    padding-top: 10px;
     min-width: 100%;
 `;
 
@@ -95,6 +95,11 @@ export const ParentTipsContainer = styled.View`
     flex-shrink: 1;
     align-items: center;
     justify-content: space-between;
-    margin-top: 15px;
+    margin-bottom: 10px;
     min-height: 100%;
+`;
+
+export const ScenerioContainer = styled(ParentTipsContainer)`
+    margin-top: 10px;
+    margin-bottom: 10px;
 `;

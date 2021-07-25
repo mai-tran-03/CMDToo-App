@@ -88,7 +88,33 @@ export default function App() {
                         })}
                     />
                     <Stack.Screen name="Play" component={Play} />
-                    <Stack.Screen name="HowToPlay" component={HowToPlay} />
+                    <Stack.Screen
+                        name="HowToPlay"
+                        component={HowToPlay}
+                        options={({ navigation }) => ({
+                            headerShown: true,
+                            headerStyle: {
+                                backgroundColor: 'black'
+                            },
+                            headerTintColor: '#fff',
+                            headerTitleStyle: {
+                                fontWeight: 'bold'
+                            },
+                            headerBackTitleVisible: false,
+                            headerRight: props => (
+                                <TouchableOpacity
+                                    onPress={(...props) => {
+                                        navigation.navigate('Home');
+                                    }}
+                                >
+                                    <Image
+                                        source={require('./assets/homeIcon.png')}
+                                        style={{ width: 40, height: 40 }}
+                                    />
+                                </TouchableOpacity>
+                            )
+                        })}
+                    />
                     <Stack.Screen
                         name="ParentGuideByCategory"
                         component={ParentGuideByCategory}
@@ -143,10 +169,59 @@ export default function App() {
                             )
                         })}
                     />
-                    <Stack.Screen name="ParentTips" component={ParentTips} />
+                    <Stack.Screen
+                        name="ParentTips"
+                        component={ParentTips}
+                        options={({ navigation }) => ({
+                            headerShown: true,
+                            headerStyle: {
+                                backgroundColor: 'black'
+                            },
+                            headerTintColor: '#fff',
+                            headerTitleStyle: {
+                                fontWeight: 'bold'
+                            },
+                            headerBackTitleVisible: false,
+                            headerRight: props => (
+                                <TouchableOpacity
+                                    onPress={(...props) => {
+                                        navigation.navigate('Home');
+                                    }}
+                                >
+                                    <Image
+                                        source={require('./assets/homeIcon.png')}
+                                        style={{ width: 40, height: 40 }}
+                                    />
+                                </TouchableOpacity>
+                            )
+                        })}
+                    />
                     <Stack.Screen
                         name="ScenerioTips"
                         component={ScenerioTips}
+                        options={({ navigation }) => ({
+                            headerShown: true,
+                            headerStyle: {
+                                backgroundColor: 'black'
+                            },
+                            headerTintColor: '#fff',
+                            headerTitleStyle: {
+                                fontWeight: 'bold'
+                            },
+                            headerBackTitleVisible: false,
+                            headerRight: props => (
+                                <TouchableOpacity
+                                    onPress={(...props) => {
+                                        navigation.navigate('Home');
+                                    }}
+                                >
+                                    <Image
+                                        source={require('./assets/homeIcon.png')}
+                                        style={{ width: 40, height: 40 }}
+                                    />
+                                </TouchableOpacity>
+                            )
+                        })}
                     />
                 </Stack.Navigator>
             </ThemeProvider>

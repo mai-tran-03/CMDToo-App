@@ -85,6 +85,22 @@ const CardContainer = styled.View`
     min-height: ${props => (props.isScroll ? '500px' : '70%')};
 `; // margin-bottom is added by ButtonContainer
 
+const ParentTipContainer = styled.View`
+    background-color: ${props =>
+        props.theme.colors[props.color] || props.theme.colors.error};
+    border-radius: 20px;
+    margin-top: 10px;
+    margin-horizontal: 20px;
+    justify-content: ${props => (props.length > 1 ? 'space-around' : 'center')};
+    padding: 40px 50px;
+    min-height: ${props => (props.isScroll ? '500px' : '90%')};
+`;
+
+const ParentTipText = styled.View`
+    margin-top: 20px;
+    margin-bottom: 20px;
+`;
+
 const ParentGuideContainer = styled.View`
     background-color: ${props =>
         props.theme.colors[props.color] || props.theme.colors.error};
@@ -128,13 +144,19 @@ export const CardTextbox = ({ textList, color }) => {
 
 export const ParentTipsTextbox = ({ textList, color }) => {
     const displayText = textList.map((text, index) => (
-        <SmallerStandardText key={index}>{text}</SmallerStandardText>
+        <ParentTipText key={index}>
+            <SmallerStandardText>{text}</SmallerStandardText>
+        </ParentTipText>
     ));
 
     return (
-        <CardContainer length={textList.length} color={color}>
+        <ParentTipContainer
+            length={textList.length}
+            color={color}
+            isScroll={true}
+        >
             {displayText}
-        </CardContainer>
+        </ParentTipContainer>
     );
 };
 
