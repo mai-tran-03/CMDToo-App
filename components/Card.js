@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
-import { CardTextbox, StandardTextbox } from './CustomTextbox.js';
+import {
+    CardTextbox,
+    SmallerStandardText,
+    SmallerStandardTextbox,
+    StandardTextbox
+} from './CustomTextbox.js';
 import CustomButton from './CustomButton.js';
 import styled from 'styled-components/native';
 
@@ -41,7 +46,15 @@ const Card = ({
     );
     return (
         <CardView>
-            <StandardTextbox text={category.toLowerCase()} color={color} />
+            {category.toLowerCase() === 'what would you do?' ? (
+                <SmallerStandardTextbox
+                    text={category.toLowerCase()}
+                    color={color}
+                />
+            ) : (
+                <StandardTextbox text={category.toLowerCase()} color={color} />
+            )}
+
             <CardTextbox textList={textList} color={color} />
             {hasFollowUp ? (
                 <TwoButtonContainer>
