@@ -136,7 +136,7 @@ export const CardTextbox = ({ textList, color }) => {
     ));
 
     return (
-        <CardContainer length={textList.length} color={color}>
+        <CardContainer length={textList.length} color={color} isScroll={true}>
             {displayText}
         </CardContainer>
     );

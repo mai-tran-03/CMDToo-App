@@ -12,7 +12,7 @@ export const ScrollStyledView = styled.ScrollView`
 `;
 
 export const BigScrollStyledView = styled.ScrollView`
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 `;
 
 export const HowToPlayContainer = styled.View`

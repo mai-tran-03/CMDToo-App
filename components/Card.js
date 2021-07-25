@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import {
     CardTextbox,
-    SmallerStandardText,
     SmallerStandardTextbox,
     StandardTextbox
 } from './CustomTextbox.js';
 import CustomButton from './CustomButton.js';
 import styled from 'styled-components/native';
+import { BigScrollStyledView } from './StyledView.js';
 
 const CardView = styled.View`
     display: flex;
@@ -46,38 +46,37 @@ const Card = ({
     );
     return (
         <CardView>
-            {category.toLowerCase() === 'what would you do?' ? (
-                <SmallerStandardTextbox
-                    text={category.toLowerCase()}
-                    color={color}
-                />
-            ) : (
+            <BigScrollStyledView
+                directionalLockEnabled={true}
+                contentContainerStyle={{ maxWidth: '99.9%' }}
+            >
                 <StandardTextbox text={category.toLowerCase()} color={color} />
-            )}
 
-            <CardTextbox textList={textList} color={color} />
-            {hasFollowUp ? (
-                <TwoButtonContainer>
+                <CardTextbox textList={textList} color={color} />
+                {hasFollowUp ? (
+                    <TwoButtonContainer>
+                        <CustomButton
+                            text="done"
+                            color={color}
+                            onPress={() => setModalVisible(false)}
+                            isSmall={true}
+                        ></CustomButton>
+                        <CustomButton
+                            text="follow up"
+                            color={color}
+                            onPress={() => setOptions(followUp)}
+                            isSmall={true}
+                        ></CustomButton>
+                    </TwoButtonContainer>
+                ) : (
                     <CustomButton
                         text="done"
                         color={color}
                         onPress={() => setModalVisible(false)}
-                        isSmall={true}
+                        isBig={true}
                     ></CustomButton>
-                    <CustomButton
-                        text="follow up"
-                        color={color}
-                        onPress={() => setOptions(followUp)}
-                        isSmall={true}
-                    ></CustomButton>
-                </TwoButtonContainer>
-            ) : (
-                <CustomButton
-                    text="done"
-                    color={color}
-                    onPress={() => setModalVisible(false)}
-                ></CustomButton>
-            )}
+                )}
+            </BigScrollStyledView>
         </CardView>
     );
 };
