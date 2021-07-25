@@ -160,6 +160,11 @@ export const ParentTipsTextbox = ({ textList, color }) => {
     );
 };
 
+const TextBoarder = styled.View`
+    margin-top: 15px;
+    margin-bottom: 15px;
+`;
+
 export const InterpretationTextBox = ({
     groupText,
     interpretationText,
@@ -169,7 +174,9 @@ export const InterpretationTextBox = ({
     let displayText = [];
     let index = 0;
     displayText.push(
-        <SmallerBoldText key={index++}>{'INTERPRETATIONS'}</SmallerBoldText>
+        <TextBoarder key={index++}>
+            <SmallerBoldText>{'INTERPRETATIONS'}</SmallerBoldText>
+        </TextBoarder>
     );
 
     const splitInterpretationText = interpretationText.split('|');
@@ -182,14 +189,18 @@ export const InterpretationTextBox = ({
     splitGroupText.forEach(text => {
         if (text != '') {
             displayText.push(
-                <SmallerStandardText key={index++}>{text}</SmallerStandardText>
+                <TextBoarder key={index++}>
+                    <SmallerStandardText>{text}</SmallerStandardText>
+                </TextBoarder>
             );
         }
     });
     splitInterpretationText.forEach(text => {
         if (text != '') {
             displayText.push(
-                <SmallerStandardText key={index++}>{text}</SmallerStandardText>
+                <TextBoarder key={index++}>
+                    <SmallerStandardText>{text}</SmallerStandardText>
+                </TextBoarder>
             );
         }
     });
