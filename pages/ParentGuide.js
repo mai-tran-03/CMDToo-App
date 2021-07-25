@@ -86,10 +86,15 @@ const SearchBarComponent = ({ navigation }) => {
         let options;
         let cat_options;
         if (prev.length > 0) {
-            if (prev in past)
+            console.log('c');
+            if (prev in past) {
+                console.log('a');
                 options = qs.filter(q => past[prev].includes(q.Question));
+            }
             if (prev in pastCat) cat_options = pastCat[prev];
-        } else {
+        }
+        if (options === undefined || cat_options === undefined) {
+            console.log('b');
             options = qs;
             cat_options = {};
             qs.map(q => {
@@ -113,6 +118,7 @@ const SearchBarComponent = ({ navigation }) => {
         }
         let reg_ex = new RegExp(str_to_match, 'i');
         let auto_complete = new Set();
+        console.log(options);
         let matches = new Set(
             options.filter(o => {
                 let question =
