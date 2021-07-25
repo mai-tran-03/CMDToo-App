@@ -42,7 +42,7 @@ export const HowToPlay = ({ navigation }) => {
                     <CustomButton
                         text="play"
                         color="CMDGreen"
-                        onPress={() => navigation.navigate('Play')}
+                        onPress={() => navigation.navigate('play')}
                         isBig={true}
                     />
                     <StatusBar style="auto" />

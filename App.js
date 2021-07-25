@@ -30,17 +30,17 @@ function HomeScreen({ navigation }) {
             <CustomButton
                 text="how to play"
                 color="CMDTurquoise"
-                onPress={() => navigation.navigate('HowToPlay')}
+                onPress={() => navigation.navigate('How To Play')}
             />
             <CustomButton
                 text="parent guide"
                 color="CMDPink"
-                onPress={() => navigation.navigate('ParentGuide')}
+                onPress={() => navigation.navigate('Parent Guide')}
             />
             <CustomButton
                 text="parent tips"
                 color="CMDOrange"
-                onPress={() => navigation.navigate('ParentTips')}
+                onPress={() => navigation.navigate('Parent Tips')}
             />
 
             <StatusBar style="auto" />
@@ -61,7 +61,7 @@ export default function App() {
                 >
                     <Stack.Screen name="Home" component={HomeScreen} />
                     <Stack.Screen
-                        name="ParentGuide"
+                        name="Parent Guide"
                         component={ParentGuide}
                         options={({ navigation }) => ({
                             headerShown: true,
@@ -89,7 +89,7 @@ export default function App() {
                     />
                     <Stack.Screen name="Play" component={Play} />
                     <Stack.Screen
-                        name="HowToPlay"
+                        name="How To Play"
                         component={HowToPlay}
                         options={({ navigation }) => ({
                             headerShown: true,
@@ -116,7 +116,7 @@ export default function App() {
                         })}
                     />
                     <Stack.Screen
-                        name="ParentGuideByCategory"
+                        name="Parent Guide by Category"
                         component={ParentGuideByCategory}
                         options={({ navigation }) => ({
                             headerShown: true,
@@ -143,7 +143,7 @@ export default function App() {
                         })}
                     />
                     <Stack.Screen
-                        name="ParentGuideInformation"
+                        name="Parent Guide Information"
                         component={ParentGuideInformation}
                         options={({ navigation }) => ({
                             headerShown: true,
@@ -170,7 +170,7 @@ export default function App() {
                         })}
                     />
                     <Stack.Screen
-                        name="ParentTips"
+                        name="Parent Tips"
                         component={ParentTips}
                         options={({ navigation }) => ({
                             headerShown: true,
@@ -197,7 +197,7 @@ export default function App() {
                         })}
                     />
                     <Stack.Screen
-                        name="ScenerioTips"
+                        name="Parent Tips Information"
                         component={ScenerioTips}
                         options={({ navigation }) => ({
                             headerShown: true,

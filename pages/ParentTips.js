@@ -24,7 +24,9 @@ const GetScenerioButtons = navigation => {
                 text={tip.scenario}
                 color="CMDOrange"
                 isVeryBig={true}
-                onPress={() => navigation.navigate('ScenerioTips', { tip })}
+                onPress={() =>
+                    navigation.navigate('Parent Tips Information', { tip })
+                }
             />
         );
     });
