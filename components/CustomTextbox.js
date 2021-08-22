@@ -132,7 +132,7 @@ export const SmallerStandardTextbox = ({ text, color }) => (
 
 export const CardTextbox = ({ textList, color }) => {
     const displayText = textList.map((text, index) => (
-        <StandardText key={index}>{text.toLowerCase()}</StandardText>
+        <StandardText key={index}>{text.toString().toLowerCase()}</StandardText>
     ));
 
     return (
