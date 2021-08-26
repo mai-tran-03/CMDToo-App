@@ -41,7 +41,7 @@ export const CustomText = ({ text, color, count }) => (
             <Count>{count}.</Count>
         </CountContainer>
         <InnerTextContainer>
-            <StandardText>{text}</StandardText>
+            <StandardText color={color}>{text}</StandardText>
         </InnerTextContainer>
     </TextContainer>
 );

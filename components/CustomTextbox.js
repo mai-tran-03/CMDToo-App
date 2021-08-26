@@ -29,10 +29,15 @@ export const StandardText = styled.Text`
     font-size: 30px;
     line-height: 41px;
     text-align: center;
+    color: ${props => props.color === 'my bright future' ? props.theme.colors['CMDPink'] : 'white'};
+`;
 
-    color: #ffffff;
-
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+export const CategoryText = styled(StandardText)`
+    font-size: 23px;
+    line-height: 32px;
+    font-weight: 900;
+    width: 191px;
+    flex-shrink: 1;
 `;
 
 export const SmallerStandardText = styled.Text`
@@ -120,7 +125,7 @@ const ParentGuideContainer = styled.View`
 
 export const StandardTextbox = ({ text, color }) => (
     <TextboxContainer color={color}>
-        <StandardText>{text}</StandardText>
+        <StandardText color={color}>{text}</StandardText>
     </TextboxContainer>
 );
 
@@ -132,7 +137,7 @@ export const SmallerStandardTextbox = ({ text, color }) => (
 
 export const CardTextbox = ({ textList, color }) => {
     const displayText = textList.map((text, index) => (
-        <StandardText key={index}>{text.toString().toLowerCase()}</StandardText>
+        <StandardText color={color} key={index}>{text.toString().toLowerCase()}</StandardText>
     ));
 
     return (

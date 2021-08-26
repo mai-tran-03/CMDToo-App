@@ -86,15 +86,12 @@ const SearchBarComponent = ({ navigation }) => {
         let options;
         let cat_options;
         if (prev.length > 0) {
-            console.log('c');
             if (prev in past) {
-                console.log('a');
                 options = qs.filter(q => past[prev].includes(q.Question));
             }
             if (prev in pastCat) cat_options = pastCat[prev];
         }
         if (options === undefined || cat_options === undefined) {
-            console.log('b');
             options = qs;
             cat_options = { };
             qs.map(q => {
@@ -118,7 +115,6 @@ const SearchBarComponent = ({ navigation }) => {
         }
         let reg_ex = new RegExp(str_to_match, 'i');
         let auto_complete = new Set();
-        console.log(options);
         let matches = new Set(
             options.filter(o => {
                 let question =
@@ -163,7 +159,7 @@ const SearchBarComponent = ({ navigation }) => {
         <SearchBarContainer>
             <StatusBar style="light" />
             <SearchBar
-                placeholder="Search by specific question"
+                placeholder="Search by specific question..."
                 style={{ shadowColor: 'black', shadowOffset: { width: 0, height: 4 }, shadowRadius: 3, shadowOpacity: 0.25 }}
                 onChangeText={setInput}
                 onEndEditing={() => setOutput('')}
@@ -223,9 +219,9 @@ const CategoryButtonDisplay = (buttonObjects, isGroup) => {
         list.push(
             <CustomButton
                 key={buttonObject.text}
-                text={buttonObject.text}
+                text={isGroup ? buttonObject.text : buttonObject.text.toUpperCase()}
                 color={buttonObject.color}
-                isVeryBig={true}
+                isCategory={true}
                 onPress={() =>
                     buttonObject.navigation.navigate(
                         buttonObject.onPressDestination,
@@ -354,7 +350,7 @@ export const ParentGuide = ({ navigation }) => {
             <ViewHeading> View By: </ViewHeading>
             <StyledPress onPress={() => setIsGroup(!isGroup)}>
                 <View pointerEvents="none">
-                    <ViewBy editable={false}>
+                    <ViewBy editable={false} style={{ textAlign: isGroup ? 'left' : 'center' }}>
                         {isGroup ? 'Grouped Interpretations' : 'Category'}
                     </ViewBy>
                 </View>

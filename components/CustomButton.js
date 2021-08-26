@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { StandardText } from './CustomTextbox.js';
+import { StandardText, CategoryText } from './CustomTextbox.js';
 
 const ButtonContainer = styled.TouchableOpacity`
     align-self: stretch;
@@ -32,6 +32,14 @@ const VeryBigButtonContainer = styled(ButtonContainer)`
     padding: 20px 30px;
 `;
 
+const CategoryButtonContainer = styled(ButtonContainer)`
+    min-height: 64px;
+    width: 288px;
+    margin-horizontal: 0;
+    flex-direction: row;
+    align-items: center;
+`;
+
 const WarningText = styled.Text`
     color: #ffffff;
     position: absolute;
@@ -48,6 +56,7 @@ const CustomButton = ({
     isSmall = false,
     isBig = false,
     isVeryBig = false,
+    isCategory = false,
     ...others
 }) => {
     if (isSmall) {
@@ -57,7 +66,7 @@ const CustomButton = ({
                 onPress={others.onPress}
                 disabled={others.disabled}
             >
-                <StandardText>{text}</StandardText>
+                <StandardText color={color}>{text}</StandardText>
                 {warningText !== undefined ? (
                     <WarningText>{warningText}</WarningText>
                 ) : (
@@ -72,7 +81,7 @@ const CustomButton = ({
                 onPress={others.onPress}
                 disabled={others.disabled}
             >
-                <StandardText>{text}</StandardText>
+                <StandardText color={color}>{text}</StandardText>
                 {warningText !== undefined ? (
                     <WarningText>{warningText}</WarningText>
                 ) : (
@@ -87,13 +96,24 @@ const CustomButton = ({
                 onPress={others.onPress}
                 disabled={others.disabled}
             >
-                <StandardText>{text}</StandardText>
+                <StandardText color={color}>{text}</StandardText>
                 {warningText !== undefined ? (
                     <WarningText>{warningText}</WarningText>
                 ) : (
                     <WarningText></WarningText>
                 )}
             </VeryBigButtonContainer>
+        );
+    } else if (isCategory) {
+        return (
+            <CategoryButtonContainer
+                color={others.disabled ? 'grey' : color}
+                onPress={others.onPress}
+                disabled={others.disabled}
+                style={{ boxSizing: 'border-box' }}
+            >
+                <CategoryText color={color}>{text}</CategoryText>
+            </CategoryButtonContainer>
         );
     } else {
         return (
@@ -102,7 +122,7 @@ const CustomButton = ({
                 onPress={others.onPress}
                 disabled={others.disabled}
             >
-                <StandardText>{text}</StandardText>
+                <StandardText color={color}>{text}</StandardText>
                 {warningText !== undefined ? (
                     <WarningText>{warningText}</WarningText>
                 ) : (
