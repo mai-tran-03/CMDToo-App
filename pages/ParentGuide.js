@@ -15,6 +15,7 @@ import {
     SmallerStandardTextbox
 } from '../components/CustomTextbox';
 import { View } from 'react-native';
+import GeometryBackground from '../components/GeometryBackground';
 
 const StyledPress = styled.Pressable`
     align-self: stretch;
@@ -22,7 +23,6 @@ const StyledPress = styled.Pressable`
 `;
 const SearchBar = styled.TextInput`
     border-radius: 5px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     background-color: white;
     font-size: 13px;
     font-family: Avenir;
@@ -76,8 +76,8 @@ const SearchBarComponent = ({ navigation }) => {
     useEffect(() => {
         setOutput(find(input));
     }, [input]);
-    const [past, setPast] = useState({});
-    const [pastCat, setPastCat] = useState({});
+    const [past, setPast] = useState({ });
+    const [pastCat, setPastCat] = useState({ });
     const [output, setOutput] = useState('');
 
     const find = str_to_match => {
@@ -96,7 +96,7 @@ const SearchBarComponent = ({ navigation }) => {
         if (options === undefined || cat_options === undefined) {
             console.log('b');
             options = qs;
-            cat_options = {};
+            cat_options = { };
             qs.map(q => {
                 if (q.Category != '') {
                     cat_options[q.Category] = {
@@ -107,11 +107,11 @@ const SearchBarComponent = ({ navigation }) => {
                 }
                 q.Group.split('|').map(
                     g =>
-                        (cat_options[g] = {
-                            text: g,
-                            isGroup: true,
-                            isQ: false
-                        })
+                    (cat_options[g] = {
+                        text: g,
+                        isGroup: true,
+                        isQ: false
+                    })
                 );
             });
             cat_options = Object.values(cat_options);
@@ -164,6 +164,7 @@ const SearchBarComponent = ({ navigation }) => {
             <StatusBar style="light" />
             <SearchBar
                 placeholder="Search by specific question"
+                style={{ shadowColor: 'black', shadowOffset: { width: 0, height: 4 }, shadowRadius: 3, shadowOpacity: 0.25 }}
                 onChangeText={setInput}
                 onEndEditing={() => setOutput('')}
                 returnKeyType="search"
@@ -172,12 +173,12 @@ const SearchBarComponent = ({ navigation }) => {
                     if (output.length > 0) {
                         output[0].isQ
                             ? navigation.navigate('Parent Guide Information', {
-                                  question: output[0].question
-                              })
+                                question: output[0].question
+                            })
                             : navigation.navigate('Parent Guide by Category', {
-                                  filter: output[0].text,
-                                  isGroup: output[0].isGroup
-                              });
+                                filter: output[0].text,
+                                isGroup: output[0].isGroup
+                            });
                     }
                 }}
                 clearButtonMode="while-editing"
@@ -192,18 +193,18 @@ const SearchBarComponent = ({ navigation }) => {
                         onPress={() =>
                             item.isQ
                                 ? navigation.navigate(
-                                      'Parent Guide Information',
-                                      {
-                                          question: item.question
-                                      }
-                                  )
+                                    'Parent Guide Information',
+                                    {
+                                        question: item.question
+                                    }
+                                )
                                 : navigation.navigate(
-                                      'Parent Guide by Category',
-                                      {
-                                          filter: item.text,
-                                          isGroup: item.isGroup
-                                      }
-                                  )
+                                    'Parent Guide by Category',
+                                    {
+                                        filter: item.text,
+                                        isGroup: item.isGroup
+                                    }
+                                )
                         }
                     >
                         <MatchBorder>
@@ -271,8 +272,8 @@ export const ParentGuideByCategory = ({ route, navigation }) => {
     const questions = qs.filter(data => {
         return isGroup
             ? data.Group.toLowerCase()
-                  .split('|')
-                  .includes(cat_filter.toLowerCase())
+                .split('|')
+                .includes(cat_filter.toLowerCase())
             : data.Category.toLowerCase() === cat_filter.toLowerCase();
     });
 
@@ -288,6 +289,7 @@ export const ParentGuideByCategory = ({ route, navigation }) => {
     const headingText = isGroup ? questions[0].Group : questions[0].Category;
     return (
         <ParentGuideContainer>
+            <GeometryBackground />
             {SearchBarComponent({ navigation })}
             <ViewBy editable={false}> {headingText} </ViewBy>
             <ScrollStyledView
@@ -347,12 +349,13 @@ export const ParentGuide = ({ navigation }) => {
 
     return (
         <ParentGuideContainer>
+            <GeometryBackground />
             {SearchBarComponent({ navigation })}
             <ViewHeading> View By: </ViewHeading>
             <StyledPress onPress={() => setIsGroup(!isGroup)}>
                 <View pointerEvents="none">
                     <ViewBy editable={false}>
-                        {isGroup ? 'Grouped Interpretations' : 'Categories'}
+                        {isGroup ? 'Grouped Interpretations' : 'Category'}
                     </ViewBy>
                 </View>
             </StyledPress>
@@ -377,6 +380,7 @@ export const ParentGuideInformation = ({ route, navigation }) => {
     const color = category.toLowerCase();
     return (
         <ParentGuideContainer>
+            <GeometryBackground />
             <ScrollStyledView
                 directionalLockEnabled={true}
                 contentContainerStyle={{ maxWidth: '99.9%' }}

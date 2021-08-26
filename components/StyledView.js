@@ -8,7 +8,7 @@ export const StyledView = styled.View`
 `;
 
 export const ScrollStyledView = styled.ScrollView`
-    margin: 3px 0;
+    margin-top: 3px;
 `;
 
 export const BigScrollStyledView = styled.ScrollView`
@@ -25,7 +25,7 @@ export const ParentGuideContainer = styled.View`
     flex-shrink: 1;
     align-items: center;
     justify-content: space-between;
-    margin-top: 15px;
+    padding-top: 5px;
 `;
 
 export const AppName = styled.Text`
@@ -79,7 +79,7 @@ export const ViewHeading = styled.Text`
     align-items: flex-start;
     justify-content: flex-start;
     align-self: stretch;
-    margin: 18px 20px 5px 20px;
+    margin: 5px 20px 5px 20px;
     font-size: 18px;
 `;
 
