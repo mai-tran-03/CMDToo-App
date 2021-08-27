@@ -4,45 +4,86 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import CustomButton from './components/CustomButton.js';
+import HomeButton from './components/HomeButton.js';
 import { ThemeProvider } from 'styled-components';
 import COLORS from './components/GlobalStyles.js';
-import { Image, TouchableOpacity } from 'react-native';
+import { Image, TouchableOpacity, View, Text } from 'react-native';
 import {
     ParentGuide,
     ParentGuideByCategory,
     ParentGuideInformation
 } from './pages/ParentGuide';
 import { ParentTips, ScenerioTips } from './pages/ParentTips.js';
-import { StyledView, AppName, AppDesc } from './components/StyledView';
+import {
+    StyledView,
+    AppLogo,
+    AppDesc,
+    StyledHomeButtonView,
+    StyledHomeText
+} from './components/StyledView';
 import { Play } from './pages/Play.js';
 import { HowToPlay } from './pages/HowToPlay.js';
 
 function HomeScreen({ navigation }) {
     return (
         <StyledView>
-            <AppName> GEN CONNECT </AppName>
-            <AppDesc> Invite your child to share their feelings </AppDesc>
-            <CustomButton
-                text="play"
-                color="CMDGreen"
-                onPress={() => navigation.navigate('Play')}
+            <Image
+                source={require('./assets/genconnect_logo-black.png')}
+                style={{
+                    width: 303,
+                    height: 100,
+                    marginTop: 170
+                }}
             />
-            <CustomButton
-                text="how to play"
-                color="CMDTurquoise"
-                onPress={() => navigation.navigate('How To Play')}
-            />
-            <CustomButton
-                text="parent guide"
-                color="CMDPink"
-                onPress={() => navigation.navigate('Parent Guide')}
-            />
-            <CustomButton
-                text="parent tips"
-                color="CMDOrange"
-                onPress={() => navigation.navigate('Parent Tips')}
-            />
+            <StyledHomeButtonView>
+                <StyledHomeText
+                    style={{ zIndex: 1, left: 10, top: 45 }}
+                    onPress={() => navigation.navigate('Play')}
+                >
+                    {' '}
+                    PLAY{' '}
+                </StyledHomeText>
 
+                <StyledHomeText
+                    style={{ zIndex: 1, right: 18, top: 35, color: '#EE3282' }}
+                    onPress={() => navigation.navigate('How To Play')}
+                >
+                    {' '}
+                    HOW TO PLAY{' '}
+                </StyledHomeText>
+
+                <StyledHomeText
+                    style={{ zIndex: 1, left: 13, top: 250 }}
+                    onPress={() => navigation.navigate('Parent Guide')}
+                >
+                    {' '}
+                    PARENT GUIDE{' '}
+                </StyledHomeText>
+
+                <StyledHomeText
+                    style={{ zIndex: 1, right: 18, top: 250 }}
+                    onPress={() => navigation.navigate('Parent Tips')}
+                >
+                    {' '}
+                    PARENT TIPS{' '}
+                </StyledHomeText>
+                <HomeButton
+                    text="play"
+                    onPress={() => navigation.navigate('Play')}
+                />
+                <HomeButton
+                    text="how to play"
+                    onPress={() => navigation.navigate('How To Play')}
+                />
+                <HomeButton
+                    text="parent guide"
+                    onPress={() => navigation.navigate('Parent Guide')}
+                />
+                <HomeButton
+                    text="parent tips"
+                    onPress={() => navigation.navigate('Parent Tips')}
+                />
+            </StyledHomeButtonView>
             <StatusBar style="auto" />
         </StyledView>
     );
