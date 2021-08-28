@@ -13,7 +13,7 @@ def jsonify():
             for col, value in enumerate(row):
                 question[headers[col]] = value
             questions.append(question)
-    with open("questions.json", "w") as jsonfile:
+    with open("./components/questions.json", "w") as jsonfile:
         json.dump(questions, jsonfile, indent=2)
 
 
