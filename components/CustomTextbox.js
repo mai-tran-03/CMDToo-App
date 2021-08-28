@@ -40,6 +40,14 @@ export const CategoryText = styled(StandardText)`
     flex-shrink: 1;
 `;
 
+export const GroupText = styled(StandardText)`
+    font-size: 20px;
+    line-height: 27.32px;
+    font-weight: 800;
+    width: 290px;
+    flex-shrink: 1;
+`;
+
 export const SmallerStandardText = styled.Text`
     font-family: Avenir;
     font-style: normal;

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { StandardText, CategoryText } from './CustomTextbox.js';
+import { StandardText, CategoryText, GroupText } from './CustomTextbox.js';
 
 const ButtonContainer = styled.TouchableOpacity`
     align-self: stretch;
@@ -39,6 +39,14 @@ const CategoryButtonContainer = styled(ButtonContainer)`
     align-items: center;
 `;
 
+const GroupButtonContainer = styled(ButtonContainer)`
+    min-height: ${props => props.big ? '103px' : '64px'};
+    width: 342px;
+    margin-horizontal: 0;
+    flex-direction: row;
+    align-items: center;
+`;
+
 const WarningText = styled.Text`
     color: #ffffff;
     position: absolute;
@@ -55,7 +63,7 @@ const CustomButton = ({
     isSmall = false,
     isBig = false,
     isVeryBig = false,
-    isCategory = false,
+    isCategory = 0,
     ...others
 }) => {
     if (isSmall) {
@@ -103,7 +111,19 @@ const CustomButton = ({
                 )}
             </VeryBigButtonContainer>
         );
-    } else if (isCategory) {
+    } else if (isCategory === 1) {
+        return (
+            <GroupButtonContainer
+                color={others.disabled ? 'grey' : color}
+                onPress={others.onPress}
+                disabled={others.disabled}
+                style={{ boxSizing: 'border-box' }}
+                big={text.includes('People, Places, and Things')}
+            >
+                <GroupText color={color}>{text}</GroupText>
+            </GroupButtonContainer>
+        );
+    } else if (isCategory === 2) {
         return (
             <CategoryButtonContainer
                 color={others.disabled ? 'grey' : color}
@@ -111,7 +131,7 @@ const CustomButton = ({
                 disabled={others.disabled}
                 style={{ boxSizing: 'border-box' }}
             >
-                <CategoryText color={color}>{text}</CategoryText>
+                <CategoryText color={'color'}>{text}</CategoryText>
             </CategoryButtonContainer>
         );
     } else {

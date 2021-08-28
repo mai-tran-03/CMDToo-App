@@ -221,7 +221,7 @@ const CategoryButtonDisplay = (buttonObjects, isGroup) => {
                 key={buttonObject.text}
                 text={isGroup ? buttonObject.text : buttonObject.text.toUpperCase()}
                 color={buttonObject.color}
-                isCategory={true}
+                isCategory={isGroup ? 1 : 2}
                 onPress={() =>
                     buttonObject.navigation.navigate(
                         buttonObject.onPressDestination,
@@ -305,7 +305,6 @@ const getGroupInterpretationAndCategory = navigation => {
     // get unique categories and group interpretations
     qs.forEach(question => {
         categories.add(question.Category);
-
         const splitGroupInterpretation = question.Group.split('|');
         splitGroupInterpretation.forEach(tmpGroupInterpretation => {
             if (tmpGroupInterpretation != '') {
@@ -319,7 +318,7 @@ const getGroupInterpretationAndCategory = navigation => {
     let categoriesTopics = [];
     groupInterpretations.forEach(topic => {
         groupInterpretationTopics.push({
-            text: topic.toLowerCase(),
+            text: topic,
             color: 'CMDTurquoise',
             onPressDestination: 'Parent Guide by Category',
             navigation: navigation
