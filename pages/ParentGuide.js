@@ -38,10 +38,10 @@ export const StyledView = styled.View``;
 const AutoMatch = styled.Text`
     padding-left: 15px;
     margin: 7.5px 0;
-    font-size: 20px;
-    font-size: 13px;
+    font-size: 21px;
     font-family: Avenir;
-    line-height: 18px;
+    line-height: 28.69px;
+    font-weight: 400;
     align-content: center;
 `;
 
@@ -126,7 +126,7 @@ const SearchBarComponent = ({ navigation }) => {
                     });
                 let follow =
                     o['Follow Up'].length > 0 &&
-                    o['Follow Up'].reduce(
+                    o['Follow Up'].split('|').reduce(
                         (bool, q) =>
                             (q.match(reg_ex) &&
                                 auto_complete.add({
@@ -245,7 +245,7 @@ const QuestionButtonDisplay = buttonObjects => {
                 key={buttonObject.text}
                 text={buttonObject.text}
                 color={buttonObject.color}
-                isVeryBig={true}
+                isCategoryQuestion={true}
                 onPress={() =>
                     buttonObject.navigation.navigate(
                         buttonObject.onPressDestination,
@@ -275,19 +275,19 @@ export const ParentGuideByCategory = ({ route, navigation }) => {
 
     questions.map(data =>
         buttonComponents.push({
-            text: data.Question.toLowerCase(),
+            text: data.Question,
             color: data.Category.toLowerCase(),
             onPressDestination: 'Parent Guide Information',
             navigation: navigation,
             data: data
         })
     );
-    const headingText = isGroup ? questions[0].Group : questions[0].Category;
+    const headingText = isGroup ? cat_filter : questions[0].Category;
     return (
         <ParentGuideContainer>
             <GeometryBackground />
             {SearchBarComponent({ navigation })}
-            <ViewBy editable={false}> {headingText} </ViewBy>
+            <ViewBy editable={false} multiline={true}> {headingText} </ViewBy>
             <ScrollStyledView
                 directionalLockEnabled={true}
                 contentContainerStyle={{ maxWidth: '99.9%' }}
@@ -357,6 +357,7 @@ export const ParentGuide = ({ navigation }) => {
             <ScrollStyledView
                 directionalLockEnabled={true}
                 contentContainerStyle={{ maxWidth: '99.9%' }}
+                showsVerticalScrollIndicator={false}
             >
                 {CategoryButtonDisplay(
                     isGroup ? groupInterpretationTopics : categories,

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { StandardText, CategoryText, GroupText } from './CustomTextbox.js';
+import { StandardText, CategoryText, GroupText, CategoryQuestionText } from './CustomTextbox.js';
 
 const ButtonContainer = styled.TouchableOpacity`
     align-self: stretch;
@@ -47,6 +47,14 @@ const GroupButtonContainer = styled(ButtonContainer)`
     align-items: center;
 `;
 
+const CategoryQuestionContainer = styled(ButtonContainer)`
+    min-height: 64px;
+    max-height: null;
+    min-width: 90%;
+    max-width: 90%;
+    padding: 3px 5px;
+`;
+
 const WarningText = styled.Text`
     color: #ffffff;
     position: absolute;
@@ -64,6 +72,7 @@ const CustomButton = ({
     isBig = false,
     isVeryBig = false,
     isCategory = 0,
+    isCategoryQuestion = false,
     ...others
 }) => {
     if (isSmall) {
@@ -133,6 +142,21 @@ const CustomButton = ({
             >
                 <CategoryText color={'color'}>{text}</CategoryText>
             </CategoryButtonContainer>
+        );
+    } else if (isCategoryQuestion) {
+        return (
+            <CategoryQuestionContainer
+                color={others.disabled ? 'grey' : color}
+                onPress={others.onPress}
+                disabled={others.disabled}
+            >
+                <CategoryQuestionText color={color}>{text}</CategoryQuestionText>
+                {warningText !== undefined ? (
+                    <WarningText>{warningText}</WarningText>
+                ) : (
+                    <WarningText></WarningText>
+                )}
+            </CategoryQuestionContainer>
         );
     } else {
         return (

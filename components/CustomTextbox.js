@@ -48,6 +48,13 @@ export const GroupText = styled(StandardText)`
     flex-shrink: 1;
 `;
 
+export const CategoryQuestionText = styled(StandardText)`
+    font-size: 23px;
+    line-height: 31.42px;
+    font-weight: 800;
+    flex-shrink: 1;
+`;
+
 export const SmallerStandardText = styled.Text`
     font-family: Avenir;
     font-style: normal;
