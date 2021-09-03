@@ -7,11 +7,19 @@ export const StyledView = styled.View`
     justify-content: center;
 `;
 export const StyledHomeButtonView = styled.View`
-    flex: 1;
+    flex: 2;
+
     background-color: #fff;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+`;
+export const StyledLogo = styled.View`
+    background-color: #fff;
+    align-items: center;
+    justify-content: center;
+    flex: 0.5;
+    margin-top: 125px;
 `;
 export const StyledHomeText = styled.Text`
     display: flex;

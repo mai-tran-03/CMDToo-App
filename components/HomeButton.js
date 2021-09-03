@@ -1,59 +1,63 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { View, Image, StyleSheet, TouchableOpacity, Text } from 'react-native';
 
+import { View, Image, StyleSheet, TouchableOpacity, Text } from 'react-native';
 const styles = StyleSheet.create({
     styledImage: {
-        width: 169,
-        height: 207,
+        width: 175,
+        height: 220,
         margin: 5,
         top: 30,
         borderRadius: 15,
         zIndex: 0
+    },
+    styledText: {
+        zIndex: 1,
+        position: 'absolute',
+        fontWeight: 'bold',
+        display: 'flex',
+        textAlign: 'center',
+        fontSize: 35,
+        width: 180,
+        height: 220,
+        padding: 10,
+        left: 5,
+        top: 100,
+        color: 'white',
+        position: 'absolute'
+    },
+    styledTextHow: {
+        zIndex: 1,
+        position: 'absolute',
+        fontWeight: 'bold',
+        display: 'flex',
+        textAlign: 'center',
+        fontSize: 35,
+        width: 180,
+        height: 220,
+        padding: 10,
+        left: 5,
+        top: 100,
+        color: '#EE3282',
+        position: 'absolute'
     }
 });
 const HomeButton = props => {
-    if (props.text === 'play') {
+    if (props.text === 'HOW TO PLAY') {
         return (
             <TouchableOpacity onPress={props.onPress}>
                 <View>
-                    <Image
-                        source={require('../assets/genconnect_ombre_allaboutme.png')}
-                        style={styles.styledImage}
-                    />
+                    <Text style={styles.styledTextHow}>{props.text}</Text>
+                    <Image source={props.source} style={styles.styledImage} />
                 </View>
             </TouchableOpacity>
         );
-    } else if (props.text === 'how to play') {
+    } else {
         return (
             <TouchableOpacity onPress={props.onPress}>
                 <View>
-                    <Image
-                        source={require('../assets/genconnect_ombre_brightfuture.png')}
-                        style={styles.styledImage}
-                    />
-                </View>
-            </TouchableOpacity>
-        );
-    } else if (props.text === 'parent guide') {
-        return (
-            <TouchableOpacity onPress={props.onPress}>
-                <View>
-                    <Image
-                        source={require('../assets/genconnect_ombre_whatwouldyoudo.png')}
-                        style={styles.styledImage}
-                    />
-                </View>
-            </TouchableOpacity>
-        );
-    } else if (props.text === 'parent tips') {
-        return (
-            <TouchableOpacity onPress={props.onPress}>
-                <View>
-                    <Image
-                        source={require('../assets/genconnect_ombre_dancechallenge.png')}
-                        style={styles.styledImage}
-                    />
+                    <Text style={styles.styledText}>{props.text}</Text>
+                    <Image source={props.source} style={styles.styledImage} />
                 </View>
             </TouchableOpacity>
         );

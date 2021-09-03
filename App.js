@@ -7,7 +7,7 @@ import CustomButton from './components/CustomButton.js';
 import HomeButton from './components/HomeButton.js';
 import { ThemeProvider } from 'styled-components';
 import COLORS from './components/GlobalStyles.js';
-import { Image, TouchableOpacity, View, Text } from 'react-native';
+import { Image, TouchableOpacity, View, Text, ScrollView } from 'react-native';
 import {
     ParentGuide,
     ParentGuideByCategory,
@@ -19,7 +19,8 @@ import {
     AppLogo,
     AppDesc,
     StyledHomeButtonView,
-    StyledHomeText
+    StyledHomeText,
+    StyledLogo
 } from './components/StyledView';
 import { Play } from './pages/Play.js';
 import { HowToPlay } from './pages/HowToPlay.js';
@@ -27,64 +28,43 @@ import { HowToPlay } from './pages/HowToPlay.js';
 function HomeScreen({ navigation }) {
     return (
         <StyledView>
-            <Image
-                source={require('./assets/genconnect_logo-black.png')}
-                style={{
-                    width: 303,
-                    height: 100,
-                    marginTop: 170
-                }}
-            />
-            <StyledHomeButtonView>
-                <StyledHomeText
-                    style={{ zIndex: 1, left: 10, top: 45 }}
-                    onPress={() => navigation.navigate('Play')}
-                >
-                    {' '}
-                    PLAY{' '}
-                </StyledHomeText>
+            <ScrollView>
+                <StyledLogo>
+                    <Image
+                        source={require('./assets/genconnect_logo-black.png')}
+                        style={{
+                            width: 350,
+                            height: 130,
+                            marginLeft: 10,
+                            marginRight: 10
+                        }}
+                    />
+                </StyledLogo>
 
-                <StyledHomeText
-                    style={{ zIndex: 1, right: 18, top: 35, color: '#EE3282' }}
-                    onPress={() => navigation.navigate('How To Play')}
-                >
-                    {' '}
-                    HOW TO PLAY{' '}
-                </StyledHomeText>
-
-                <StyledHomeText
-                    style={{ zIndex: 1, left: 13, top: 250 }}
-                    onPress={() => navigation.navigate('Parent Guide')}
-                >
-                    {' '}
-                    PARENT GUIDE{' '}
-                </StyledHomeText>
-
-                <StyledHomeText
-                    style={{ zIndex: 1, right: 18, top: 250 }}
-                    onPress={() => navigation.navigate('Parent Tips')}
-                >
-                    {' '}
-                    PARENT TIPS{' '}
-                </StyledHomeText>
-                <HomeButton
-                    text="play"
-                    onPress={() => navigation.navigate('Play')}
-                />
-                <HomeButton
-                    text="how to play"
-                    onPress={() => navigation.navigate('How To Play')}
-                />
-                <HomeButton
-                    text="parent guide"
-                    onPress={() => navigation.navigate('Parent Guide')}
-                />
-                <HomeButton
-                    text="parent tips"
-                    onPress={() => navigation.navigate('Parent Tips')}
-                />
-            </StyledHomeButtonView>
-            <StatusBar style="auto" />
+                <StyledHomeButtonView>
+                    <HomeButton
+                        text="PLAY"
+                        onPress={() => navigation.navigate('Play')}
+                        source={require('./assets/genconnect_ombre_allaboutme.png')}
+                    />
+                    <HomeButton
+                        text="HOW TO PLAY"
+                        onPress={() => navigation.navigate('How To Play')}
+                        source={require('./assets/genconnect_ombre_brightfuture.png')}
+                    />
+                    <HomeButton
+                        text="PARENT GUIDE"
+                        onPress={() => navigation.navigate('Parent Guide')}
+                        source={require('./assets/genconnect_ombre_whatwouldyoudo.png')}
+                    />
+                    <HomeButton
+                        text="PARENT TIPS"
+                        onPress={() => navigation.navigate('Parent Tips')}
+                        source={require('./assets/genconnect_ombre_dancechallenge.png')}
+                    />
+                </StyledHomeButtonView>
+                <StatusBar style="auto" />
+            </ScrollView>
         </StyledView>
     );
 }
