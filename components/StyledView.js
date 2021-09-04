@@ -6,9 +6,8 @@ export const StyledView = styled.View`
     align-items: center;
     justify-content: center;
 `;
-export const StyledHomeButtonView = styled.View`
-    flex: 2;
 
+export const StyledHomeButtonView = styled.View`
     background-color: #fff;
     flex-direction: row;
     flex-wrap: wrap;
@@ -17,23 +16,8 @@ export const StyledHomeButtonView = styled.View`
 export const StyledLogo = styled.View`
     background-color: #fff;
     align-items: center;
-    justify-content: center;
-    flex: 0.5;
-    margin-top: 125px;
-`;
-export const StyledHomeText = styled.Text`
-    display: flex;
-    align-content: flex-end;
-    font-size: 30px;
-    color: white;
-    width: 169px;
-    margin: 5px;
-    padding-top: 70px;
-    font-weight: bold;
-    text-align: center;
-    background-color: transparent;
-
-    position: absolute;
+    justify-content: flex-end;
+    margin-top: 30%;
 `;
 
 export const ScrollStyledView = styled.ScrollView`
