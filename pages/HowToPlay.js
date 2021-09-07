@@ -3,6 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import CustomButton from '../components/CustomButton.js';
 import { CustomText } from '../components/CustomText.js';
+import GeometryBackground from '../components/GeometryBackground';
 import {
     StyledView,
     ScrollStyledView,
@@ -14,33 +15,34 @@ export const HowToPlay = ({ navigation }) => {
         <StyledView>
             <ScrollStyledView>
                 <HowToPlayContainer>
+                    <GeometryBackground />
                     <CustomText
-                        text='press "play"'
+                        text='PRESS "PLAY"'
                         color="CMDGreen"
                         count="1"
                     />
                     <CustomText
-                        text="pick an order of players"
+                        text="PICK AN ORDER OF PLAYERS"
                         color="CMDPink"
                         count="2"
                     />
                     <CustomText
-                        text="pick a category"
+                        text="PICK A CATEGORY"
                         color="CMDPurple"
                         count="3"
                     />
                     <CustomText
-                        text="answer the question"
+                        text="ANSWER THE QUESTION"
                         color="CMDTurquoise"
                         count="4"
                     />
                     <CustomText
-                        text="pass the phone to the next person"
+                        text="PASS THE PHONE TO THE NEXT PERSON"
                         color="CMDOrange"
                         count="5"
                     />
                     <CustomButton
-                        text="play"
+                        text="PLAY"
                         color="CMDGreen"
                         onPress={() => navigation.navigate('play')}
                         isBig={true}
