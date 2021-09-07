@@ -19,7 +19,6 @@ import {
     AppLogo,
     AppDesc,
     StyledHomeButtonView,
-    StyledHomeText,
     StyledLogo
 } from './components/StyledView';
 import { Play } from './pages/Play.js';
