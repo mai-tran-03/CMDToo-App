@@ -8,6 +8,7 @@ import {
 } from '../components/StyledView';
 import tips from '../components/parent-tips.json';
 import CustomButton from '../components/CustomButton.js';
+import GeometryBackground from '../components/GeometryBackground';
 import {
     ParentTipsTextbox,
     StandardTextbox
@@ -37,6 +38,7 @@ export const ParentTips = ({ navigation }) => {
     const scenerioButtons = GetScenerioButtons(navigation);
     return (
         <ParentTipsContainer>
+            <GeometryBackground />
             <ParentTipsHeaderContainer>
                 <ParentTipsHeader>
                     Interpret Your Child's Reactions
