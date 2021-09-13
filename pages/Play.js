@@ -15,6 +15,7 @@ import {
     CategoryHeader,
     AppLogo
 } from '../components/StyledView';
+import GeometryBackground from '../components/GeometryBackground';
 
 export const Play = ({ navigation }) => {
     const [modalVisible, setModalVisible] = useState(false);
@@ -41,7 +42,7 @@ export const Play = ({ navigation }) => {
             list.push(
                 <CustomButton
                     key={category}
-                    text={category}
+                    text={category.toUpperCase()}
                     color={category}
                     displayIcon={true}
                     maxHeight={ONELINE_MAX_HEIGHT_PLAY_BUTTON}
@@ -77,7 +78,8 @@ export const Play = ({ navigation }) => {
         if (questions.length) {
             setDisplay(
                 <>
-                    <CategoryHeader> Pick a Category </CategoryHeader>
+                    <GeometryBackground />
+                    <CategoryHeader> PICK A CATEGORY </CategoryHeader>
                     {list}
                 </>
             );
