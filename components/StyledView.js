@@ -96,6 +96,7 @@ export const ViewBy = styled.TextInput`
     border-color: black;
     border-left-width: 0px;
     border-right-width: 0px;
+    text-align: center;
 `;
 
 export const ViewHeading = styled.Text`

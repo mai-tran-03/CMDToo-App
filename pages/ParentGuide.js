@@ -224,6 +224,7 @@ const CategoryButtonDisplay = (buttonObjects, isGroup) => {
     buttonObjects.forEach(buttonObject => {
         list.push(
             <CustomButton
+                displayIcon={true}
                 key={buttonObject.text}
                 text={
                     isGroup
@@ -365,7 +366,6 @@ export const ParentGuide = ({ navigation }) => {
                 <View pointerEvents="none">
                     <ViewBy
                         editable={false}
-                        style={{ textAlign: isGroup ? 'left' : 'center' }}
                     >
                         {isGroup ? 'Grouped Interpretations' : 'Category'}
                     </ViewBy>
