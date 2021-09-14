@@ -1,7 +1,7 @@
 import React from 'react';
-import { Text, View } from 'react-native';
 import styled from 'styled-components/native';
-import { CATEGORY } from './Constants.js';
+import { pickIconToDisplay } from './Icon';
+import { ICONTYPE } from './Constants.js';
 
 const TextboxContainer = styled.View`
     background-color: ${props =>
@@ -26,7 +26,6 @@ const SmallerTextboxContainer = styled.View`
 export const StandardText = styled.Text`
     font-family: Avenir;
     font-style: normal;
-    font-weight: 500;
     font-size: 23px;
     line-height: 41px;
     text-align: center;
@@ -35,68 +34,6 @@ export const StandardText = styled.Text`
         props.color === 'my bright future'
             ? props.theme.colors['CMDPink']
             : 'white'};
-`;
-
-export const CategoryText = styled(StandardText)`
-    font-size: 23px;
-    line-height: 32px;
-    font-weight: 900;
-    width: 191px;
-    flex-shrink: 1;
-`;
-
-export const GroupText = styled(StandardText)`
-    font-size: 20px;
-    line-height: 27.32px;
-    font-weight: 800;
-    width: 290px;
-    flex-shrink: 1;
-`;
-
-export const CategoryQuestionText = styled(StandardText)`
-    font-size: 23px;
-    line-height: 31.42px;
-    font-weight: 800;
-    flex-shrink: 1;
-`;
-
-export const SmallerStandardText = styled.Text`
-    font-family: Avenir;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 41px;
-    text-align: center;
-
-    color: #ffffff;
-
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
-`;
-
-export const BoldText = styled.Text`
-    font-family: Avenir;
-    font-style: normal;
-    font-weight: 900;
-    font-size: 30px;
-    line-height: 41px;
-    text-align: center;
-
-    color: #ffffff;
-
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
-`;
-
-export const SmallerBoldText = styled.Text`
-    font-family: Avenir;
-    font-style: normal;
-    font-weight: 900;
-    font-size: 25px;
-    line-height: 41px;
-    text-align: center;
-
-    color: #ffffff;
-
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
 `;
 
 const CardContainer = styled.View`
@@ -131,15 +68,30 @@ const ParentGuideContainer = styled.View`
     border-radius: 20px;
     margin-top: 10px;
     margin-horizontal: 20px;
-    justify-content: ${props =>
-        props.length > 1
-            ? props.length == 2
-                ? 'space-around'
-                : 'space-between'
-            : 'center'};
-    padding: ${props =>
-        props.length > 1 ? '50px 40px 50px 40px' : '40px 40px'};
+    padding: 28px
     min-height: ${props => (props.isScroll ? '500px' : '70%')};
+`;
+
+const QuestionText = styled(StandardText)`
+    font-size: 25px;
+`;
+
+const HeadingText = styled(StandardText)`
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 25px;
+`;
+
+const SubHeadingText = styled(StandardText)`
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 25px;
+`;
+
+const ContentText = styled(StandardText)`
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 25px;
 `;
 
 export const StandardTextbox = ({ text, color }) => (
@@ -148,79 +100,26 @@ export const StandardTextbox = ({ text, color }) => (
     </TextboxContainer>
 );
 
-export const SmallerStandardTextbox = ({ text, color }) => (
-    <SmallerTextboxContainer color={color}>
-        <SmallerStandardText>{text}</SmallerStandardText>
-    </SmallerTextboxContainer>
+export const QuestionTextbox = ({ text, color }) => (
+    <TextboxContainer color={color}>
+        <QuestionText color={color}>{text}</QuestionText>
+    </TextboxContainer>
 );
-
-const Icon = styled.Image`
-    width: 130px;
-    height: 130px;
-    align-self: center;
-`;
-
-const pickIconToDisplay = (categoryName) => {
-    switch (categoryName) {
-        case CATEGORY.FAVORITES:
-            return (
-                <Icon
-                    source={require('../assets/genconnect_icon-favorites_filled.png')}
-                />
-            );
-
-        case CATEGORY.DANCECHALLENGE:
-            return (
-                <Icon
-                    source={require('../assets/genconnect_icon-allaboutme_filled.png')}
-                />
-            );
-
-        case CATEGORY.ALLABOUTME:
-            return (
-                <Icon
-                    source={require('../assets/genconnect_icon-allaboutme_filled.png')}
-                />
-            );
-
-        case CATEGORY.INNERME:
-            return (
-                <Icon
-                    source={require('../assets/genconnect_icon-innerme_filled.png')}
-                />
-            );
-
-        case CATEGORY.WHATWOULDYOURDO:
-            return (
-                <Icon
-                    source={require('../assets/genconnect_icon-whatwouldyoudo_filled.png')}
-                />
-            );
-
-        case CATEGORY.BRIGHTFUTURE:
-            return (
-                <Icon
-                    source={require('../assets/genconnect_icon-brightfuture_pink_outline.png')}
-                />
-            );
-
-        default:
-            return <Icon
-                source={require('../assets/genconnect_icon-brightfuture_pink_outline.png')}
-            />;
-    }
-};
 
 export const CardTextbox = ({ textList, color }) => {
     const displayText = textList.map((text, index) => (
-        <StandardText color={color} key={index} style={{ fontWeight: "900", fontSize: 30, lineHeight: 49.18 }}>
+        <StandardText
+            color={color}
+            key={index}
+            style={{ fontWeight: '900', fontSize: 30, lineHeight: 49.18 }}
+        >
             {text.toString().toUpperCase()}
         </StandardText>
     ));
 
     return (
-        <CardContainer length={textList.length} color={color} isScroll={true} >
-            {pickIconToDisplay(color)}
+        <CardContainer length={textList.length} color={color} isScroll={true}>
+            {pickIconToDisplay(color, ICONTYPE.CARDPAGE)}
             {displayText}
         </CardContainer>
     );
@@ -249,7 +148,7 @@ const TextBoarder = styled.View`
     margin-bottom: 15px;
 `;
 
-export const InterpretationTextBox = ({
+export const InterpretationTextbox = ({
     groupText,
     interpretationText,
     color,
@@ -259,7 +158,7 @@ export const InterpretationTextBox = ({
     let index = 0;
     displayText.push(
         <TextBoarder key={index++}>
-            <SmallerBoldText>{'INTERPRETATIONS'}</SmallerBoldText>
+            <HeadingText color={color}>{'INTERPRETATIONS'}</HeadingText>
         </TextBoarder>
     );
 
@@ -274,7 +173,7 @@ export const InterpretationTextBox = ({
         if (text != '') {
             displayText.push(
                 <TextBoarder key={index++}>
-                    <SmallerStandardText>{text}</SmallerStandardText>
+                    <SubHeadingText color={color}>{text}</SubHeadingText>
                 </TextBoarder>
             );
         }
@@ -283,7 +182,7 @@ export const InterpretationTextBox = ({
         if (text != '') {
             displayText.push(
                 <TextBoarder key={index++}>
-                    <SmallerStandardText>{text}</SmallerStandardText>
+                    <ContentText color={color}>{text}</ContentText>
                 </TextBoarder>
             );
         }
@@ -295,6 +194,7 @@ export const InterpretationTextBox = ({
             isScroll={isScroll}
         >
             {displayText}
+            {pickIconToDisplay(color, ICONTYPE.PARENTGUIDEPAGE, false)}
         </ParentGuideContainer>
     );
 };
