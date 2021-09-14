@@ -9,34 +9,36 @@ import {
     ScrollStyledView,
     HowToPlayContainer
 } from '../components/StyledView';
+import GeometryBackground from '../components/GeometryBackground';
 
 export const HowToPlay = ({ navigation }) => {
     return (
         <StyledView>
+            <GeometryBackground />
             <ScrollStyledView>
                 <HowToPlayContainer>
                     <CustomText
-                        text='press "play"'
+                        text='Press "play"'
                         color="CMDGreen"
                         count="1"
                     />
                     <CustomText
-                        text="pick an order of players"
+                        text="Pick an order of players"
                         color="CMDPink"
                         count="2"
                     />
                     <CustomText
-                        text="pick a category"
+                        text="Pick a category"
                         color="CMDPurple"
                         count="3"
                     />
                     <CustomText
-                        text="answer the question"
+                        text="Answer the question"
                         color="CMDTurquoise"
                         count="4"
                     />
                     <CustomText
-                        text="pass the phone to the next person"
+                        text="Pass the phone to the next person"
                         color="CMDOrange"
                         count="5"
                     />

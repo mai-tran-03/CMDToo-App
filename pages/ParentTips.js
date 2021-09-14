@@ -17,6 +17,7 @@ import {
     StandardTextbox
 } from '../components/CustomTextbox';
 import { Linking } from 'react-native';
+import GeometryBackground from '../components/GeometryBackground';
 
 const GetScenerioButtons = navigation => {
     let scenerioButtonList = [];
@@ -26,7 +27,7 @@ const GetScenerioButtons = navigation => {
             <CustomButton
                 key={count++}
                 text={tip.scenario}
-                color="CMDOrange"
+                color={tip.color}
                 minHeight={VBIG_MIN_HEIGHT_BUTTON}
                 onPress={() =>
                     navigation.navigate('Parent Tips Information', { tip })
@@ -41,6 +42,7 @@ export const ParentTips = ({ navigation }) => {
     const scenerioButtons = GetScenerioButtons(navigation);
     return (
         <ParentTipsContainer>
+            <GeometryBackground />
             <ParentTipsHeaderContainer>
                 <ParentTipsHeader>
                     Interpret Your Child's Reactions
@@ -56,14 +58,16 @@ export const ParentTips = ({ navigation }) => {
     );
 };
 
+
 export const ScenerioTips = ({ route, navigation }) => {
     const scenerio = route.params.tip.scenario;
     const tips = route.params.tip.tip;
     const link = route.params.tip.source;
-    const color = 'CMDOrange';
+    const color = route.params.tip.color;
     return (
         <>
             <ScenerioContainer>
+                <GeometryBackground />
                 <BigScrollStyledView
                     directionalLockEnabled={true}
                     contentContainerStyle={{ maxWidth: '99.9%' }}
@@ -81,8 +85,8 @@ export const ScenerioTips = ({ route, navigation }) => {
                             onPress={() => Linking.openURL(link)}
                         />
                     ) : (
-                        <></>
-                    )}
+                            <></>
+                        )}
                 </BigScrollStyledView>
             </ScenerioContainer>
         </>

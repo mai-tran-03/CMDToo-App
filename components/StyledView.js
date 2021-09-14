@@ -76,11 +76,11 @@ export const ParentTipsHeaderContainer = styled.View`
 
 export const ParentTipsHeader = styled.Text`
     align-self: stretch;
-    font-size: 25px;
+    font-size: 24px;
     min-height: 50px;
     text-align: center;
     font-family: Avenir;
-    font-weight: 600;
+    font-weight: 900;
 `;
 
 export const ViewBy = styled.TextInput`
