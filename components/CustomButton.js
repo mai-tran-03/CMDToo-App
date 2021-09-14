@@ -41,6 +41,10 @@ const WarningText = styled.Text`
     font-weight: 600;
 `;
 
+const StandardTextContainer = styled.View`
+    align-items: center;
+`;
+
 const CustomButton = ({
     text,
     color,
@@ -50,6 +54,8 @@ const CustomButton = ({
     onPress,
     displayIcon,
     horizontalMargin,
+    isAllCap,
+    fixedTextWidth,
     fontWeight,
     fontSize,
     lineHeight,
@@ -68,17 +74,12 @@ const CustomButton = ({
             horizontalMargin={horizontalMargin}
             marginVertical={marginVertical}
         >
-            <StandardText
-                color={color}
-                style={{
-                    fontWeight: fontWeight ? fontWeight : '900',
-                    fontSize: fontSize ? fontSize : 23,
-                    lineHeight: lineHeight ? lineHeight : 41
-                }}
-            >
-                {text}
-            </StandardText>
 
+            <StandardTextContainer>
+                <StandardText color={color} fixedTextWidth={fixedTextWidth}>
+                    {isAllCap ? text.toUpperCase() : text}
+                </StandardText>
+            </StandardTextContainer>
             {warningText && (
                 <WarningText categoryName={color}>{warningText}</WarningText>
             )}
