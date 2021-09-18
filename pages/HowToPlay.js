@@ -9,43 +9,55 @@ import {
     ScrollStyledView,
     HowToPlayContainer
 } from '../components/StyledView';
+import GeometryBackground from '../components/GeometryBackground';
 
 export const HowToPlay = ({ navigation }) => {
     return (
         <StyledView>
+            <GeometryBackground />
             <ScrollStyledView>
                 <HowToPlayContainer>
                     <GeometryBackground />
                     <CustomText
+
                         text='PRESS "PLAY"'
+
                         color="CMDGreen"
                         count="1"
                     />
                     <CustomText
+
                         text="PICK AN ORDER OF PLAYERS"
+
                         color="CMDPink"
                         count="2"
                     />
                     <CustomText
+
                         text="PICK A CATEGORY"
+
                         color="CMDPurple"
                         count="3"
                     />
                     <CustomText
+
                         text="ANSWER THE QUESTION"
+
                         color="CMDTurquoise"
                         count="4"
                     />
                     <CustomText
+
                         text="PASS THE PHONE TO THE NEXT PERSON"
+
                         color="CMDOrange"
                         count="5"
                     />
                     <CustomButton
                         text="PLAY"
                         color="CMDGreen"
-                        onPress={() => navigation.navigate('play')}
-                        isBig={true}
+                        onPress={() => navigation.navigate('Play')}
+                        minHeight={BIG_MIN_HEIGHT_BUTTON}
                     />
                     <StatusBar style="auto" />
                 </HowToPlayContainer>

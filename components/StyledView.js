@@ -22,6 +22,8 @@ export const StyledLogo = styled.View`
 
 export const ScrollStyledView = styled.ScrollView`
     margin-top: 3px;
+    margin-bottom: 15px;
+    width: 100%;
 `;
 
 export const BigScrollStyledView = styled.ScrollView`
@@ -53,11 +55,11 @@ export const AppDesc = styled.Text`
 `;
 
 export const CategoryHeader = styled.Text`
-    font-size: 35px;
+    font-size: 24px;
     min-height: 50px;
     align-items: flex-start;
     font-family: Avenir;
-    font-weight: 600;
+    font-weight: 900;
 `;
 
 export const ParentTipsHeaderContainer = styled.View`
@@ -66,11 +68,11 @@ export const ParentTipsHeaderContainer = styled.View`
 
 export const ParentTipsHeader = styled.Text`
     align-self: stretch;
-    font-size: 25px;
+    font-size: 24px;
     min-height: 50px;
     text-align: center;
     font-family: Avenir;
-    font-weight: 600;
+    font-weight: 900;
 `;
 
 export const ViewBy = styled.TextInput`
@@ -86,6 +88,7 @@ export const ViewBy = styled.TextInput`
     border-color: black;
     border-left-width: 0px;
     border-right-width: 0px;
+    text-align: center;
 `;
 
 export const ViewHeading = styled.Text`

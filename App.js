@@ -3,7 +3,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import CustomButton from './components/CustomButton.js';
 import HomeButton from './components/HomeButton.js';
 import { ThemeProvider } from 'styled-components';
 import COLORS from './components/GlobalStyles.js';
@@ -16,8 +15,6 @@ import {
 import { ParentTips, ScenerioTips } from './pages/ParentTips.js';
 import {
     StyledView,
-    AppLogo,
-    AppDesc,
     StyledHomeButtonView,
     StyledLogo
 } from './components/StyledView';
@@ -101,7 +98,7 @@ export default function App() {
                                 >
                                     <Image
                                         source={require('./assets/homeIcon.png')}
-                                        style={{ width: 40, height: 40 }}
+                                        style={{ width: 45, height: 35, marginRight: 5 }}
                                     />
                                 </TouchableOpacity>
                             )
@@ -129,7 +126,7 @@ export default function App() {
                                 >
                                     <Image
                                         source={require('./assets/homeIcon.png')}
-                                        style={{ width: 40, height: 40 }}
+                                        style={{ width: 45, height: 35, marginRight: 5 }}
                                     />
                                 </TouchableOpacity>
                             )
@@ -156,7 +153,7 @@ export default function App() {
                                 >
                                     <Image
                                         source={require('./assets/homeIcon.png')}
-                                        style={{ width: 40, height: 40 }}
+                                        style={{ width: 45, height: 35, marginRight: 5 }}
                                     />
                                 </TouchableOpacity>
                             )
@@ -183,7 +180,7 @@ export default function App() {
                                 >
                                     <Image
                                         source={require('./assets/homeIcon.png')}
-                                        style={{ width: 40, height: 40 }}
+                                        style={{ width: 45, height: 35, marginRight: 5 }}
                                     />
                                 </TouchableOpacity>
                             )
@@ -210,7 +207,7 @@ export default function App() {
                                 >
                                     <Image
                                         source={require('./assets/homeIcon.png')}
-                                        style={{ width: 40, height: 40 }}
+                                        style={{ width: 45, height: 35, marginRight: 5 }}
                                     />
                                 </TouchableOpacity>
                             )
@@ -237,7 +234,7 @@ export default function App() {
                                 >
                                     <Image
                                         source={require('./assets/homeIcon.png')}
-                                        style={{ width: 40, height: 40 }}
+                                        style={{ width: 45, height: 35, marginRight: 5 }}
                                     />
                                 </TouchableOpacity>
                             )

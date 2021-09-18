@@ -1,179 +1,92 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { StandardText, CategoryText, GroupText, CategoryQuestionText } from './CustomTextbox.js';
+import { StandardText } from './CustomTextbox.js';
+import { CATEGORY, ICONTYPE } from './Constants.js';
+import { pickIconToDisplay } from './Icon.js';
 
 const ButtonContainer = styled.TouchableOpacity`
     align-self: stretch;
-    background-color: ${props =>
-        props.theme.colors[props.color] || props.theme.colors.error};
+    justify-content: center;
     border-radius: 20px;
-    margin-vertical: 10px;
-    margin-horizontal: 20px;
-    max-height: 75px;
+    ${props =>
+        props.marginVertical
+            ? `margin-vertical: ${props.marginVertical}};`
+            : 'margin-vertical: 10px;'};
     flex-grow: 100;
 
-    justify-content: center;
-`;
+    background-color: ${props =>
+        props.theme.colors[props.color] || props.theme.colors.error};
 
-const SmallButtonContainer = styled(ButtonContainer)`
-    margin-horizontal: 5px;
-`;
+    margin-horizontal: ${props =>
+        props.horizontalMargin ? `${props.horizontalMargin}` : '25px'};
 
-const BigButtonContainer = styled(ButtonContainer)`
-    min-height: 75px;
-`;
+    ${props =>
+        props.maxHeight
+            ? `max-height: ${props.maxHeight};`
+            : 'padding: 10px 20px;'};
 
-const VeryBigButtonContainer = styled(ButtonContainer)`
-    min-height: 150px;
-    max-height: null;
-    min-width: 90%;
-    max-width: 90%;
-    padding: 20px 30px;
-`;
-
-const CategoryButtonContainer = styled(ButtonContainer)`
-    min-height: 64px;
-    width: 288px;
-    margin-horizontal: 0;
-    flex-direction: row;
-    align-items: center;
-`;
-
-const GroupButtonContainer = styled(ButtonContainer)`
-    min-height: ${props => props.big ? '103px' : '64px'};
-    width: 342px;
-    margin-horizontal: 0;
-    flex-direction: row;
-    align-items: center;
-`;
-
-const CategoryQuestionContainer = styled(ButtonContainer)`
-    min-height: 64px;
-    max-height: null;
-    min-width: 90%;
-    max-width: 90%;
-    padding: 3px 5px;
+    ${props => (props.minHeight ? `min-height: ${props.minHeight}};` : '')};
+    ${props => (props.height ? `height: ${props.height}};` : '')};
 `;
 
 const WarningText = styled.Text`
-    color: #ffffff;
+    color: ${props =>
+        props.categoryName === CATEGORY.BRIGHTFUTURE
+            ? props.theme.colors['CMDPink']
+            : 'white'};
     position: absolute;
-    right: 5%;
+    left: 5%;
     bottom: 3%;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
     font-weight: 600;
+`;
+
+const StandardTextContainer = styled.View`
+    align-items: center;
 `;
 
 const CustomButton = ({
     text,
     color,
     warningText,
-    isSmall = false,
-    isBig = false,
-    isVeryBig = false,
-    isCategory = 0,
-    isCategoryQuestion = false,
+    minHeight,
+    maxHeight,
+    onPress,
+    displayIcon,
+    horizontalMargin,
+    isAllCap,
+    fixedTextWidth,
+    fontWeight,
+    fontSize,
+    lineHeight,
+    height,
+    marginVertical,
     ...others
 }) => {
-    if (isSmall) {
-        return (
-            <SmallButtonContainer
-                color={others.disabled ? 'grey' : color}
-                onPress={others.onPress}
-                disabled={others.disabled}
-            >
-                <StandardText color={color}>{text}</StandardText>
-                {warningText !== undefined ? (
-                    <WarningText>{warningText}</WarningText>
-                ) : (
-                    <WarningText></WarningText>
-                )}
-            </SmallButtonContainer>
-        );
-    } else if (isBig) {
-        return (
-            <BigButtonContainer
-                color={others.disabled ? 'grey' : color}
-                onPress={others.onPress}
-                disabled={others.disabled}
-            >
-                <StandardText color={color}>{text}</StandardText>
-                {warningText !== undefined ? (
-                    <WarningText>{warningText}</WarningText>
-                ) : (
-                    <WarningText></WarningText>
-                )}
-            </BigButtonContainer>
-        );
-    } else if (isVeryBig) {
-        return (
-            <VeryBigButtonContainer
-                color={others.disabled ? 'grey' : color}
-                onPress={others.onPress}
-                disabled={others.disabled}
-            >
-                <StandardText color={color}>{text}</StandardText>
-                {warningText !== undefined ? (
-                    <WarningText>{warningText}</WarningText>
-                ) : (
-                    <WarningText></WarningText>
-                )}
-            </VeryBigButtonContainer>
-        );
-    } else if (isCategory === 1) {
-        return (
-            <GroupButtonContainer
-                color={others.disabled ? 'grey' : color}
-                onPress={others.onPress}
-                disabled={others.disabled}
-                style={{ boxSizing: 'border-box' }}
-                big={text.includes('People, Places, and Things')}
-            >
-                <GroupText color={color}>{text}</GroupText>
-            </GroupButtonContainer>
-        );
-    } else if (isCategory === 2) {
-        return (
-            <CategoryButtonContainer
-                color={others.disabled ? 'grey' : color}
-                onPress={others.onPress}
-                disabled={others.disabled}
-                style={{ boxSizing: 'border-box' }}
-            >
-                <CategoryText color={'color'}>{text}</CategoryText>
-            </CategoryButtonContainer>
-        );
-    } else if (isCategoryQuestion) {
-        return (
-            <CategoryQuestionContainer
-                color={others.disabled ? 'grey' : color}
-                onPress={others.onPress}
-                disabled={others.disabled}
-            >
-                <CategoryQuestionText color={color}>{text}</CategoryQuestionText>
-                {warningText !== undefined ? (
-                    <WarningText>{warningText}</WarningText>
-                ) : (
-                    <WarningText></WarningText>
-                )}
-            </CategoryQuestionContainer>
-        );
-    } else {
-        return (
-            <ButtonContainer
-                color={others.disabled ? 'grey' : color}
-                onPress={others.onPress}
-                disabled={others.disabled}
-            >
-                <StandardText color={color}>{text}</StandardText>
-                {warningText !== undefined ? (
-                    <WarningText>{warningText}</WarningText>
-                ) : (
-                    <WarningText></WarningText>
-                )}
-            </ButtonContainer>
-        );
-    }
+    return (
+        <ButtonContainer
+            color={others.disabled ? 'grey' : color}
+            onPress={onPress}
+            disabled={others.disabled}
+            maxHeight={maxHeight}
+            height={height}
+            minHeight={minHeight}
+            horizontalMargin={horizontalMargin}
+            marginVertical={marginVertical}
+        >
+
+            <StandardTextContainer>
+                <StandardText color={color} fixedTextWidth={fixedTextWidth}>
+                    {isAllCap ? text.toUpperCase() : text}
+                </StandardText>
+            </StandardTextContainer>
+            {warningText && (
+                <WarningText categoryName={color}>{warningText}</WarningText>
+            )}
+            {displayIcon &&
+                pickIconToDisplay(color, ICONTYPE.PLAYPAGE, others.disabled)}
+        </ButtonContainer>
+    );
 };
 
 export default CustomButton;
