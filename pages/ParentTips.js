@@ -45,7 +45,7 @@ export const ParentTips = ({ navigation }) => {
             <GeometryBackground />
             <ParentTipsHeaderContainer>
                 <ParentTipsHeader>
-                    Interpret Your Child's Reactions
+                    Interpret your child's reactions
                 </ParentTipsHeader>
             </ParentTipsHeaderContainer>
             <BigScrollStyledView
