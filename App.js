@@ -22,10 +22,9 @@ import {
 import { Play } from './pages/Play.js';
 import { HowToPlay } from './pages/HowToPlay.js';
 
-function HomeScreen({ navigation }) {
+const HomeScreen = ({ navigation }) => {
     return (
         <StyledView>
-
             <ScrollView>
                 <StyledLogo>
                     <Image
@@ -41,7 +40,6 @@ function HomeScreen({ navigation }) {
                         The game that gets people talking!{' '}
                     </StyledTagline>
                 </StyledLogo>
-
 
                 <StyledHomeButtonView>
                     <HomeButton
@@ -69,7 +67,7 @@ function HomeScreen({ navigation }) {
             </ScrollView>
         </StyledView>
     );
-}
+};
 
 const Stack = createStackNavigator();
 export default function App() {

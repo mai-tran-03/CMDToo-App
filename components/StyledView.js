@@ -127,3 +127,21 @@ export const ScenerioContainer = styled(ParentTipsContainer)`
     margin-top: 10px;
     margin-bottom: 10px;
 `;
+
+export const StyledTagline = styled.Text`
+    font-weight: 800;
+    font-family: Avenir;
+    font-size: 18;
+`;
+
+export const StyledHomeText = styled.Text`
+    position: absolute;
+    font-weight: bold;
+    display: flex;
+    text-align: center;
+    font-size: 14;
+    min-width: 165;
+    min-height: 220;
+    color: white;
+    position: absolute;
+`;

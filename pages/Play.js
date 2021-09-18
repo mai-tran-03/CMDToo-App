@@ -2,7 +2,6 @@ import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
 import {
-    BIG_MIN_HEIGHT_BUTTON,
     ONELINE_MAX_HEIGHT_PLAY_BUTTON,
     FIXED_TEXT_WIDTH_BUTTON
 } from '../components/Constants.js';
@@ -16,11 +15,9 @@ import {
     AppDesc,
     CategoryHeader,
     AppLogo,
-    StyledHomeButtonView,
-    StyledHomeText
+    StyledHomeButtonView
 } from '../components/StyledView';
 import GeometryBackground from '../components/GeometryBackground';
-
 
 export const Play = ({ navigation }) => {
     const [modalVisible, setModalVisible] = useState(false);
@@ -85,7 +82,7 @@ export const Play = ({ navigation }) => {
                 />
             );
         });
-        if (questions.length) {
+        if (questions.length < 0) {
             setDisplay(
                 <>
                     <GeometryBackground />
@@ -97,60 +94,38 @@ export const Play = ({ navigation }) => {
             setDisplay(
                 <StyledView>
                     <AppLogo> HOORAY! YOU'VE FINISHED. </AppLogo>
-                    <AppDesc>
-                        {' '}
-                        Thoughts? Take our survey below!{' '}
-                    </AppDesc>
+                    <AppDesc> Thoughts? Take our survey below! </AppDesc>
                     <StyledHomeButtonView>
-                        <StyledHomeText
-                            style={{ zIndex: 1, left: 10, top: 45 }}
-                            onPress={() => navigation.navigate('Home')}
-                        >
-                            {' '}
-                            SURVEY{' '}
-                        </StyledHomeText>
-                        <StyledHomeText
-                            style={{ zIndex: 1, right: 18, top: 35 }}
-                            onPress={() => navigation.navigate('Parent Guide')}
-                        >
-                            {' '}
-                            PARENT GUIDE{' '}
-                        </StyledHomeText>
-                        <StyledHomeText
-                            style={{ zIndex: 1, left: 13, top: 250, color: '#FFF' }}
-                            onPress={() => Linking.openURL('https://www.coolmomsdancetoo.com/')}
-                        >
-                            {' '}
-                            CMDTOO WEBSITE{' '}
-                        </StyledHomeText>
-                        <StyledHomeText
-                            style={{ zIndex: 1, right: 18, top: 250 }}
-                            onPress={() => navigation.navigate('Home')}
-                        >
-                            {' '}
-                            BACK TO HOME{' '}
-                        </StyledHomeText>
-
                         <HomeButton
                             text="SURVEY"
+                            source={require('../assets/genconnect_ombre_allaboutme.png')}
                             onPress={() => navigation.navigate('Home')}
                         />
                         <HomeButton
                             text="PARENT GUIDE"
+                            source={require('../assets/genconnect_ombre_whatwouldyoudo.png')}
                             onPress={() => navigation.navigate('Parent Guide')}
                         />
                         <HomeButton
                             text="CMDTOO WEBSITE"
-                            onPress={() => Linking.openURL('https://www.coolmomsdancetoo.com/')}
+                            source={require('../assets/genconnect_ombre_favorites.png')}
+                            onPress={() =>
+                                Linking.openURL(
+                                    'https://www.coolmomsdancetoo.com/'
+                                )
+                            }
                         />
                         <HomeButton
                             text="HOME"
+                            source={require('../assets/genconnect_ombre_innerme.png')}
                             onPress={() => navigation.navigate('Home')}
                         />
                     </StyledHomeButtonView>
-                    <Image source={require('../assets/CoolMomsLogo.png')} style={{ marginBottom: 30 }} />
 
-
+                    <Image
+                        source={require('../assets/CoolMomsLogo.png')}
+                        style={{ marginTop: 50 }}
+                    />
                 </StyledView>
             );
         }
@@ -173,5 +148,3 @@ export const Play = ({ navigation }) => {
         </StyledView>
     );
 };
-
-

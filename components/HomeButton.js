@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
 });
 
 const HomeButton = props => {
-    if (props.text.toLowerCase() === 'play') {
+    if (props.text.toLowerCase() === 'how to play') {
         return (
             <TouchableOpacity onPress={props.onPress}>
                 <View>
@@ -54,45 +54,12 @@ const HomeButton = props => {
                 </View>
             </TouchableOpacity>
         );
-    } else if (props.text.toLowerCase() === 'how to play') {
+    } else {
         return (
             <TouchableOpacity onPress={props.onPress}>
                 <View>
                     <Text style={styles.styledText}>{props.text}</Text>
                     <Image source={props.source} style={styles.styledImage} />
-                </View>
-            </TouchableOpacity>
-        );
-    } else if (props.text.toLowerCase() === 'cmdtoo website') {
-        return (
-            <TouchableOpacity onPress={props.onPress}>
-                <View>
-                    <Image
-                        source={require('../assets/genconnect_ombre_favorites.png')}
-                        style={styles.styledImage}
-                    />
-                </View>
-            </TouchableOpacity>
-        );
-    } else if (props.text.toLowerCase() === 'survey') {
-        return (
-            <TouchableOpacity onPress={props.onPress}>
-                <View>
-                    <Image
-                        source={require('../assets/genconnect_ombre_allaboutme.png')}
-                        style={styles.styledImage}
-                    />
-                </View>
-            </TouchableOpacity>
-        );
-    } else if (props.text.toLowerCase() === 'home') {
-        return (
-            <TouchableOpacity onPress={props.onPress}>
-                <View>
-                    <Image
-                        source={require('../assets/genconnect_ombre_innerme.png')}
-                        style={styles.styledImage}
-                    />
                 </View>
             </TouchableOpacity>
         );
