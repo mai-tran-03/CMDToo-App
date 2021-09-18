@@ -9,7 +9,7 @@ import {
     ScrollStyledView,
     HowToPlayContainer
 } from '../components/StyledView';
-import GeometryBackground from '../components/GeometryBackground';
+import { BIG_MIN_HEIGHT_BUTTON } from '../components/Constants.js';
 
 export const HowToPlay = ({ navigation }) => {
     return (
@@ -19,42 +19,32 @@ export const HowToPlay = ({ navigation }) => {
                 <HowToPlayContainer>
                     <GeometryBackground />
                     <CustomText
-
-                        text='PRESS "PLAY"'
-
+                        text='Press "PLAY"'
                         color="CMDGreen"
                         count="1"
                     />
                     <CustomText
-
-                        text="PICK AN ORDER OF PLAYERS"
-
+                        text="Pick an order of players"
                         color="CMDPink"
                         count="2"
                     />
                     <CustomText
-
-                        text="PICK A CATEGORY"
-
+                        text="Pick a category"
                         color="CMDPurple"
                         count="3"
                     />
                     <CustomText
-
-                        text="ANSWER THE QUESTION"
-
+                        text="Answer the question"
                         color="CMDTurquoise"
                         count="4"
                     />
                     <CustomText
-
-                        text="PASS THE PHONE TO THE NEXT PERSON"
-
+                        text="Pass the phone to the next person"
                         color="CMDOrange"
                         count="5"
                     />
                     <CustomButton
-                        text="PLAY"
+                        text="play"
                         color="CMDGreen"
                         onPress={() => navigation.navigate('Play')}
                         minHeight={BIG_MIN_HEIGHT_BUTTON}

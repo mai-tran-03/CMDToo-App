@@ -10,7 +10,7 @@ import tips from '../components/parent-tips.json';
 import {
     BIG_MIN_HEIGHT_BUTTON,
     VBIG_MIN_HEIGHT_BUTTON
-} from '../components/Constants';
+} from '../components/Constants.js';
 import CustomButton from '../components/CustomButton.js';
 import GeometryBackground from '../components/GeometryBackground';
 import {
@@ -18,7 +18,6 @@ import {
     StandardTextbox
 } from '../components/CustomTextbox';
 import { Linking } from 'react-native';
-import GeometryBackground from '../components/GeometryBackground';
 
 const GetScenerioButtons = navigation => {
     let scenerioButtonList = [];
@@ -59,7 +58,6 @@ export const ParentTips = ({ navigation }) => {
     );
 };
 
-
 export const ScenerioTips = ({ route, navigation }) => {
     const scenerio = route.params.tip.scenario;
     const tips = route.params.tip.tip;
@@ -86,8 +84,8 @@ export const ScenerioTips = ({ route, navigation }) => {
                             onPress={() => Linking.openURL(link)}
                         />
                     ) : (
-                            <></>
-                        )}
+                        <></>
+                    )}
                 </BigScrollStyledView>
             </ScenerioContainer>
         </>
