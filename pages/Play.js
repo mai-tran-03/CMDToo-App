@@ -72,7 +72,15 @@ export const Play = ({ navigation }) => {
         if (questions.length) {
             setDisplay(
                 <>
-                    <CategoryHeader> Pick a Category </CategoryHeader>
+                    <CategoryHeader
+                        style={{
+                            fontWeight: '800',
+                            fontFamily: 'Avenir'
+                        }}
+                    >
+                        {' '}
+                        PICK A CATEGORY{' '}
+                    </CategoryHeader>
                     {list}
                 </>
             );

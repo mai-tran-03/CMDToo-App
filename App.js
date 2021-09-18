@@ -38,6 +38,16 @@ function HomeScreen({ navigation }) {
                             marginRight: 10
                         }}
                     />
+                    <Text
+                        style={{
+                            fontWeight: '800',
+                            fontFamily: 'Avenir',
+                            fontSize: 18
+                        }}
+                    >
+                        {' '}
+                        The game that gets people talking!{' '}
+                    </Text>
                 </StyledLogo>
 
                 <StyledHomeButtonView>
