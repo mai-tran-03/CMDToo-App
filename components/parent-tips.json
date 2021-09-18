@@ -1,32 +1,38 @@
 [
     {
         "scenario": "Your child says something alarming (you don't want to overreact)",
-        "tip": "Invite your child to share their feelings|Be very careful not to reason, moralize, guilt-trip or even make your child feel threatened. This will be extremely counter productive",
-        "source": "https://www.peacefulparent.com/what-to-do-when-your-child-wont-let-you-connect/"
+        "tip": "Invite your child to share their feelings.|Be very careful not to reason, moralize, guilt-trip or even make your child feel threatened. This will be extremely counterproductive.",
+        "source": "https://www.peacefulparent.com/what-to-do-when-your-child-wont-let-you-connect/",
+        "color": "CMDGreen"
     },
     {
         "scenario": "Your child seems disinterested/disengaged",
-        "tip": "Reassure them that they are in a safe space so that you can build a positive and trusting relationship|Don't crowd them|Try using the ice-breakers cards to help them loosen up|Start with a card that might be easier to open up about and ask them superficial questions as a follow up and |Help them feel understood|Make sure that distractions are eliminated both for you and your child/children",
-        "source": ""
+        "tip": "Reassure them that they are in a safe space so that you can build a positive and trusting relationship.|Don't crowd them.|Start with a category that might be easier to open up about and ask them superficial questions as a follow up and help them feel understood.|Make sure that distractions are eliminated both for you and your child/children.",
+        "source": "",
+        "color": "CMDPink"
     },
     {
         "scenario": "Your child actively participates in the game",
-        "tip": "Ask superficial questions. This can sometimes lead to the real \"scoop\"|Share things about yourself that my lend to the conversation. This will encourage engagement and help your child feel more connected|Validate your child's feelings if they are sharing something difficult/painful",
-        "source": ""
+        "tip": "Ask superficial questions. This can sometimes lead to the real \"scoop\".|Share things about yourself that may lend to the conversation. This will encourage engagement and help your child feel more connected.|Validate your child's feelings if they are sharing something difficult/painful.",
+        "source": "",
+        "color": "CMDPurple"
     },
     {
         "scenario": "Your child seems upset",
-        "tip": "Ensure that your child feels seen and validate their emotions (don't bring your emotions in off the bat)",
-        "source": "https://www.peacefulparent.com/what-to-do-when-your-child-wont-let-you-connect/"
+        "tip": "Ensure that your child feels seen and validate their emotions (don't bring your emotions in right off the bat).",
+        "source": "https://www.peacefulparent.com/what-to-do-when-your-child-wont-let-you-connect/",
+        "color": "CMDTurquoise"
     },
     {
         "scenario": "Your child doesn't like talking",
-        "tip": "Open up and share something going on in your life that's funny or interesting. This might help your child do the same",
-        "source": "https://childmind.org/article/help-my-teen-stopped-talking-to-me/"
+        "tip": "Open up and share something going on in your life that's funny or interesting. This might help your child do the same.",
+        "source": "https://childmind.org/article/help-my-teen-stopped-talking-to-me/",
+        "color": "CMDOrange"
     },
     {
         "scenario": "You think your child might be feeling suicidal",
-        "tip": "Address the issue calmly but immediately|Make them feel vaidated and talk about your concerns in a non-accusatory manner|Work with you child to get professional help and help them see that seeking help is not a sign of weakness",
-        "source": "https://childmind.org/article/help-my-teen-stopped-talking-to-me/"
+        "tip": "Address the issue calmly but immediately.|Make them feel validated and talk about your concerns in a non-accusatory manner.|Work with your child to get professional help and help them see that seeking help is not a sign of weakness.",
+        "source": "https://childmind.org/article/help-my-teen-stopped-talking-to-me/",
+        "color": "CMDGreen"
     }
 ]

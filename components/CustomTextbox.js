@@ -1,6 +1,7 @@
 import React from 'react';
-import { Text, View } from 'react-native';
 import styled from 'styled-components/native';
+import { pickIconToDisplay } from './Icon';
+import { ICONTYPE } from './Constants.js';
 
 const TextboxContainer = styled.View`
     background-color: ${props =>
@@ -22,87 +23,46 @@ const SmallerTextboxContainer = styled.View`
     min-width: 90%;
 `;
 
+export const SmallerStandardText = styled.Text`
+font-family: Avenir;
+font-style: normal;
+font-weight: 600;
+
+font-size: 23px;
+line-height: 32px;
+text-align: center;
+flex-shrink: 1;
+width: ${props => `${props.fixedTextWidth}`};
+color: ${props =>
+        props.color === 'my bright future'
+            ? props.theme.colors['CMDPink']
+            : 'white'};
+`;
+
 export const StandardText = styled.Text`
     font-family: Avenir;
     font-style: normal;
-    font-weight: 500;
-    font-size: 30px;
-    line-height: 41px;
-    text-align: center;
-    color: ${props => props.color === 'my bright future' ? props.theme.colors['CMDPink'] : 'white'};
-`;
+    font-weight: 900;
 
-export const CategoryText = styled(StandardText)`
     font-size: 23px;
     line-height: 32px;
-    font-weight: 900;
-    width: 191px;
-    flex-shrink: 1;
-`;
-
-export const GroupText = styled(StandardText)`
-    font-size: 20px;
-    line-height: 27.32px;
-    font-weight: 800;
-    width: 290px;
-    flex-shrink: 1;
-`;
-
-export const CategoryQuestionText = styled(StandardText)`
-    font-size: 23px;
-    line-height: 31.42px;
-    font-weight: 800;
-    flex-shrink: 1;
-`;
-
-export const SmallerStandardText = styled.Text`
-    font-family: Avenir;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 41px;
     text-align: center;
-
-    color: #ffffff;
-
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
-`;
-
-export const BoldText = styled.Text`
-    font-family: Avenir;
-    font-style: normal;
-    font-weight: 900;
-    font-size: 30px;
-    line-height: 41px;
-    text-align: center;
-
-    color: #ffffff;
-
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
-`;
-
-export const SmallerBoldText = styled.Text`
-    font-family: Avenir;
-    font-style: normal;
-    font-weight: 900;
-    font-size: 25px;
-    line-height: 41px;
-    text-align: center;
-
-    color: #ffffff;
-
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+    flex-shrink: 1;
+    width: ${props => `${props.fixedTextWidth}`};
+    color: ${props =>
+        props.color === 'my bright future'
+            ? props.theme.colors['CMDPink']
+            : 'white'};
 `;
 
 const CardContainer = styled.View`
     background-color: ${props =>
         props.theme.colors[props.color] || props.theme.colors.error};
     border-radius: 20px;
-    margin-top: 10px;
     margin-horizontal: 20px;
     justify-content: ${props => (props.length > 1 ? 'space-around' : 'center')};
-    padding: 40px 50px;
-    min-height: ${props => (props.isScroll ? '500px' : '70%')};
+    padding: 0 30px;
+    height: 100%;
 `; // margin-bottom is added by ButtonContainer
 
 const ParentTipContainer = styled.View`
@@ -127,15 +87,30 @@ const ParentGuideContainer = styled.View`
     border-radius: 20px;
     margin-top: 10px;
     margin-horizontal: 20px;
-    justify-content: ${props =>
-        props.length > 1
-            ? props.length == 2
-                ? 'space-around'
-                : 'space-between'
-            : 'center'};
-    padding: ${props =>
-        props.length > 1 ? '50px 40px 50px 40px' : '40px 40px'};
+    padding: 28px
     min-height: ${props => (props.isScroll ? '500px' : '70%')};
+`;
+
+const QuestionText = styled(StandardText)`
+    font-size: 25px;
+`;
+
+const HeadingText = styled(StandardText)`
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 25px;
+`;
+
+const SubHeadingText = styled(StandardText)`
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 25px;
+`;
+
+const ContentText = styled(StandardText)`
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 25px;
 `;
 
 export const StandardTextbox = ({ text, color }) => (
@@ -144,19 +119,26 @@ export const StandardTextbox = ({ text, color }) => (
     </TextboxContainer>
 );
 
-export const SmallerStandardTextbox = ({ text, color }) => (
-    <SmallerTextboxContainer color={color}>
-        <SmallerStandardText>{text}</SmallerStandardText>
-    </SmallerTextboxContainer>
+export const QuestionTextbox = ({ text, color }) => (
+    <TextboxContainer color={color}>
+        <QuestionText color={color}>{text}</QuestionText>
+    </TextboxContainer>
 );
 
 export const CardTextbox = ({ textList, color }) => {
     const displayText = textList.map((text, index) => (
-        <StandardText color={color} key={index}>{text.toString().toLowerCase()}</StandardText>
+        <StandardText
+            color={color}
+            key={index}
+            style={{ fontWeight: '900', fontSize: 30, lineHeight: 49.18 }}
+        >
+            {text.toString().toUpperCase()}
+        </StandardText>
     ));
 
     return (
         <CardContainer length={textList.length} color={color} isScroll={true}>
+            {pickIconToDisplay(color, ICONTYPE.CARDPAGE)}
             {displayText}
         </CardContainer>
     );
@@ -185,7 +167,7 @@ const TextBoarder = styled.View`
     margin-bottom: 15px;
 `;
 
-export const InterpretationTextBox = ({
+export const InterpretationTextbox = ({
     groupText,
     interpretationText,
     color,
@@ -195,7 +177,7 @@ export const InterpretationTextBox = ({
     let index = 0;
     displayText.push(
         <TextBoarder key={index++}>
-            <SmallerBoldText>{'INTERPRETATIONS'}</SmallerBoldText>
+            <HeadingText color={color}>{'INTERPRETATIONS'}</HeadingText>
         </TextBoarder>
     );
 
@@ -210,7 +192,7 @@ export const InterpretationTextBox = ({
         if (text != '') {
             displayText.push(
                 <TextBoarder key={index++}>
-                    <SmallerStandardText>{text}</SmallerStandardText>
+                    <SubHeadingText color={color}>{text}</SubHeadingText>
                 </TextBoarder>
             );
         }
@@ -219,7 +201,7 @@ export const InterpretationTextBox = ({
         if (text != '') {
             displayText.push(
                 <TextBoarder key={index++}>
-                    <SmallerStandardText>{text}</SmallerStandardText>
+                    <ContentText color={color}>{text}</ContentText>
                 </TextBoarder>
             );
         }
@@ -231,6 +213,7 @@ export const InterpretationTextBox = ({
             isScroll={isScroll}
         >
             {displayText}
+            {pickIconToDisplay(color, ICONTYPE.PARENTGUIDEPAGE, false)}
         </ParentGuideContainer>
     );
 };
