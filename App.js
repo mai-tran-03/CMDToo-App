@@ -16,7 +16,8 @@ import { ParentTips, ScenerioTips } from './pages/ParentTips.js';
 import {
     StyledView,
     StyledHomeButtonView,
-    StyledLogo
+    StyledLogo,
+    StyledTagline
 } from './components/StyledView';
 import { Play } from './pages/Play.js';
 import { HowToPlay } from './pages/HowToPlay.js';
@@ -35,16 +36,9 @@ function HomeScreen({ navigation }) {
                             marginRight: 10
                         }}
                     />
-                    <Text
-                        style={{
-                            fontWeight: '800',
-                            fontFamily: 'Avenir',
-                            fontSize: 18
-                        }}
-                    >
-                        {' '}
+                    <StyledTagline>
                         The game that gets people talking!{' '}
-                    </Text>
+                    </StyledTagline>
                 </StyledLogo>
 
                 <StyledHomeButtonView>
@@ -108,7 +102,11 @@ export default function App() {
                                 >
                                     <Image
                                         source={require('./assets/homeIcon.png')}
-                                        style={{ width: 45, height: 35, marginRight: 5 }}
+                                        style={{
+                                            width: 45,
+                                            height: 35,
+                                            marginRight: 5
+                                        }}
                                     />
                                 </TouchableOpacity>
                             )
@@ -136,7 +134,11 @@ export default function App() {
                                 >
                                     <Image
                                         source={require('./assets/homeIcon.png')}
-                                        style={{ width: 45, height: 35, marginRight: 5 }}
+                                        style={{
+                                            width: 45,
+                                            height: 35,
+                                            marginRight: 5
+                                        }}
                                     />
                                 </TouchableOpacity>
                             )
@@ -163,7 +165,11 @@ export default function App() {
                                 >
                                     <Image
                                         source={require('./assets/homeIcon.png')}
-                                        style={{ width: 45, height: 35, marginRight: 5 }}
+                                        style={{
+                                            width: 45,
+                                            height: 35,
+                                            marginRight: 5
+                                        }}
                                     />
                                 </TouchableOpacity>
                             )
@@ -190,7 +196,11 @@ export default function App() {
                                 >
                                     <Image
                                         source={require('./assets/homeIcon.png')}
-                                        style={{ width: 45, height: 35, marginRight: 5 }}
+                                        style={{
+                                            width: 45,
+                                            height: 35,
+                                            marginRight: 5
+                                        }}
                                     />
                                 </TouchableOpacity>
                             )
@@ -217,7 +227,11 @@ export default function App() {
                                 >
                                     <Image
                                         source={require('./assets/homeIcon.png')}
-                                        style={{ width: 45, height: 35, marginRight: 5 }}
+                                        style={{
+                                            width: 45,
+                                            height: 35,
+                                            marginRight: 5
+                                        }}
                                     />
                                 </TouchableOpacity>
                             )
@@ -244,7 +258,11 @@ export default function App() {
                                 >
                                     <Image
                                         source={require('./assets/homeIcon.png')}
-                                        style={{ width: 45, height: 35, marginRight: 5 }}
+                                        style={{
+                                            width: 45,
+                                            height: 35,
+                                            marginRight: 5
+                                        }}
                                     />
                                 </TouchableOpacity>
                             )
