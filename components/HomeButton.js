@@ -45,9 +45,7 @@ const styles = StyleSheet.create({
 });
 
 const HomeButton = props => {
-
-    if (props.text === 'HOW TO PLAY') {
-
+    if (props.text.toLowerCase() === 'play') {
         return (
             <TouchableOpacity onPress={props.onPress}>
                 <View>
@@ -56,9 +54,7 @@ const HomeButton = props => {
                 </View>
             </TouchableOpacity>
         );
-
-    } else {
-
+    } else if (props.text.toLowerCase() === 'how to play') {
         return (
             <TouchableOpacity onPress={props.onPress}>
                 <View>
