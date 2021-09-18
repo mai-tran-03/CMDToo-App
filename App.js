@@ -6,7 +6,7 @@ import React from 'react';
 import HomeButton from './components/HomeButton.js';
 import { ThemeProvider } from 'styled-components';
 import COLORS from './components/GlobalStyles.js';
-import { Image, TouchableOpacity, View, Text } from 'react-native';
+import { Image, TouchableOpacity, View, Text, ScrollView } from 'react-native';
 import {
     ParentGuide,
     ParentGuideByCategory,
@@ -16,7 +16,8 @@ import { ParentTips, ScenerioTips } from './pages/ParentTips.js';
 import {
     StyledView,
     StyledHomeButtonView,
-    StyledHomeText
+    StyledLogo,
+    StyledTagline
 } from './components/StyledView';
 import { Play } from './pages/Play.js';
 import { HowToPlay } from './pages/HowToPlay.js';
@@ -24,71 +25,48 @@ import { HowToPlay } from './pages/HowToPlay.js';
 function HomeScreen({ navigation }) {
     return (
         <StyledView>
-            <Image
-                source={require('./assets/genconnect_logo-black.png')}
-                style={{
-                    width: 348,
-                    height: 115,
-                    marginTop: 100
-                }}
-            />
-            <Text
-                style={{
-                    fontFamily: 'Avenir',
-                    marginTop: 15,
-                    fontWeight: '800'
-                }}
-            >The game that gets people talking!</Text>
-            <StyledHomeButtonView>
-                <StyledHomeText
-                    style={{ zIndex: 1, left: 10, top: 45 }}
-                    onPress={() => navigation.navigate('Play')}
-                >
-                    {' '}
-                    PLAY{' '}
-                </StyledHomeText>
 
-                <StyledHomeText
-                    style={{ zIndex: 1, right: 18, top: 35, color: '#EE3282' }}
-                    onPress={() => navigation.navigate('How To Play')}
-                >
-                    {' '}
-                    HOW TO PLAY{' '}
-                </StyledHomeText>
+            <ScrollView>
+                <StyledLogo>
+                    <Image
+                        source={require('./assets/genconnect_logo-black.png')}
+                        style={{
+                            width: 350,
+                            height: 130,
+                            marginLeft: 10,
+                            marginRight: 10
+                        }}
+                    />
+                    <StyledTagline>
+                        The game that gets people talking!{' '}
+                    </StyledTagline>
+                </StyledLogo>
 
-                <StyledHomeText
-                    style={{ zIndex: 1, left: 13, top: 250 }}
-                    onPress={() => navigation.navigate('Parent Guide')}
-                >
-                    {' '}
-                    PARENT GUIDE{' '}
-                </StyledHomeText>
 
-                <StyledHomeText
-                    style={{ zIndex: 1, right: 18, top: 250 }}
-                    onPress={() => navigation.navigate('Parent Tips')}
-                >
-                    {' '}
-                    PARENT TIPS{' '}
-                </StyledHomeText>
-                <HomeButton
-                    text="play"
-                    onPress={() => navigation.navigate('Play')}
-                />
-                <HomeButton
-                    text="how to play"
-                    onPress={() => navigation.navigate('How To Play')}
-                />
-                <HomeButton
-                    text="parent guide"
-                    onPress={() => navigation.navigate('Parent Guide')}
-                />
-                <HomeButton
-                    text="parent tips"
-                    onPress={() => navigation.navigate('Parent Tips')}
-                />
-            </StyledHomeButtonView>
-            <StatusBar style="auto" />
+                <StyledHomeButtonView>
+                    <HomeButton
+                        text="PLAY"
+                        onPress={() => navigation.navigate('Play')}
+                        source={require('./assets/genconnect_ombre_allaboutme.png')}
+                    />
+                    <HomeButton
+                        text="HOW TO PLAY"
+                        onPress={() => navigation.navigate('How To Play')}
+                        source={require('./assets/genconnect_ombre_brightfuture.png')}
+                    />
+                    <HomeButton
+                        text="PARENT GUIDE"
+                        onPress={() => navigation.navigate('Parent Guide')}
+                        source={require('./assets/genconnect_ombre_whatwouldyoudo.png')}
+                    />
+                    <HomeButton
+                        text="PARENT TIPS"
+                        onPress={() => navigation.navigate('Parent Tips')}
+                        source={require('./assets/genconnect_ombre_dancechallenge.png')}
+                    />
+                </StyledHomeButtonView>
+                <StatusBar style="auto" />
+            </ScrollView>
         </StyledView>
     );
 }
@@ -126,7 +104,11 @@ export default function App() {
                                 >
                                     <Image
                                         source={require('./assets/homeIcon.png')}
-                                        style={{ width: 45, height: 35, marginRight: 5 }}
+                                        style={{
+                                            width: 45,
+                                            height: 35,
+                                            marginRight: 5
+                                        }}
                                     />
                                 </TouchableOpacity>
                             )
@@ -154,7 +136,11 @@ export default function App() {
                                 >
                                     <Image
                                         source={require('./assets/homeIcon.png')}
-                                        style={{ width: 45, height: 35, marginRight: 5 }}
+                                        style={{
+                                            width: 45,
+                                            height: 35,
+                                            marginRight: 5
+                                        }}
                                     />
                                 </TouchableOpacity>
                             )
@@ -181,7 +167,11 @@ export default function App() {
                                 >
                                     <Image
                                         source={require('./assets/homeIcon.png')}
-                                        style={{ width: 45, height: 35, marginRight: 5 }}
+                                        style={{
+                                            width: 45,
+                                            height: 35,
+                                            marginRight: 5
+                                        }}
                                     />
                                 </TouchableOpacity>
                             )
@@ -208,7 +198,11 @@ export default function App() {
                                 >
                                     <Image
                                         source={require('./assets/homeIcon.png')}
-                                        style={{ width: 45, height: 35, marginRight: 5 }}
+                                        style={{
+                                            width: 45,
+                                            height: 35,
+                                            marginRight: 5
+                                        }}
                                     />
                                 </TouchableOpacity>
                             )
@@ -235,7 +229,11 @@ export default function App() {
                                 >
                                     <Image
                                         source={require('./assets/homeIcon.png')}
-                                        style={{ width: 45, height: 35, marginRight: 5 }}
+                                        style={{
+                                            width: 45,
+                                            height: 35,
+                                            marginRight: 5
+                                        }}
                                     />
                                 </TouchableOpacity>
                             )
@@ -262,7 +260,11 @@ export default function App() {
                                 >
                                     <Image
                                         source={require('./assets/homeIcon.png')}
-                                        style={{ width: 45, height: 35, marginRight: 5 }}
+                                        style={{
+                                            width: 45,
+                                            height: 35,
+                                            marginRight: 5
+                                        }}
                                     />
                                 </TouchableOpacity>
                             )
