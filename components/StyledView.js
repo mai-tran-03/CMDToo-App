@@ -45,11 +45,16 @@ export const ParentGuideContainer = styled.View`
 `;
 
 export const AppLogo = styled.Text`
+    margin-top: 30%;
+    text-align: center;
+    font-family: Avenir;
+    font-weight: 900;
     font-size: 35px;
 `;
 
 export const AppDesc = styled.Text`
     padding-top: 15px;
+    font-family: Avenir;
     padding-bottom: 15px;
     font-size: 18px;
 `;

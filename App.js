@@ -25,6 +25,7 @@ import { HowToPlay } from './pages/HowToPlay.js';
 function HomeScreen({ navigation }) {
     return (
         <StyledView>
+
             <ScrollView>
                 <StyledLogo>
                     <Image
@@ -40,6 +41,7 @@ function HomeScreen({ navigation }) {
                         The game that gets people talking!{' '}
                     </StyledTagline>
                 </StyledLogo>
+
 
                 <StyledHomeButtonView>
                     <HomeButton
