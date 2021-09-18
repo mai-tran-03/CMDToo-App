@@ -27,11 +27,18 @@ function HomeScreen({ navigation }) {
             <Image
                 source={require('./assets/genconnect_logo-black.png')}
                 style={{
-                    width: 303,
-                    height: 100,
-                    marginTop: 170
+                    width: 348,
+                    height: 115,
+                    marginTop: 100
                 }}
             />
+            <Text
+                style={{
+                    fontFamily: 'Avenir',
+                    marginTop: 15,
+                    fontWeight: '800'
+                }}
+            >The game that gets people talking!</Text>
             <StyledHomeButtonView>
                 <StyledHomeText
                     style={{ zIndex: 1, left: 10, top: 45 }}

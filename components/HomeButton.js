@@ -12,8 +12,9 @@ const styles = StyleSheet.create({
         zIndex: 0
     }
 });
+
 const HomeButton = props => {
-    if (props.text === 'play') {
+    if (props.text.toLowerCase() === 'play') {
         return (
             <TouchableOpacity onPress={props.onPress}>
                 <View>
@@ -24,7 +25,7 @@ const HomeButton = props => {
                 </View>
             </TouchableOpacity>
         );
-    } else if (props.text === 'how to play') {
+    } else if (props.text.toLowerCase() === 'how to play') {
         return (
             <TouchableOpacity onPress={props.onPress}>
                 <View>
@@ -35,7 +36,7 @@ const HomeButton = props => {
                 </View>
             </TouchableOpacity>
         );
-    } else if (props.text === 'parent guide') {
+    } else if (props.text.toLowerCase() === 'parent guide') {
         return (
             <TouchableOpacity onPress={props.onPress}>
                 <View>
@@ -46,12 +47,45 @@ const HomeButton = props => {
                 </View>
             </TouchableOpacity>
         );
-    } else if (props.text === 'parent tips') {
+    } else if (props.text.toLowerCase() === 'parent tips') {
         return (
             <TouchableOpacity onPress={props.onPress}>
                 <View>
                     <Image
                         source={require('../assets/genconnect_ombre_dancechallenge.png')}
+                        style={styles.styledImage}
+                    />
+                </View>
+            </TouchableOpacity>
+        );
+    } else if (props.text.toLowerCase() === 'cmdtoo website') {
+        return (
+            <TouchableOpacity onPress={props.onPress}>
+                <View>
+                    <Image
+                        source={require('../assets/genconnect_ombre_favorites.png')}
+                        style={styles.styledImage}
+                    />
+                </View>
+            </TouchableOpacity>
+        );
+    } else if (props.text.toLowerCase() === 'survey') {
+        return (
+            <TouchableOpacity onPress={props.onPress}>
+                <View>
+                    <Image
+                        source={require('../assets/genconnect_ombre_allaboutme.png')}
+                        style={styles.styledImage}
+                    />
+                </View>
+            </TouchableOpacity>
+        );
+    } else if (props.text.toLowerCase() === 'home') {
+        return (
+            <TouchableOpacity onPress={props.onPress}>
+                <View>
+                    <Image
+                        source={require('../assets/genconnect_ombre_innerme.png')}
                         style={styles.styledImage}
                     />
                 </View>

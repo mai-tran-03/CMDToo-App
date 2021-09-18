@@ -8,15 +8,19 @@ import {
 } from '../components/Constants.js';
 import CustomButton from '../components/CustomButton.js';
 import Card from '../components/Card.js';
+import HomeButton from '../components/HomeButton.js';
 import qs from '../components/questions.json';
-import { Modal, Linking } from 'react-native';
+import { Modal, Linking, View, Image } from 'react-native';
 import {
     StyledView,
     AppDesc,
     CategoryHeader,
-    AppLogo
+    AppLogo,
+    StyledHomeButtonView,
+    StyledHomeText
 } from '../components/StyledView';
 import GeometryBackground from '../components/GeometryBackground';
+
 
 export const Play = ({ navigation }) => {
     const [modalVisible, setModalVisible] = useState(false);
@@ -88,33 +92,63 @@ export const Play = ({ navigation }) => {
             );
         } else {
             setDisplay(
-                <>
-                    <AppLogo> YOU FINISHED! </AppLogo>
+                <StyledView>
+                    <AppLogo> HOORAY! YOU'VE FINISHED. </AppLogo>
                     <AppDesc>
                         {' '}
-                        What is something new you learned today?{' '}
+                        Thoughts? Take our survey below!{' '}
                     </AppDesc>
-                    <CustomButton
-                        text="go home"
-                        color="CMDPink"
-                        minHeight={BIG_MIN_HEIGHT_BUTTON}
-                        onPress={() => navigation.navigate('Home')}
-                    />
-                    <CustomButton
-                        text="parent guide"
-                        color="CMDTurquoise"
-                        minHeight={BIG_MIN_HEIGHT_BUTTON}
-                        onPress={() => navigation.navigate('Parent Guide')}
-                    />
-                    <CustomButton
-                        text="CMDToo Website"
-                        color="CMDGreen"
-                        minHeight={BIG_MIN_HEIGHT_BUTTON}
-                        onPress={() =>
-                            Linking.openURL('https://www.coolmomsdancetoo.com/')
-                        }
-                    />
-                </>
+                    <StyledHomeButtonView>
+                        <StyledHomeText
+                            style={{ zIndex: 1, left: 10, top: 45 }}
+                            onPress={() => navigation.navigate('Home')}
+                        >
+                            {' '}
+                            SURVEY{' '}
+                        </StyledHomeText>
+                        <StyledHomeText
+                            style={{ zIndex: 1, right: 18, top: 35 }}
+                            onPress={() => navigation.navigate('Parent Guide')}
+                        >
+                            {' '}
+                            PARENT GUIDE{' '}
+                        </StyledHomeText>
+                        <StyledHomeText
+                            style={{ zIndex: 1, left: 13, top: 250, color: '#FFF' }}
+                            onPress={() => Linking.openURL('https://www.coolmomsdancetoo.com/')}
+                        >
+                            {' '}
+                            CMDTOO WEBSITE{' '}
+                        </StyledHomeText>
+                        <StyledHomeText
+                            style={{ zIndex: 1, right: 18, top: 250 }}
+                            onPress={() => navigation.navigate('Home')}
+                        >
+                            {' '}
+                            BACK TO HOME{' '}
+                        </StyledHomeText>
+
+                        <HomeButton
+                            text="SURVEY"
+                            onPress={() => navigation.navigate('Home')}
+                        />
+                        <HomeButton
+                            text="PARENT GUIDE"
+                            onPress={() => navigation.navigate('Parent Guide')}
+                        />
+                        <HomeButton
+                            text="CMDTOO WEBSITE"
+                            onPress={() => Linking.openURL('https://www.coolmomsdancetoo.com/')}
+                        />
+                        <HomeButton
+                            text="HOME"
+                            onPress={() => navigation.navigate('Home')}
+                        />
+                    </StyledHomeButtonView>
+                    <Image source={require('../assets/CoolMomsLogo.png')} style={{ marginBottom: 30 }} />
+
+
+                </StyledView>
             );
         }
     }, [questions]);
@@ -136,3 +170,5 @@ export const Play = ({ navigation }) => {
         </StyledView>
     );
 };
+
+

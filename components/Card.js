@@ -21,7 +21,8 @@ const CardTitleTextboxContainer = styled.View`
 
 const CardTitleText = styled.Text`
     font-style: normal;
-    font-weight: 500;
+    font-family: Avenir;
+    font-weight: 600;
     font-size: 30px;
     line-height: 35.16px;
     text-align: center;
@@ -118,18 +119,18 @@ const Card = ({
                             ></CustomButton>
                         </TwoButtonContainer>
                     ) : (
-                        <CustomButton
-                            text="DONE"
-                            color={color}
-                            onPress={() => setModalVisible(false)}
-                            horizontalMargin={DONE_HORIZONTAL_MARGIN_BUTTON}
-                            fontWeight="500"
-                            fontSize={28}
-                            lineHeight={38.25}
-                            height="100%"
-                            marginVertical="0"
-                        ></CustomButton>
-                    )}
+                            <CustomButton
+                                text="DONE"
+                                color={color}
+                                onPress={() => setModalVisible(false)}
+                                horizontalMargin={DONE_HORIZONTAL_MARGIN_BUTTON}
+                                fontWeight="500"
+                                fontSize={28}
+                                lineHeight={38.25}
+                                height="100%"
+                                marginVertical="0"
+                            ></CustomButton>
+                        )}
                 </View>
                 <View style={{ height: '1.5%' }}></View>
             </View>
