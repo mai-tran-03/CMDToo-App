@@ -82,7 +82,7 @@ export const Play = ({ navigation }) => {
                 />
             );
         });
-        if (questions.length < 0) {
+        if (questions.length) {
             setDisplay(
                 <>
                     <GeometryBackground />
