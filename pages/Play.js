@@ -14,7 +14,7 @@ import {
     StyledView,
     AppDesc,
     CategoryHeader,
-    AppLogo,
+    YouFinished,
     StyledHomeButtonView
 } from '../components/StyledView';
 import GeometryBackground from '../components/GeometryBackground';
@@ -54,8 +54,8 @@ export const Play = ({ navigation }) => {
                     warningText={
                         lengthOfCardLeft <= 3
                             ? `${lengthOfCardLeft} ${
-                                  lengthOfCardLeft === 1 ? 'card' : 'cards'
-                              } left`
+                            lengthOfCardLeft === 1 ? 'card' : 'cards'
+                            } left`
                             : undefined
                     }
                     onPress={() => {
@@ -93,7 +93,8 @@ export const Play = ({ navigation }) => {
         } else {
             setDisplay(
                 <StyledView>
-                    <AppLogo> HOORAY! YOU'VE FINISHED. </AppLogo>
+                    <GeometryBackground />
+                    <YouFinished> HOORAY! YOU'VE FINISHED. </YouFinished>
                     <AppDesc> Thoughts? Take our survey below! </AppDesc>
                     <StyledHomeButtonView>
                         <HomeButton
@@ -124,7 +125,7 @@ export const Play = ({ navigation }) => {
 
                     <Image
                         source={require('../assets/CoolMomsLogo.png')}
-                        style={{ marginTop: 50 }}
+                        style={{ marginTop: 70 }}
                     />
                 </StyledView>
             );
