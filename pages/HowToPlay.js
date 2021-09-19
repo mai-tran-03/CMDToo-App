@@ -17,7 +17,6 @@ export const HowToPlay = ({ navigation }) => {
             <GeometryBackground />
             <ScrollStyledView>
                 <HowToPlayContainer>
-                    <GeometryBackground />
                     <CustomText
                         text='Press "PLAY"'
                         color="CMDGreen"
