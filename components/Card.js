@@ -46,6 +46,7 @@ const CardView = styled.View`
     justify-content: center;
     margin-top: 7%;
     min-width: 95%;
+    background-color: #FFF;
 `;
 
 const TwoButtonContainer = styled.View`

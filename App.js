@@ -88,7 +88,7 @@ export default function App() {
                         options={({ navigation }) => ({
                             headerShown: true,
                             headerStyle: {
-                                backgroundColor: rgba(COLORS.CMDTurquoise)
+                                backgroundColor: 'rgba(70, 193, 193, 0.6)'
                             },
                             headerTintColor: '#fff',
                             headerTitleStyle: {
@@ -120,7 +120,7 @@ export default function App() {
                         options={({ navigation }) => ({
                             headerShown: true,
                             headerStyle: {
-                                backgroundColor: 'black'
+                                backgroundColor: 'rgba(70, 193, 193, 0.6)'
                             },
                             headerTintColor: '#fff',
                             headerTitleStyle: {
@@ -151,7 +151,7 @@ export default function App() {
                         options={({ navigation }) => ({
                             headerShown: true,
                             headerStyle: {
-                                backgroundColor: 'black'
+                                backgroundColor: 'rgba(70, 193, 193, 0.6)'
                             },
                             headerTintColor: '#fff',
                             headerTitleStyle: {
@@ -182,7 +182,7 @@ export default function App() {
                         options={({ navigation }) => ({
                             headerShown: true,
                             headerStyle: {
-                                backgroundColor: 'black'
+                                backgroundColor: 'rgba(70, 193, 193, 0.6)'
                             },
                             headerTintColor: '#fff',
                             headerTitleStyle: {
@@ -213,7 +213,7 @@ export default function App() {
                         options={({ navigation }) => ({
                             headerShown: true,
                             headerStyle: {
-                                backgroundColor: 'black'
+                                backgroundColor: 'rgba(70, 193, 193, 0.6)'
                             },
                             headerTintColor: '#fff',
                             headerTitleStyle: {
@@ -244,7 +244,7 @@ export default function App() {
                         options={({ navigation }) => ({
                             headerShown: true,
                             headerStyle: {
-                                backgroundColor: 'black'
+                                backgroundColor: 'rgba(70, 193, 193, 0.6)'
                             },
                             headerTintColor: '#fff',
                             headerTitleStyle: {
