@@ -34,6 +34,7 @@ const WarningText = styled.Text`
         props.categoryName === CATEGORY.BRIGHTFUTURE
             ? props.theme.colors['CMDPink']
             : 'white'};
+    ${props => (props.isDisable ? 'color: white' : '')};
     position: absolute;
     left: 5%;
     bottom: 3%;
@@ -73,14 +74,19 @@ const CustomButton = ({
             horizontalMargin={horizontalMargin}
             marginVertical={marginVertical}
         >
-
             <StandardTextContainer>
-                <StandardText color={color} fixedTextWidth={fixedTextWidth}>
+                <StandardText
+                    color={color}
+                    isDisable={others.disabled}
+                    fixedTextWidth={fixedTextWidth}
+                >
                     {isAllCap ? text.toUpperCase() : text}
                 </StandardText>
             </StandardTextContainer>
             {warningText && (
-                <WarningText categoryName={color}>{warningText}</WarningText>
+                <WarningText isDisable={others.disabled} categoryName={color}>
+                    {warningText}
+                </WarningText>
             )}
             {displayIcon &&
                 pickIconToDisplay(color, ICONTYPE.PLAYPAGE, others.disabled)}

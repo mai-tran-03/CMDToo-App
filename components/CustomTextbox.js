@@ -24,16 +24,16 @@ const SmallerTextboxContainer = styled.View`
 `;
 
 export const SmallerStandardText = styled.Text`
-font-family: Avenir;
-font-style: normal;
-font-weight: 600;
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 600;
 
-font-size: 23px;
-line-height: 32px;
-text-align: center;
-flex-shrink: 1;
-width: ${props => `${props.fixedTextWidth}`};
-color: ${props =>
+    font-size: 23px;
+    line-height: 32px;
+    text-align: center;
+    flex-shrink: 1;
+    width: ${props => `${props.fixedTextWidth}`};
+    color: ${props =>
         props.color === 'my bright future'
             ? props.theme.colors['CMDPink']
             : 'white'};
@@ -53,6 +53,7 @@ export const StandardText = styled.Text`
         props.color === 'my bright future'
             ? props.theme.colors['CMDPink']
             : 'white'};
+    ${props => (props.isDisable ? 'color: white' : '')};
 `;
 
 const CardContainer = styled.View`
