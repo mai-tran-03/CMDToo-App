@@ -2,13 +2,11 @@ import styled from 'styled-components/native';
 
 export const StyledView = styled.View`
     flex: 1;
-    background-color: #fff;
     align-items: center;
     justify-content: center;
 `;
 
 export const StyledHomeButtonView = styled.View`
-    background-color: #fff;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
@@ -46,6 +44,13 @@ export const ParentGuideContainer = styled.View`
 
 export const AppLogo = styled.Text`
     margin-top: 30%;
+    text-align: center;
+    font-family: Avenir;
+    font-weight: 900;
+    font-size: 35px;
+`;
+
+export const YouFinished = styled.Text`
     text-align: center;
     font-family: Avenir;
     font-weight: 900;
