@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
         minHeight: 220,
         padding: 10,
         left: 5,
-        top: 70,
+        top: 85,
         color: 'white',
         position: 'absolute'
     },
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
         minHeight: 220,
         padding: 10,
         left: 5,
-        top: 70,
+        top: 85,
         color: '#EE3282',
         position: 'absolute'
     }

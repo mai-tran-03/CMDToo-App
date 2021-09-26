@@ -21,11 +21,14 @@ import {
 } from './components/StyledView';
 import { Play } from './pages/Play.js';
 import { HowToPlay } from './pages/HowToPlay.js';
+import GeometryBackground from './components/GeometryBackground.js';
 
 const HomeScreen = ({ navigation }) => {
     return (
         <StyledView>
+            <GeometryBackground />
             <ScrollView>
+
                 <StyledLogo>
                     <Image
                         source={require('./assets/genconnect_logo-black.png')}
@@ -43,7 +46,7 @@ const HomeScreen = ({ navigation }) => {
 
                 <StyledHomeButtonView>
                     <HomeButton
-                        text="PLAY"
+                        text="PLAY GAME"
                         onPress={() => navigation.navigate('Play')}
                         source={require('./assets/genconnect_ombre_allaboutme.png')}
                     />
@@ -65,7 +68,7 @@ const HomeScreen = ({ navigation }) => {
                 </StyledHomeButtonView>
                 <StatusBar style="auto" />
             </ScrollView>
-        </StyledView>
+        </StyledView >
     );
 };
 
@@ -113,7 +116,36 @@ export default function App() {
                             )
                         })}
                     />
-                    <Stack.Screen name="Play" component={Play} />
+                    <Stack.Screen
+                        name="Play"
+                        component={Play}
+                        options={({ navigation }) => ({
+                            headerShown: true,
+                            headerStyle: {
+                                backgroundColor: 'rgba(70, 193, 193, 0.6)'
+                            },
+                            headerTintColor: '#fff',
+                            headerTitleStyle: {
+                                fontWeight: 'bold'
+                            },
+                            headerBackTitleVisible: false,
+                            headerRight: props => (
+                                <TouchableOpacity
+                                    onPress={(...props) => {
+                                        navigation.navigate('Home');
+                                    }}
+                                >
+                                    <Image
+                                        source={require('./assets/homeIcon.png')}
+                                        style={{
+                                            width: 45,
+                                            height: 35,
+                                            marginRight: 5
+                                        }}
+                                    />
+                                </TouchableOpacity>
+                            )
+                        })} />
                     <Stack.Screen
                         name="How To Play"
                         component={HowToPlay}
