@@ -40,7 +40,7 @@ const HomeScreen = ({ navigation }) => {
                         }}
                     />
                     <StyledTagline>
-                        The game that gets people talking!{' '}
+                        The game that gets families talking!{' '}
                     </StyledTagline>
                 </StyledLogo>
 

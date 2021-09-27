@@ -54,19 +54,19 @@ export const pickIconToDisplay = (categoryName, iconType, isDisable) => {
                 case ICONTYPE.PLAYPAGE:
                     return (
                         <IconPlay
-                            source={require('../assets/genconnect_icon-allaboutme_filled.png')}
+                            source={require('../assets/genconnect_icon-dancechallenge.png')}
                         />
                     );
                 case ICONTYPE.PARENTGUIDEPAGE:
                     return (
                         <IconParentGuide
-                            source={require('../assets/genconnect_icon-allaboutme_filled.png')}
+                            source={require('../assets/genconnect_icon-dancechallenge.png')}
                         />
                     );
                 case ICONTYPE.CARDPAGE:
                     return (
                         <IconCard
-                            source={require('../assets/genconnect_icon-allaboutme_filled.png')}
+                            source={require('../assets/genconnect_icon-dancechallenge.png')}
                         />
                     );
                 default:
@@ -153,30 +153,30 @@ export const pickIconToDisplay = (categoryName, iconType, isDisable) => {
                             source={require('../assets/genconnect_icon-brightfuture_filled.png')}
                         />
                     ) : (
-                        <IconPlay
-                            source={require('../assets/genconnect_icon-brightfuture_pink_outline.png')}
-                        />
-                    );
+                            <IconPlay
+                                source={require('../assets/genconnect_icon-brightfuture_pink_outline.png')}
+                            />
+                        );
                 case ICONTYPE.PARENTGUIDEPAGE:
                     return isDisable ? (
                         <IconParentGuide
                             source={require('../assets/genconnect_icon-brightfuture_filled.png')}
                         />
                     ) : (
-                        <IconParentGuide
-                            source={require('../assets/genconnect_icon-brightfuture_pink_outline.png')}
-                        />
-                    );
+                            <IconParentGuide
+                                source={require('../assets/genconnect_icon-brightfuture_pink_outline.png')}
+                            />
+                        );
                 case ICONTYPE.CARDPAGE:
                     return isDisable ? (
                         <IconCard
                             source={require('../assets/genconnect_icon-brightfuture_filled.png')}
                         />
                     ) : (
-                        <IconCard
-                            source={require('../assets/genconnect_icon-brightfuture_pink_outline.png')}
-                        />
-                    );
+                            <IconCard
+                                source={require('../assets/genconnect_icon-brightfuture_pink_outline.png')}
+                            />
+                        );
                 default:
                     return null;
             }
