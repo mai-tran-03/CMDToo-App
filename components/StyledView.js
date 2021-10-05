@@ -77,11 +77,12 @@ export const AppDesc = styled.Text`
 
 export const CategoryHeader = styled.Text`
     font-size: 24px;
-    min-height: 50px;
     align-items: flex-start;
+    justify-content: center;
     font-family: Avenir;
     font-weight: 900;
     text-align: center;
+    padding-top: 15px;
 `;
 
 export const ParentTipsHeaderContainer = styled.View`

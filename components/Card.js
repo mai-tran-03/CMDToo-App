@@ -44,7 +44,7 @@ const CardView = styled.View`
     display: flex;
     flex: 1;
     justify-content: center;
-    margin-top: 7%;
+    padding-top: 7%;
     min-width: 95%;
     background-color: #FFF;
 `;
@@ -120,18 +120,18 @@ const Card = ({
                             ></CustomButton>
                         </TwoButtonContainer>
                     ) : (
-                            <CustomButton
-                                text="DONE"
-                                color={color}
-                                onPress={() => setModalVisible(false)}
-                                horizontalMargin={DONE_HORIZONTAL_MARGIN_BUTTON}
-                                fontWeight="500"
-                                fontSize={28}
-                                lineHeight={38.25}
-                                height="100%"
-                                marginVertical="0"
-                            ></CustomButton>
-                        )}
+                        <CustomButton
+                            text="DONE"
+                            color={color}
+                            onPress={() => setModalVisible(false)}
+                            horizontalMargin={DONE_HORIZONTAL_MARGIN_BUTTON}
+                            fontWeight="500"
+                            fontSize={28}
+                            lineHeight={38.25}
+                            height="100%"
+                            marginVertical="0"
+                        ></CustomButton>
+                    )}
                 </View>
                 <View style={{ height: '1.5%' }}></View>
             </View>

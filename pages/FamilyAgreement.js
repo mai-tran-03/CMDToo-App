@@ -7,8 +7,7 @@ import GeometryBackground from '../components/GeometryBackground';
 import {
     StyledView,
     ScrollStyledView,
-    HowToPlayContainer,
-    CategoryHeader
+    HowToPlayContainer
 } from '../components/StyledView';
 import { BIG_MIN_HEIGHT_BUTTON } from '../components/Constants.js';
 
