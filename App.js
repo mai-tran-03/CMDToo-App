@@ -27,48 +27,45 @@ const HomeScreen = ({ navigation }) => {
     return (
         <StyledView>
             <GeometryBackground />
-            <ScrollView>
+            <StyledLogo>
+                <Image
+                    source={require('./assets/genconnect_logo-black.png')}
+                    style={{
+                        width: 350,
+                        height: 130,
+                        marginLeft: 10,
+                        marginRight: 10
+                    }}
+                />
+                <StyledTagline>
+                    The game that gets families talking!{' '}
+                </StyledTagline>
+            </StyledLogo>
 
-                <StyledLogo>
-                    <Image
-                        source={require('./assets/genconnect_logo-black.png')}
-                        style={{
-                            width: 350,
-                            height: 130,
-                            marginLeft: 10,
-                            marginRight: 10
-                        }}
-                    />
-                    <StyledTagline>
-                        The game that gets families talking!{' '}
-                    </StyledTagline>
-                </StyledLogo>
-
-                <StyledHomeButtonView>
-                    <HomeButton
-                        text="PLAY GAME"
-                        onPress={() => navigation.navigate('Play')}
-                        source={require('./assets/genconnect_ombre_allaboutme.png')}
-                    />
-                    <HomeButton
-                        text="HOW TO PLAY"
-                        onPress={() => navigation.navigate('How To Play')}
-                        source={require('./assets/genconnect_ombre_brightfuture.png')}
-                    />
-                    <HomeButton
-                        text="PARENT GUIDE"
-                        onPress={() => navigation.navigate('Parent Guide')}
-                        source={require('./assets/genconnect_ombre_whatwouldyoudo.png')}
-                    />
-                    <HomeButton
-                        text="PARENT TIPS"
-                        onPress={() => navigation.navigate('Parent Tips')}
-                        source={require('./assets/genconnect_ombre_dancechallenge.png')}
-                    />
-                </StyledHomeButtonView>
-                <StatusBar style="auto" />
-            </ScrollView>
-        </StyledView >
+            <StyledHomeButtonView>
+                <HomeButton
+                    text="PLAY GAME"
+                    onPress={() => navigation.navigate('Play')}
+                    source={require('./assets/genconnect_ombre_allaboutme.png')}
+                />
+                <HomeButton
+                    text="HOW TO PLAY"
+                    onPress={() => navigation.navigate('How To Play')}
+                    source={require('./assets/genconnect_ombre_brightfuture.png')}
+                />
+                <HomeButton
+                    text="PARENT GUIDE"
+                    onPress={() => navigation.navigate('Parent Guide')}
+                    source={require('./assets/genconnect_ombre_whatwouldyoudo.png')}
+                />
+                <HomeButton
+                    text="PARENT TIPS"
+                    onPress={() => navigation.navigate('Parent Tips')}
+                    source={require('./assets/genconnect_ombre_dancechallenge.png')}
+                />
+            </StyledHomeButtonView>
+            <StatusBar style="auto" />
+        </StyledView>
     );
 };
 
@@ -145,7 +142,8 @@ export default function App() {
                                     />
                                 </TouchableOpacity>
                             )
-                        })} />
+                        })}
+                    />
                     <Stack.Screen
                         name="How To Play"
                         component={HowToPlay}

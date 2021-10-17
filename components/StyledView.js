@@ -12,10 +12,7 @@ export const StyledHomeButtonView = styled.View`
     justify-content: center;
 `;
 export const StyledLogo = styled.View`
-    background-color: #fff;
     align-items: center;
-    justify-content: flex-end;
-    margin-top: 30%;
 `;
 
 export const ScrollStyledView = styled.ScrollView`
