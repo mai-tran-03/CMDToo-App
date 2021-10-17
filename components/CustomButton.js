@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { StandardText } from './CustomTextbox.js';
+import { StandardText, SmallerStandardText } from './CustomTextbox.js';
 import { CATEGORY, ICONTYPE } from './Constants.js';
 import { pickIconToDisplay } from './Icon.js';
 

@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "CMDToo",
-    "slug": "CMDToo",
+    "name": "GenConnect",
+    "slug": "gen-connect-cool-moms",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -27,6 +27,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "GenConnect “The game that gets families talking” is a family card game created to add the spark in communication and family engagement. With six categories of questions and challenges ranging from ‘what would you do’ ‘Favorites’ ‘my bright future’ and ‘dance challenge’ families meet on a human level opening up lines of communication and building community as individuals.",
+    "githubUrl": "https://github.com/h4icarleton/CMDToo-App"
   }
 }
