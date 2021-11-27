@@ -86,7 +86,10 @@ export const Play = ({ navigation }) => {
             setDisplay(
                 <>
                     <GeometryBackground />
-                    <CategoryHeader> PICK A CATEGORY </CategoryHeader>
+                    <Image
+                        source={require('../assets/genconnect_footerbuttons_teal_pick.png')}
+                        style={{ width: 350, height: 100 }}
+                    />
                     {list}
                 </>
             );
@@ -153,3 +156,5 @@ export const Play = ({ navigation }) => {
         </StyledView>
     );
 };
+
+

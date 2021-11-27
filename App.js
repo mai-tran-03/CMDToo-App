@@ -26,6 +26,8 @@ import GeometryBackground from './components/GeometryBackground.js';
 import { BIG_MIN_HEIGHT_BUTTON } from './components/Constants.js';
 import AppLoading from 'expo-app-loading';
 import { Asset } from 'expo-asset';
+import { Footer } from './pages/Footer.js';
+import { About } from './pages/About.js';
 
 
 async function _cacheResourcesAsync() {
@@ -90,6 +92,16 @@ const HomeScreen = ({ navigation }) => {
                     </StyledHomeButtonView>
                     <StatusBar style="auto" />
                 </ScrollView>
+                <TouchableOpacity onPress={() => navigation.navigate('Footer')}>
+                    <Image
+                        source={require('./assets/footer_info.png')}
+                        style={{
+                            width: 90,
+                            height: 90,
+                            bottom: 13
+                        }}
+                    />
+                </TouchableOpacity>
             </StyledView>
         );
     };
@@ -191,6 +203,76 @@ export default function App() {
                                 >
                                     <Image
                                         source={require('./assets/homeIcon.png')}
+                                        style={{
+                                            width: 45,
+                                            height: 35,
+                                            marginRight: 5
+                                        }}
+                                    />
+                                </TouchableOpacity>
+                            )
+                        })}
+                    />
+                    <Stack.Screen
+                        name="Footer"
+                        component={Footer}
+                        options={({ navigation }) => ({
+                            headerShown: true,
+                            headerStyle: {
+                                backgroundColor: 'white',
+                            },
+                            headerTintColor: '#46C1C1',
+                            headerTitleStyle: {
+                                fontWeight: 'bold',
+                                color: '#46C1C1'
+                            },
+                            cardStyle: {
+                                backgroundColor: '#46C1C1'
+                            },
+                            headerBackTitleVisible: false,
+                            headerRight: props => (
+                                <TouchableOpacity
+                                    onPress={(...props) => {
+                                        navigation.navigate('Home');
+                                    }}
+                                >
+                                    <Image
+                                        source={require('./assets/homeIcon-inverted.png')}
+                                        style={{
+                                            width: 45,
+                                            height: 35,
+                                            marginRight: 5
+                                        }}
+                                    />
+                                </TouchableOpacity>
+                            )
+                        })}
+                    />
+                    <Stack.Screen
+                        name="About"
+                        component={About}
+                        options={({ navigation }) => ({
+                            headerShown: true,
+                            headerStyle: {
+                                backgroundColor: 'white',
+                            },
+                            headerTintColor: '#46C1C1',
+                            headerTitleStyle: {
+                                fontWeight: 'bold',
+                                color: '#46C1C1'
+                            },
+                            cardStyle: {
+                                backgroundColor: '#46C1C1'
+                            },
+                            headerBackTitleVisible: false,
+                            headerRight: props => (
+                                <TouchableOpacity
+                                    onPress={(...props) => {
+                                        navigation.navigate('Home');
+                                    }}
+                                >
+                                    <Image
+                                        source={require('./assets/homeIcon-inverted.png')}
                                         style={{
                                             width: 45,
                                             height: 35,
