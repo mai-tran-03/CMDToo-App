@@ -53,8 +53,7 @@ export const Play = ({ navigation }) => {
                     fixedTextWidth={FIXED_TEXT_WIDTH_BUTTON}
                     warningText={
                         lengthOfCardLeft <= 3
-                            ? `${lengthOfCardLeft} ${
-                            lengthOfCardLeft === 1 ? 'card' : 'cards'
+                            ? `${lengthOfCardLeft} ${lengthOfCardLeft === 1 ? 'card' : 'cards'
                             } left`
                             : undefined
                     }
@@ -95,10 +94,10 @@ export const Play = ({ navigation }) => {
             );
         } else {
             setDisplay(
-                <StyledView>
+                <StyledView >
                     <GeometryBackground />
                     <YouFinished> HOORAY! YOU'VE FINISHED. </YouFinished>
-                    <AppDesc> Thoughts? Take our survey below! </AppDesc>
+                    <AppDesc style={{ paddingBottom: 0 }}> Thoughts? Take our survey below! </AppDesc>
                     <StyledHomeButtonView>
                         <HomeButton
                             text="SURVEY"
@@ -132,7 +131,7 @@ export const Play = ({ navigation }) => {
 
                     <Image
                         source={require('../assets/CoolMomsLogo.png')}
-                        style={{ marginTop: 70 }}
+                        style={{ marginTop: 0 }}
                     />
                 </StyledView>
             );
