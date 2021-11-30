@@ -46,7 +46,7 @@ export const Footer = ({ navigation }) => {
             <FooterButton
                 onPress={() =>
                     Linking.openURL(
-                        'https://www.coolmomsdancetoo.com/'
+                        'https://docs.google.com/forms/d/e/1FAIpQLSe47cA8qTGibaL4EuBOfr6OkY3gEva0FyHIEgqSZ1j-y0EWkg/viewform?usp=sf_link'
                     )
                 }
                 source={require("../assets/genconnect_footerbuttons_feedback.png")}
