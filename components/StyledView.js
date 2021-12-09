@@ -150,4 +150,6 @@ export const StyledTagline = styled.Text`
     font-size: 18px;
     text-align: center;
     color: #EE3282;
+    padding-top: 10; 
+    padding-bottom: 20;
 `;
