@@ -91,7 +91,7 @@ const HomeScreen = ({ navigation }) => {
                     />
                 </StyledHomeButtonView>
                 <StatusBar style="auto" />
-                <TouchableOpacity>
+                <TouchableOpacity
                     onPress={() => navigation.navigate('Information')}
                     style={{
                         position: 'absolute',
