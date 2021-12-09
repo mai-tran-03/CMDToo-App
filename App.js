@@ -23,11 +23,11 @@ import { Play } from './pages/Play.js';
 import { HowToPlay } from './pages/HowToPlay.js';
 import { FamilyAgreement } from './pages/FamilyAgreement.js';
 import GeometryBackground from './components/GeometryBackground.js';
-import { BIG_MIN_HEIGHT_BUTTON, FIXED_TEXT_WIDTH_BUTTON } from './components/Constants.js';
 import AppLoading from 'expo-app-loading';
 import { Asset } from 'expo-asset';
 import { Footer as Information } from './pages/Footer.js';
 import { About } from './pages/About.js';
+import * as SplashScreen from 'expo-splash-screen';
 
 
 async function _cacheResourcesAsync() {
@@ -43,6 +43,7 @@ const HomeScreen = ({ navigation }) => {
     const [isReady, setIsReady] = useState(false);
 
     if (!isReady) {
+        SplashScreen.preventAutoHideAsync();
         return (
             <AppLoading
                 startAsync={_cacheResourcesAsync}
@@ -90,12 +91,12 @@ const HomeScreen = ({ navigation }) => {
                     />
                 </StyledHomeButtonView>
                 <StatusBar style="auto" />
-                <TouchableOpacity
+                <TouchableOpacity>
                     onPress={() => navigation.navigate('Information')}
                     style={{
                         position: 'absolute',
                         right: 20,
-                        top: 20,
+                        top: 40,
                     }} >
                     <Image
                         source={require('./assets/footer_info.png')}

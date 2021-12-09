@@ -2,6 +2,7 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import { View, Linking, StyleSheet } from 'react-native';
 import FooterButton from '../components/FooterButton.js';
+import * as SMS from 'expo-sms';
 
 
 const styles = StyleSheet.create({
@@ -27,7 +28,7 @@ export const Footer = ({ navigation }) => {
                 source={require("../assets/genconnect_footerbuttons_share.png")}
                 onPress={() =>
                     Linking.openURL(
-                        'https://apps.apple.com/us/app/gen-connect/id1588977864'
+                        `sms:&addresses=&body=Check out Gen Connect on the App Store! https://apps.apple.com/us/app/gen-connect/id1588977864`
                     )
                 }
             />

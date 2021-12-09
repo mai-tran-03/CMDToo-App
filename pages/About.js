@@ -143,6 +143,10 @@ export const About = ({ navigation }) => {
                 </Unorderedlist>
 
             </AboutTextboxContainer>
+            <AboutTextboxContainer>
+                <AboutText style={{ 'fontWeight': '800' }}>Created and Designed by Cool Moms Dance Too! </AboutText>
+                <AboutText style={{ 'fontWeight': '800' }}>Developed with ♥ by Hack4Impact Carleton</AboutText>
+            </AboutTextboxContainer>
 
         </ScrollView>
     )
